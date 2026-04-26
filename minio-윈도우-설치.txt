@@ -1,0 +1,149 @@
+좋습니다. 요구 조건 정리하면:
+
+👉 **Windows + MinIO 단독 실행 + mc.exe 포함 (NSSM 없음)**
+
+실무 기준으로 **필수만 남긴 최소 구성**으로 정리합니다.
+
+---
+
+# 1. 파일 준비
+
+## ✔ 다운로드 2개
+
+* MinIO
+
+```text
+https://dl.min.io/server/minio/release/windows-amd64/minio.exe
+```
+
+* MinIO Client
+
+```text
+https://dl.min.io/client/mc/release/windows-amd64/mc.exe
+```
+
+---
+
+## ✔ 폴더 구조
+
+```text
+C:\minio
+ ├─ minio.exe
+ ├─ mc.exe
+ └─ data
+```
+
+```cmd
+mkdir C:\minio\data
+```
+
+---
+
+# 2. 계정 설정
+
+```cmd
+setx MINIO_ROOT_USER admin
+setx MINIO_ROOT_PASSWORD admin123
+```
+
+👉 새 CMD 창에서 실행
+
+---
+
+# 3. MinIO 실행
+
+```cmd
+cd C:\minio
+minio.exe server C:\minio\data --console-address ":9001"
+```
+
+---
+
+# 4. 접속 확인
+
+* API: [http://127.0.0.1:9000](http://127.0.0.1:9000)
+* Console: [http://127.0.0.1:9001](http://127.0.0.1:9001)
+
+---
+
+# 5. mc 연결 (핵심)
+
+```powershell
+cd C:\minio
+.\mc.exe alias set myminio http://127.0.0.1:9000 admin admin123
+```
+
+---
+
+# 6. 기본 사용
+
+## ✔ 버킷 생성
+
+```powershell
+.\mc.exe mb myminio/logs
+```
+
+## ✔ 파일 업로드
+
+```powershell
+.\mc.exe cp logs_1.log myminio/logs/
+```
+
+## ✔ 조회
+
+```powershell
+.\mc.exe ls myminio/logs
+```
+
+---
+
+# 7. 문제 발생 시 (중요)
+
+```cmd
+rmdir /s /q C:\minio\data
+mkdir C:\minio\data
+```
+
+👉 config 꼬임 / OpenID 오류 / site 오류
+👉 **이걸로 100% 해결**
+
+---
+
+# 8. 핵심 운영 포인트
+
+* mc.exe = 필수 도구 (S3 테스트/자동화)
+* MinIO = 단일 프로세스
+* 별도 서비스(NSSM) 불필요
+* config 문제 나면 → data 폴더 초기화
+
+---
+
+# 최종 요약
+
+👉 구성:
+
+* minio.exe (서버)
+* mc.exe (관리/테스트)
+
+👉 실행:
+
+```cmd
+minio.exe server C:\minio\data --console-address ":9001"
+```
+
+👉 제어:
+
+```powershell
+.\mc.exe alias set ...
+.\mc.exe mb / cp / ls
+```
+
+---
+
+원하면 다음 단계로 바로 연결 가능:
+
+👉 logs_1.log 자동 업로드 구조
+👉 S3 polling API (Cursor 기반)
+👉 Spark 로그 분석 파이프라인
+
+→ 이 구성까지 이어서 설계해 줄게.
