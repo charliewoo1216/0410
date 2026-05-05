@@ -1,0 +1,2922 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="theme-color" content="#343a40">
+<title>ADSP 요약본 v2 — 3과목 강화판 (44~46회 출제경향 반영)</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.2/css/all.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/css/adminlte.min.css">
+<style>
+:root{--app-fs:1.05rem;}
+body{font-size:var(--app-fs);}
+.wrapper .content-wrapper{min-height:calc(100vh - 57px - 57px - 50px);}
+.main-header .navbar-nav .btn-tool{color:inherit;padding:.4rem .55rem;}
+.main-header .nav-link-mode.active{background:rgba(0,0,0,.1);border-radius:.25rem;}
+.dark-mode .main-header .nav-link-mode.active{background:rgba(255,255,255,.15);}
+.brand-link .brand-text{font-weight:700;letter-spacing:.5px;}
+.nav-sidebar .nav-item .nav-link.active{background:#007bff;color:#fff;}
+.dark-mode .nav-sidebar .nav-item .nav-link.active{background:#0d6efd;}
+.nav-sidebar .badge-progress{margin-left:.4rem;}
+.chapter{display:none;}
+.chapter.active{display:block;animation:fadein .25s ease;}
+@keyframes fadein{from{opacity:0;transform:translateY(4px);}to{opacity:1;transform:none;}}
+.card{border-radius:.55rem;}
+.card-title-num{display:inline-block;background:#007bff;color:#fff;border-radius:.35rem;padding:.05rem .5rem;font-size:.78em;margin-right:.4rem;vertical-align:.1em;}
+.dark-mode .card-title-num{background:#0d6efd;}
+.kw{display:inline-block;background:#fff3cd;color:#7a5d00;padding:.05rem .35rem;border-radius:.25rem;font-weight:600;}
+.dark-mode .kw{background:#503d05;color:#ffe082;}
+.mn{display:inline-block;background:#d1e7dd;color:#0f5132;padding:.1rem .4rem;border-radius:.25rem;font-weight:700;letter-spacing:.5px;}
+.dark-mode .mn{background:#0f3a2a;color:#a8e6c4;}
+.formula{background:#f1f3f5;padding:.55rem .8rem;border-left:4px solid #007bff;border-radius:.25rem;margin:.5rem 0;font-family:ui-monospace,Consolas,Menlo,monospace;font-size:.95em;overflow-x:auto;}
+.dark-mode .formula{background:#23272b;border-left-color:#0d6efd;color:#e9ecef;}
+.tip{background:#e7f5ff;border-left:4px solid #339af0;padding:.55rem .8rem;border-radius:.25rem;margin:.5rem 0;}
+.dark-mode .tip{background:#0a2540;border-left-color:#4dabf7;color:#dbe9f5;}
+.warn{background:#fff5f5;border-left:4px solid #fa5252;padding:.55rem .8rem;border-radius:.25rem;margin:.5rem 0;}
+.dark-mode .warn{background:#3b1212;border-left-color:#ff6b6b;color:#ffd7d7;}
+.checklist{list-style:none;padding-left:0;}
+.checklist li{padding:.2rem 0 .2rem 1.7rem;position:relative;}
+.checklist li::before{content:"\f0c8";font-family:"Font Awesome 6 Free";font-weight:400;color:#adb5bd;position:absolute;left:0;top:.25rem;}
+.checklist li.done::before{content:"\f14a";font-weight:900;color:#28a745;}
+table.tbl{width:100%;border-collapse:collapse;margin:.5rem 0;font-size:.95em;}
+table.tbl th,table.tbl td{border:1px solid #dee2e6;padding:.4rem .55rem;vertical-align:top;}
+table.tbl thead th{background:#e9ecef;}
+.dark-mode table.tbl th,.dark-mode table.tbl td{border-color:#495057;}
+.dark-mode table.tbl thead th{background:#343a40;}
+pre.code{background:#0d1117;color:#e6edf3;padding:.7rem .9rem;border-radius:.4rem;overflow-x:auto;font-size:.88em;}
+.flash-stage{perspective:1200px;max-width:540px;margin:1rem auto;}
+.flash-card{position:relative;width:100%;height:280px;cursor:pointer;transform-style:preserve-3d;transition:transform .55s;}
+.flash-card.flipped{transform:rotateY(180deg);}
+.flash-face{position:absolute;inset:0;backface-visibility:hidden;border-radius:.6rem;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:1.2rem;text-align:center;box-shadow:0 4px 16px rgba(0,0,0,.12);}
+.flash-front{background:#fff;}
+.flash-back{background:#0d6efd;color:#fff;transform:rotateY(180deg);}
+.dark-mode .flash-front{background:#212529;color:#f8f9fa;}
+.flash-q{font-size:1.35em;font-weight:700;}
+.flash-a{font-size:1.05em;line-height:1.55;}
+.flash-tag{position:absolute;top:.6rem;left:.6rem;font-size:.75em;background:rgba(0,0,0,.08);padding:.15rem .5rem;border-radius:.5rem;color:inherit;}
+.flash-back .flash-tag{background:rgba(255,255,255,.2);}
+.flash-controls{display:flex;justify-content:center;gap:.5rem;margin-top:.8rem;flex-wrap:wrap;}
+.flash-progress{text-align:center;color:#6c757d;margin-top:.4rem;font-size:.9em;}
+.quiz-q{font-weight:600;font-size:1.05em;}
+.quiz-input{margin-top:.6rem;}
+.quiz-answer{margin-top:.6rem;padding:.55rem .8rem;background:#d1e7dd;border-radius:.4rem;display:none;}
+.quiz-answer.show{display:block;}
+.dark-mode .quiz-answer{background:#0f3a2a;color:#a8e6c4;}
+.quiz-explain{margin-top:.4rem;font-size:.92em;color:#495057;}
+.dark-mode .quiz-explain{color:#ced4da;}
+.glossary-search{margin-bottom:1rem;}
+.glossary-item{padding:.5rem 0;border-bottom:1px solid #e9ecef;}
+.dark-mode .glossary-item{border-bottom-color:#343a40;}
+.glossary-term{font-weight:700;color:#0d6efd;}
+.dark-mode .glossary-term{color:#74b9ff;}
+.main-footer{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.5rem;}
+.main-footer .nav-btn{min-width:90px;}
+@media (max-width:575.98px){
+ :root{--app-fs:1rem;}
+ .card-body{padding:.85rem;}
+ .main-footer{font-size:.9em;padding:.7rem 1rem;}
+ .flash-card{height:240px;}
+ .flash-q{font-size:1.15em;}
+}
+@media print{
+ .main-sidebar,.main-header,.main-footer,.no-print{display:none!important;}
+ .content-wrapper{margin-left:0!important;}
+ .chapter{display:block!important;page-break-after:always;}
+}
+.fade-controls{opacity:.85;}
+.kbd{display:inline-block;background:#f1f3f5;border:1px solid #ced4da;border-bottom-width:2px;border-radius:.25rem;padding:0 .35rem;font-family:ui-monospace,Consolas,monospace;font-size:.85em;}
+.dark-mode .kbd{background:#343a40;border-color:#495057;}
+/* ===== v2 — 인포그래픽/다이어그램 ===== */
+.infobox{background:linear-gradient(135deg,#e7f5ff 0%,#fff 100%);border:1px solid #74c0fc;border-radius:.55rem;padding:.85rem 1rem;margin:.7rem 0;}
+.dark-mode .infobox{background:linear-gradient(135deg,#0a2540 0%,#1a1d20 100%);border-color:#1c7ed6;}
+.infobox h6{color:#1971c2;margin-bottom:.55rem;font-weight:700;}
+.dark-mode .infobox h6{color:#74c0fc;}
+.story{background:#fff9db;border-left:5px solid #fcc419;border-radius:.4rem;padding:.7rem 1rem;margin:.6rem 0;font-size:.97em;}
+.story::before{content:"📖 비유 ";font-weight:700;color:#e67700;margin-right:.3rem;}
+.dark-mode .story{background:#3a3010;color:#ffe49a;border-left-color:#fab005;}
+.dark-mode .story::before{color:#fcc419;}
+.exam-tag{display:inline-block;background:#ff6b6b;color:#fff;font-size:.72em;padding:.1rem .45rem;border-radius:.4rem;margin-left:.35rem;vertical-align:.15em;font-weight:700;letter-spacing:.3px;}
+.dark-mode .exam-tag{background:#e03131;}
+.flow{display:flex;flex-wrap:wrap;align-items:center;gap:.4rem;margin:.6rem 0;justify-content:center;}
+.flow .step{background:#e7f5ff;border:2px solid #339af0;color:#1864ab;padding:.45rem .75rem;border-radius:.45rem;font-weight:700;font-size:.92em;text-align:center;min-width:90px;}
+.flow .arrow{color:#339af0;font-size:1.2em;font-weight:900;}
+.dark-mode .flow .step{background:#0a2540;border-color:#4dabf7;color:#dbe9f5;}
+.dark-mode .flow .arrow{color:#4dabf7;}
+.matrix2{display:grid;grid-template-columns:80px 1fr 1fr;gap:.25rem;margin:.6rem 0;font-size:.92em;}
+.matrix2 div{padding:.5rem;border-radius:.3rem;text-align:center;}
+.matrix2 .hdr{background:#dee2e6;font-weight:700;}
+.matrix2 .ok{background:#d3f9d8;color:#2b8a3e;font-weight:700;}
+.matrix2 .err{background:#ffd8d8;color:#c92a2a;font-weight:700;}
+.dark-mode .matrix2 .hdr{background:#495057;color:#e9ecef;}
+.dark-mode .matrix2 .ok{background:#1b4d1f;color:#a8e6c4;}
+.dark-mode .matrix2 .err{background:#4d1414;color:#ffd7d7;}
+.brain{background:#f8f0fc;border:1px solid #cc5de8;border-radius:.5rem;padding:.7rem 1rem;margin:.6rem 0;}
+.brain::before{content:"🧠 직관 이해 ";font-weight:700;color:#862e9c;}
+.dark-mode .brain{background:#2b1135;border-color:#cc5de8;color:#f0d8ff;}
+.beg{background:#fff0f6;border-left:5px solid #f06595;border-radius:.4rem;padding:.6rem .9rem;margin:.5rem 0;font-size:.95em;}
+.beg::before{content:"🌱 초보자 ";font-weight:700;color:#a61e4d;margin-right:.3rem;}
+.dark-mode .beg{background:#3a1027;color:#ffd6e7;border-left-color:#f06595;}
+/* SVG diagram container */
+.diagram{display:block;margin:.7rem auto;max-width:100%;}
+.diagram-cap{text-align:center;color:#6c757d;font-size:.88em;margin-top:-.2rem;}
+.dark-mode .diagram-cap{color:#adb5bd;}
+.formula b{color:#0d6efd;}
+.dark-mode .formula b{color:#74c0fc;}
+/* MCQ — 객관식 */
+.mcq{background:#fff;border:1px solid #dee2e6;border-radius:.5rem;padding:.8rem 1rem;margin:.6rem 0;}
+.dark-mode .mcq{background:#212529;border-color:#495057;}
+.mcq-q{font-weight:700;font-size:1.02em;margin-bottom:.5rem;}
+.mcq-meta{font-size:.78em;color:#6c757d;margin-bottom:.4rem;}
+.dark-mode .mcq-meta{color:#adb5bd;}
+.mcq ul{list-style:none;padding-left:0;margin-bottom:.5rem;}
+.mcq ul li{padding:.3rem .6rem;border:1px solid #dee2e6;border-radius:.3rem;margin-bottom:.25rem;cursor:pointer;transition:background .15s;}
+.mcq ul li:hover{background:#f1f3f5;}
+.dark-mode .mcq ul li{border-color:#495057;}
+.dark-mode .mcq ul li:hover{background:#343a40;}
+.mcq ul li.selected{background:#e7f5ff;border-color:#339af0;}
+.mcq ul li.correct{background:#d3f9d8!important;border-color:#37b24d;color:#2b8a3e;font-weight:700;}
+.mcq ul li.wrong{background:#ffd8d8!important;border-color:#f03e3e;color:#c92a2a;font-weight:700;}
+.dark-mode .mcq ul li.selected{background:#0a2540;border-color:#4dabf7;}
+.dark-mode .mcq ul li.correct{background:#1b4d1f!important;color:#a8e6c4;}
+.dark-mode .mcq ul li.wrong{background:#4d1414!important;color:#ffd7d7;}
+.mcq-explain{display:none;background:#fff9db;border-left:4px solid #fab005;padding:.55rem .8rem;border-radius:.3rem;margin-top:.5rem;font-size:.93em;}
+.mcq-explain.show{display:block;}
+.dark-mode .mcq-explain{background:#3a3010;color:#ffe49a;border-left-color:#fcc419;}
+.toc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:.6rem;margin:.7rem 0;}
+.toc-card{background:#f8f9fa;border:1px solid #dee2e6;border-left:4px solid #339af0;border-radius:.4rem;padding:.55rem .8rem;font-size:.93em;}
+.dark-mode .toc-card{background:#2b3035;border-color:#495057;border-left-color:#4dabf7;}
+.toc-card b{color:#1971c2;display:block;margin-bottom:.2rem;}
+.dark-mode .toc-card b{color:#74c0fc;}
+/* SVG strokes/dark */
+.dark-mode svg .lbl{fill:#e9ecef;}
+.dark-mode svg .axis{stroke:#adb5bd;}
+.dark-mode svg .grid{stroke:#495057;}
+</style>
+</head>
+<body class="hold-transition sidebar-mini layout-fixed">
+<div class="wrapper">
+
+<!-- Header -->
+<nav class="main-header navbar navbar-expand navbar-light">
+  <ul class="navbar-nav">
+    <li class="nav-item"><a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a></li>
+    <li class="nav-item d-none d-sm-inline-block"><span class="nav-link"><strong id="hdr-title">ADSP 요약본 v2</strong> <small class="text-muted ml-2" id="hdr-progress">0 / 35</small></span></li>
+  </ul>
+  <ul class="navbar-nav ml-auto">
+    <li class="nav-item"><a class="nav-link nav-link-mode" data-mode="summary" href="#" title="요약 본문"><i class="fas fa-book-open"></i><span class="d-none d-md-inline ml-1">요약</span></a></li>
+    <li class="nav-item"><a class="nav-link nav-link-mode" data-mode="flash" href="#" title="플래시카드"><i class="fas fa-clone"></i><span class="d-none d-md-inline ml-1">카드</span></a></li>
+    <li class="nav-item"><a class="nav-link nav-link-mode" data-mode="quiz" href="#" title="기출 퀴즈"><i class="fas fa-question-circle"></i><span class="d-none d-md-inline ml-1">퀴즈</span></a></li>
+    <li class="nav-item"><a class="nav-link nav-link-mode" data-mode="glossary" href="#" title="공식·용어 빠른조회"><i class="fas fa-bolt"></i><span class="d-none d-md-inline ml-1">조회</span></a></li>
+    <li class="nav-item"><a class="nav-link" id="btn-fontminus" href="#" title="글자 작게"><i class="fas fa-minus"></i></a></li>
+    <li class="nav-item"><a class="nav-link" id="btn-fontplus" href="#" title="글자 크게"><i class="fas fa-plus"></i></a></li>
+    <li class="nav-item"><a class="nav-link" id="btn-dark" href="#" title="다크 모드"><i class="fas fa-moon"></i></a></li>
+  </ul>
+</nav>
+
+<!-- Sidebar -->
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
+  <a href="#intro" class="brand-link">
+    <i class="fas fa-graduation-cap brand-image" style="opacity:.9;margin-left:.6rem;"></i>
+    <span class="brand-text">ADSP 합격노트 v2</span>
+  </a>
+  <div class="sidebar">
+    <nav class="mt-2">
+      <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+        <li class="nav-item"><a href="#intro" class="nav-link"><i class="nav-icon fas fa-flag"></i><p>시작하기 / 시험 개요</p></a></li>
+        <li class="nav-item menu-open">
+          <a href="#" class="nav-link"><i class="nav-icon fas fa-database"></i><p>1과목 · 데이터 이해<i class="right fas fa-angle-left"></i></p></a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item"><a href="#1-1" class="nav-link"><i class="far fa-circle nav-icon"></i><p>1-1 데이터 정의·유형</p></a></li>
+            <li class="nav-item"><a href="#1-2" class="nav-link"><i class="far fa-circle nav-icon"></i><p>1-2 DIKW·SECI</p></a></li>
+            <li class="nav-item"><a href="#1-3" class="nav-link"><i class="far fa-circle nav-icon"></i><p>1-3 DBMS·DW·DL</p></a></li>
+            <li class="nav-item"><a href="#1-4" class="nav-link"><i class="far fa-circle nav-icon"></i><p>1-4 시대별 솔루션</p></a></li>
+            <li class="nav-item"><a href="#1-5" class="nav-link"><i class="far fa-circle nav-icon"></i><p>1-5 빅데이터 3V·4V</p></a></li>
+            <li class="nav-item"><a href="#1-6" class="nav-link"><i class="far fa-circle nav-icon"></i><p>1-6 가치·위기·통제</p></a></li>
+            <li class="nav-item"><a href="#1-7" class="nav-link"><i class="far fa-circle nav-icon"></i><p>1-7 데이터 사이언티스트</p></a></li>
+            <li class="nav-item"><a href="#1-8" class="nav-link"><i class="far fa-circle nav-icon"></i><p>1-8 데이터 거버넌스</p></a></li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link"><i class="nav-icon fas fa-project-diagram"></i><p>2과목 · 분석 기획<i class="right fas fa-angle-left"></i></p></a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item"><a href="#2-1" class="nav-link"><i class="far fa-circle nav-icon"></i><p>2-1 분석 기획 개요</p></a></li>
+            <li class="nav-item"><a href="#2-2" class="nav-link"><i class="far fa-circle nav-icon"></i><p>2-2 분석 주제 4유형</p></a></li>
+            <li class="nav-item"><a href="#2-3" class="nav-link"><i class="far fa-circle nav-icon"></i><p>2-3 KDD 5단계</p></a></li>
+            <li class="nav-item"><a href="#2-4" class="nav-link"><i class="far fa-circle nav-icon"></i><p>2-4 CRISP-DM 6단계</p></a></li>
+            <li class="nav-item"><a href="#2-5" class="nav-link"><i class="far fa-circle nav-icon"></i><p>2-5 빅데이터 분석 5단계</p></a></li>
+            <li class="nav-item"><a href="#2-6" class="nav-link"><i class="far fa-circle nav-icon"></i><p>2-6 과제 발굴 3방식</p></a></li>
+            <li class="nav-item"><a href="#2-7" class="nav-link"><i class="far fa-circle nav-icon"></i><p>2-7 마스터플랜·우선순위</p></a></li>
+            <li class="nav-item"><a href="#2-8" class="nav-link"><i class="far fa-circle nav-icon"></i><p>2-8 분석 조직 3유형</p></a></li>
+            <li class="nav-item"><a href="#2-9" class="nav-link"><i class="far fa-circle nav-icon"></i><p>2-9 거버넌스·성숙도</p></a></li>
+            <li class="nav-item"><a href="#2-10" class="nav-link"><i class="far fa-circle nav-icon"></i><p>2-10 SOW·WBS·과제관리</p></a></li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link"><i class="nav-icon fas fa-chart-line"></i><p>3과목 · 데이터 분석<span class="right badge badge-warning">★60점</span></p></a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item"><a href="#3-1" class="nav-link"><i class="far fa-circle nav-icon"></i><p>3-1 R 기초·자료구조</p></a></li>
+            <li class="nav-item"><a href="#3-2" class="nav-link"><i class="far fa-circle nav-icon"></i><p>3-2 데이터마트·결측·이상치</p></a></li>
+            <li class="nav-item"><a href="#3-3" class="nav-link"><i class="far fa-circle nav-icon"></i><p>3-3 통계 기초·표본추출</p></a></li>
+            <li class="nav-item"><a href="#3-4" class="nav-link"><i class="far fa-circle nav-icon"></i><p>3-4 추정·가설검정</p></a></li>
+            <li class="nav-item"><a href="#3-5" class="nav-link"><i class="far fa-circle nav-icon"></i><p>3-5 t·ANOVA·카이제곱</p></a></li>
+            <li class="nav-item"><a href="#3-6" class="nav-link"><i class="far fa-circle nav-icon"></i><p>3-6 상관·회귀분석</p></a></li>
+            <li class="nav-item"><a href="#3-7" class="nav-link"><i class="far fa-circle nav-icon"></i><p>3-7 시계열분석</p></a></li>
+            <li class="nav-item"><a href="#3-8" class="nav-link"><i class="far fa-circle nav-icon"></i><p>3-8 다변량(PCA·요인)</p></a></li>
+            <li class="nav-item"><a href="#3-9" class="nav-link"><i class="far fa-circle nav-icon"></i><p>3-9 군집분석</p></a></li>
+            <li class="nav-item"><a href="#3-10" class="nav-link"><i class="far fa-circle nav-icon"></i><p>3-10 의사결정나무</p></a></li>
+            <li class="nav-item"><a href="#3-11" class="nav-link"><i class="far fa-circle nav-icon"></i><p>3-11 앙상블</p></a></li>
+            <li class="nav-item"><a href="#3-12" class="nav-link"><i class="far fa-circle nav-icon"></i><p>3-12 신경망·SVM·NB</p></a></li>
+            <li class="nav-item"><a href="#3-13" class="nav-link"><i class="far fa-circle nav-icon"></i><p>3-13 연관분석</p></a></li>
+            <li class="nav-item"><a href="#3-14" class="nav-link"><i class="far fa-circle nav-icon"></i><p>3-14 모형평가</p></a></li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link"><i class="nav-icon fas fa-fire-alt text-danger"></i><p>3과목 기출문제 풀이<span class="right badge badge-danger">★최신</span></p></a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item"><a href="#mcq-46" class="nav-link"><i class="far fa-circle nav-icon"></i><p>46회 (2025.8)</p></a></li>
+            <li class="nav-item"><a href="#mcq-44-45" class="nav-link"><i class="far fa-circle nav-icon"></i><p>44~45회 (2025)</p></a></li>
+            <li class="nav-item"><a href="#mcq-thm" class="nav-link"><i class="far fa-circle nav-icon"></i><p>주제별 핵심 30문</p></a></li>
+            <li class="nav-item"><a href="#trend" class="nav-link"><i class="far fa-circle nav-icon"></i><p>최근 출제 경향</p></a></li>
+          </ul>
+        </li>
+        <li class="nav-item"><a href="#glossary" class="nav-link"><i class="nav-icon fas fa-bolt"></i><p>핵심 공식·용어 조회</p></a></li>
+        <li class="nav-item"><a href="#flash" class="nav-link"><i class="nav-icon fas fa-clone"></i><p>플래시카드</p></a></li>
+        <li class="nav-item"><a href="#quiz" class="nav-link"><i class="nav-icon fas fa-question-circle"></i><p>기출 단답형 퀴즈</p></a></li>
+      </ul>
+    </nav>
+  </div>
+</aside>
+
+<!-- Content -->
+<div class="content-wrapper" style="background:transparent;">
+  <section class="content pt-3">
+    <div class="container-fluid" id="chapter-host"><!-- chapters injected --></div>
+  </section>
+</div>
+
+<!-- Footer -->
+<footer class="main-footer">
+  <button class="btn btn-outline-secondary btn-sm nav-btn" id="btn-prev"><i class="fas fa-chevron-left"></i> 이전</button>
+  <small class="text-muted" id="footer-pos">— / —</small>
+  <button class="btn btn-primary btn-sm nav-btn" id="btn-next">다음 <i class="fas fa-chevron-right"></i></button>
+</footer>
+
+</div>
+
+<!-- ============ CHAPTER TEMPLATES (data only, rendered by JS) ============ -->
+<template id="tpl-intro"><article class="chapter" data-chapter="intro" data-title="시작하기 / 시험 개요">
+  <div class="card"><div class="card-body">
+    <h3><i class="fas fa-flag text-primary"></i> ADSP(데이터분석 준전문가) 시험 개요 <span class="exam-tag">v2 · 2026 최신</span></h3>
+    <div class="infobox">
+      <h6>📢 v2가 v1과 다른 점 — 최근 시험에 맞췄습니다</h6>
+      <ul class="mb-0">
+        <li><b>3과목 전면 재작성</b> — 비유·다이어그램·인포그래픽으로 초보자도 직관적 이해 가능</li>
+        <li><b>최신 출제경향 반영</b> — 41회(2024.5) ~ 47회(2025.11) 7회분 분석</li>
+        <li><b>객관식 기출문제 풀이 전용 모드</b> 추가 — 46회 30문제 + 주제별 핵심 30문제</li>
+        <li><b>중요</b> · 2024년부터 ADSP는 <b>전 문항 객관식 50문항</b>으로 개편됐어요(단답형 폐지)</li>
+      </ul>
+    </div>
+    <table class="tbl"><thead><tr><th>구분</th><th>1과목</th><th>2과목</th><th>3과목</th><th>합계</th></tr></thead>
+    <tbody><tr><th>과목명</th><td>데이터 이해</td><td>데이터 분석 기획</td><td><b>데이터 분석</b></td><td>—</td></tr>
+    <tr><th>문항</th><td>10</td><td>10</td><td><b>30</b></td><td>50</td></tr>
+    <tr><th>배점</th><td>20</td><td>20</td><td><b>60</b></td><td>100</td></tr>
+    <tr><th>유형</th><td colspan="3" class="text-center"><b>전 문항 객관식 4지선다 (2024년부터)</b></td><td>—</td></tr></tbody></table>
+    <div class="warn"><b>합격 기준</b> · 총점 <b>60점 이상</b> + 각 과목 <b>40% 이상</b>(과락 방지). 즉 1·2과목 8점, <b>3과목 24점</b>은 반드시 확보. <br><b>핵심</b> · 3과목이 60점이라 이게 합격을 좌우합니다. 그래서 v2는 3과목에 모든 힘을 쏟았어요.</div>
+    <h5 class="mt-3">전략 우선순위</h5>
+    <ol>
+      <li><b>3과목(60점) 먼저</b> — 통계·회귀·군집·분류·연관·평가지표 공식 암기.</li>
+      <li><b>1과목 키워드</b> — DIKW, SECI, 3V/4V, 거버넌스 3요소.</li>
+      <li><b>2과목 단계론</b> — KDD 5단계, CRISP-DM 6단계, 우선순위 사분면, 조직 3유형.</li>
+    </ol>
+    <h5 class="mt-3">학습 모드 안내</h5>
+    <ul>
+      <li><b>요약</b> — 챕터별 카드형 본문, 표·공식·암기팁 포함.</li>
+      <li><b>카드</b> — 용어/정의 플래시카드. 좌·우 스와이프(<span class="kbd">←</span>/<span class="kbd">→</span>)로 다음, 탭하면 뒤집힘.</li>
+      <li><b>퀴즈</b> — 21~35회 단답형 발췌. 정답 토글·셔플·"틀린 것만".</li>
+      <li><b>조회</b> — 핵심 공식·지표 단일 페이지. 검색창으로 즉시 점프.</li>
+    </ul>
+    <div class="tip"><b>꿀팁</b> · 다크모드 토글(달 아이콘), 글자 크기 ±, 진행도(✓ 배지)는 자동 저장됩니다. 챕터 사이는 <span class="kbd">←</span>/<span class="kbd">→</span> 또는 footer 버튼으로 이동.</div>
+  </div></div>
+</article></template>
+<!-- 1과목 -->
+<template id="tpl-1-1"><article class="chapter" data-chapter="1-1" data-title="1-1 데이터 정의·유형">
+<div class="card"><div class="card-body">
+<h4><span class="card-title-num">1-1</span>데이터의 정의와 유형</h4>
+<h5>① 데이터(Data)란</h5>
+<ul>
+<li><b>정의</b> · 추론·추정의 근거를 이루는 사실. 가공되지 않은 순수한 수치/기호.</li>
+<li><b>특징</b> · 단독으로는 의미 약함. <span class="kw">상호관계</span> 속에서 가치를 가진다.</li>
+<li><b>예</b> · "A마트는 100원, B마트는 300원에 연필 판매" — 그 자체로는 사실에 불과.</li>
+</ul>
+<h5>② 데이터베이스 4대 특징 <span class="mn">통·저·공·운</span></h5>
+<table class="tbl"><thead><tr><th>특징</th><th>의미</th></tr></thead>
+<tbody>
+<tr><td><b>통합</b>(Integrated)</td><td>중복 최소화, 일관된 형식</td></tr>
+<tr><td><b>저장</b>(Stored)</td><td>컴퓨터 접근 가능한 매체에 저장</td></tr>
+<tr><td><b>공용</b>(Shared)</td><td>여러 사용자가 동시 접근/공유</td></tr>
+<tr><td><b>운영</b>(Operational)</td><td>조직 목적상 반드시 필요</td></tr></tbody></table>
+<h5>③ 데이터 유형 (구조 관점)</h5>
+<table class="tbl"><thead><tr><th>구분</th><th>정형</th><th>반정형</th><th>비정형</th></tr></thead>
+<tbody>
+<tr><th>형태</th><td>행/열 테이블</td><td>스키마는 있으나 불완전</td><td>형태 없음</td></tr>
+<tr><th>저장</th><td>RDB</td><td>파일/NoSQL</td><td>파일/객체저장소</td></tr>
+<tr><th>예</th><td>CSV·엑셀·RDB</td><td>HTML·XML·JSON·웹로그</td><td>이미지·동영상·음성·SNS</td></tr>
+<tr><th>비중</th><td>적음</td><td>중간</td><td>가장 많음</td></tr></tbody></table>
+<div class="tip"><b>함정 주의</b> · HTML/XML/JSON은 <b>반정형</b>(태그·키 규칙은 있지만 표가 아님). "정보 데이터" "분산 데이터" 같은 표현은 ADSP 데이터 유형 분류가 아님.</div>
+<h5>④ 정성적(Qualitative) vs 정량적(Quantitative)</h5>
+<table class="tbl"><thead><tr><th>구분</th><th>정성적</th><th>정량적</th></tr></thead>
+<tbody>
+<tr><th>형태</th><td>비정형 텍스트·기술</td><td>수치 기반</td></tr>
+<tr><th>처리</th><td>저장·분석에 비용/시간 多</td><td>대량도 수월</td></tr>
+<tr><th>예</th><td>주관식 응답·기상특보·SNS 글</td><td>온도·습도·강우량·풍속</td></tr></tbody></table>
+<h5>⑤ 자료 구성 단위 (작은→큰)</h5>
+<div class="formula">Bit → Nibble(4bit) → Byte(8bit) → Word → Field → Record → File → DB</div>
+<ul><li>1Byte = 영문/숫자/공백/특수문자(반각). 한글·한자(전각)는 2Byte.</li>
+<li>용량 단위: KB→MB→GB→TB→PB→EB→ZB→YB (×1024씩 또는 ×10³씩)</li></ul>
+<ul class="checklist">
+<li>"통·저·공·운" 외울 수 있다</li>
+<li>HTML/XML/JSON이 반정형임을 안다</li>
+<li>온도/SNS글/이미지의 정형/반정형/비정형을 구분할 수 있다</li>
+</ul>
+</div></div>
+</article></template>
+<template id="tpl-1-2"><article class="chapter" data-chapter="1-2" data-title="1-2 DIKW · SECI · 지식관리">
+<div class="card"><div class="card-body">
+<h4><span class="card-title-num">1-2</span>DIKW 피라미드 · 암묵지/형식지 · SECI</h4>
+<h5>① DIKW 피라미드 <span class="mn">D · I · K · W</span></h5>
+<table class="tbl"><thead><tr><th>단계</th><th>정의</th><th>마트 예시</th></tr></thead>
+<tbody>
+<tr><td><b>Data</b> 데이터</td><td>가공 전 객관적 사실, 수치/기호</td><td>"A마트 100원, B마트 300원"</td></tr>
+<tr><td><b>Information</b> 정보</td><td>가공·처리, 의미 도출</td><td>"B마트가 더 비싸네?"</td></tr>
+<tr><td><b>Knowledge</b> 지식</td><td>패턴화·규칙</td><td>"B마트는 7시 떨이 → 그때 가야 싸다"</td></tr>
+<tr><td><b>Wisdom</b> 지혜</td><td>창의적 통찰·근본 원리</td><td>"전국 마트 시간대 가격 분석 앱을 만들자"</td></tr></tbody></table>
+<h5>② 암묵지(Tacit) vs 형식지(Explicit)</h5>
+<table class="tbl"><thead><tr><th>구분</th><th>암묵지</th><th>형식지</th></tr></thead>
+<tbody>
+<tr><th>특성</th><td>경험·체화·드러나지 않음</td><td>문서·매뉴얼·드러남</td></tr>
+<tr><th>예</th><td>김대리 노하우, 할머니 손맛</td><td>업무 매뉴얼, 교과서, DB</td></tr>
+<tr><th>전달</th><td>면대면·실습</td><td>매체(책·파일)</td></tr></tbody></table>
+<h5>③ SECI 모델 — 지식 창조 4단계 <span class="mn">공·표·연·내</span></h5>
+<table class="tbl"><thead><tr><th>단계</th><th>전환</th><th>예</th></tr></thead>
+<tbody>
+<tr><td><b>공통화</b> Socialization</td><td>암묵지 → 암묵지</td><td>OJT, 도제식 교육</td></tr>
+<tr><td><b>표출화</b> Externalization</td><td>암묵지 → 형식지</td><td>노하우를 책/매뉴얼로 작성</td></tr>
+<tr><td><b>연결화</b> Combination</td><td>형식지 → 형식지</td><td>매뉴얼 → 백과사전</td></tr>
+<tr><td><b>내면화</b> Internalization</td><td>형식지 → 암묵지</td><td>책 보고 익혀서 내 실력화</td></tr></tbody></table>
+<div class="tip"><b>암기 팁</b> · "공장(공)에서 표 찍어 연결해 내 것 만들기" / S-E-C-I 알파벳 순서.</div>
+<ul class="checklist">
+<li>DIKW 4단계 순서를 정확히 안다</li>
+<li>암묵지 ↔ 형식지 SECI 4가지 방향을 구분할 수 있다</li>
+<li>"OJT는 공통화" "매뉴얼화는 표출화" 매칭 가능</li>
+</ul>
+</div></div>
+</article></template>
+<template id="tpl-1-3"><article class="chapter" data-chapter="1-3" data-title="1-3 DBMS·DW·데이터레이크">
+<div class="card"><div class="card-body">
+<h4><span class="card-title-num">1-3</span>DBMS · 데이터 웨어하우스 · 마트 · 레이크</h4>
+<h5>① DBMS</h5>
+<ul><li>사용자 요구에 따라 정보를 처리·관리하는 SW.</li>
+<li><b>장점</b> · 중복↓, 일관성, 동시 접근, 권한 제어, SQL 표준.</li>
+<li><b>단점</b> · 만능 아님, 유지비, 호환성 이슈.</li></ul>
+<h5>② DBMS 유형</h5>
+<table class="tbl"><thead><tr><th>유형</th><th>특징</th><th>예</th></tr></thead>
+<tbody>
+<tr><td><b>RDBMS</b></td><td>테이블·SQL·강한 일관성</td><td>Oracle, MySQL, PostgreSQL, MS-SQL, DB2</td></tr>
+<tr><td><b>ODBMS</b></td><td>객체·상속·복잡 구조</td><td>db4o</td></tr>
+<tr><td><b>NoSQL</b></td><td>유연한 스키마·수평 확장</td><td>MongoDB, HBase, Redis, Cassandra</td></tr></tbody></table>
+<h5>③ 데이터 웨어하우스(DW) — 4대 특징</h5>
+<table class="tbl"><thead><tr><th>특징</th><th>의미</th></tr></thead>
+<tbody>
+<tr><td><b>주제 지향성</b></td><td>특정 주제 중심으로 분류·저장</td></tr>
+<tr><td><b>통합</b></td><td>전사 차원 일관 형식</td></tr>
+<tr><td><b>시계열성</b></td><td>시간 흐름의 변화값을 보존</td></tr>
+<tr><td><b>비휘발성</b></td><td>일괄(Batch) 외 변화 없음</td></tr></tbody></table>
+<h5>④ 저장소 진화: DW → DM → Data Lake</h5>
+<table class="tbl"><thead><tr><th>저장소</th><th>특징</th></tr></thead>
+<tbody>
+<tr><td><b>Data Warehouse</b></td><td>전사·정제된 통합 창고</td></tr>
+<tr><td><b>Data Mart</b></td><td>특정 부서용 작은 창고(주제 1개)</td></tr>
+<tr><td><b>Data Lake</b></td><td>정형/반정형/비정형 원천 그대로 보관(호수)</td></tr></tbody></table>
+<h5>⑤ ETL — DW에 데이터를 넣는 과정</h5>
+<div class="formula"><b>E</b>xtract (추출) → <b>T</b>ransform (변환) → <b>L</b>oad (적재)</div>
+<h5>⑥ 메타데이터 / 인덱스</h5>
+<ul><li><b>메타데이터</b> · 데이터에 대한 데이터(구조·의미·관리정보).</li>
+<li><b>인덱스</b> · 검색·정렬을 빠르게 하는 자료구조.</li></ul>
+<ul class="checklist">
+<li>DW 4특징 4개 모두 안다(주제/통합/시계열/비휘발)</li>
+<li>ETL 순서 E → T → L 안다</li>
+<li>Data Lake가 비정형도 저장 가능함을 안다</li>
+</ul>
+</div></div>
+</article></template>
+<template id="tpl-1-4"><article class="chapter" data-chapter="1-4" data-title="1-4 시대별 솔루션">
+<div class="card"><div class="card-body">
+<h4><span class="card-title-num">1-4</span>시대별 데이터 활용 솔루션</h4>
+<table class="tbl"><thead><tr><th>시대</th><th>솔루션</th><th>한 줄 정의</th></tr></thead>
+<tbody>
+<tr><td rowspan="2">1980s</td><td><b>OLTP</b> On-Line Transaction Processing</td><td>실시간 거래 처리(주문·예약). 데이터 입력 중심.</td></tr>
+<tr><td><b>OLAP</b> On-Line Analytical Processing</td><td>다차원 분석·집계 요약. 대화식 쿼리.</td></tr>
+<tr><td rowspan="2">2000s</td><td><b>CRM</b> Customer Relationship Management</td><td>고객 이해 기반 마케팅·이익 창출</td></tr>
+<tr><td><b>SCM</b> Supply Chain Management</td><td>유통·재고·시간/비용 최적화</td></tr>
+<tr><td rowspan="5">분야별</td><td><b>ERP</b></td><td>전사적 자원 관리 통합 애플리케이션</td></tr>
+<tr><td><b>BI</b></td><td>DW 데이터 접근·경영 의사결정 정보화</td></tr>
+<tr><td><b>BA</b></td><td>BI 진화형, 통계·수학 분석 강조</td></tr>
+<tr><td><b>KMS</b></td><td>지식관리시스템(조직 지식 체계화)</td></tr>
+<tr><td><b>EDW</b></td><td>전사 분석 가능한 중앙집중 DB</td></tr></tbody></table>
+<div class="tip"><b>구분 팁</b> · OLTP=쓰기 위주(거래), OLAP=읽기·집계 위주(분석). 한 시대(1980s)에 함께 등장.</div>
+<ul class="checklist">
+<li>OLTP / OLAP 차이를 한 줄로 설명</li>
+<li>CRM·SCM이 2000년대 솔루션임을 기억</li>
+<li>BA가 BI보다 통계·분석 비중이 큼</li>
+</ul>
+</div></div>
+</article></template>
+<template id="tpl-1-5"><article class="chapter" data-chapter="1-5" data-title="1-5 빅데이터 3V·4V">
+<div class="card"><div class="card-body">
+<h4><span class="card-title-num">1-5</span>빅데이터의 이해 — 3V · 4V · 패러다임</h4>
+<h5>① 정의</h5>
+<p>대용량 데이터를 활용해 새로운 통찰·가치를 생산하는 활동·기술 일체.</p>
+<h5>② 3V (투자/기술 관점)</h5>
+<table class="tbl"><thead><tr><th>V</th><th>한국어</th><th>의미</th></tr></thead>
+<tbody>
+<tr><td><b>Volume</b></td><td>규모</td><td>데이터 양 방대 (TB→PB→EB)</td></tr>
+<tr><td><b>Variety</b></td><td>다양성</td><td>정형+반정형+비정형 — <b>가장 강조</b></td></tr>
+<tr><td><b>Velocity</b></td><td>속도</td><td>실시간 생성·처리</td></tr></tbody></table>
+<h5>③ 4V (비즈니스 관점)</h5>
+<div class="formula">3V + <b>Value</b>(가치) → ROI(투자 대비 수익률)</div>
+<p class="text-muted small">최근에는 5V(+Veracity 진실성), 7V까지 확장되기도 함.</p>
+<h5>④ 패러다임의 변화</h5>
+<table class="tbl"><thead><tr><th>이전</th><th>이후</th></tr></thead>
+<tbody>
+<tr><td>사전 처리</td><td>사후 처리</td></tr>
+<tr><td>표본 조사</td><td>전수 조사</td></tr>
+<tr><td>질(Quality) 중시</td><td>양(Quantity) 중시</td></tr>
+<tr><td>인과관계</td><td>상관관계</td></tr></tbody></table>
+<h5>⑤ 출현 배경</h5>
+<ol><li>SNS·영상 등 비정형 데이터 폭증</li>
+<li>저장·처리 장치 가격 하락</li>
+<li>클라우드 컴퓨팅(분산 병렬처리)</li>
+<li>인터넷·디지털화·IoT 확산</li>
+<li>인간 게놈 프로젝트</li>
+<li><b>양질 전환 법칙</b> — 양적 누적이 질적 비약을 만든다</li></ol>
+<h5>⑥ 빅데이터에 거는 비유</h5>
+<table class="tbl"><thead><tr><th>비유</th><th>의미</th></tr></thead>
+<tbody>
+<tr><td>철·석탄</td><td>1·2차 산업혁명 핵심 재료</td></tr>
+<tr><td>원유</td><td>주요 에너지원</td></tr>
+<tr><td>렌즈</td><td>현미경 렌즈처럼 통찰 도구</td></tr>
+<tr><td>플랫폼</td><td>공동 활용 구조물</td></tr></tbody></table>
+<ul class="checklist">
+<li>3V 영문·한글 모두 안다</li>
+<li>4V의 4번째가 Value임</li>
+<li>"표본→전수, 인과→상관"의 패러다임 변화</li>
+</ul>
+</div></div>
+</article></template>
+<template id="tpl-1-6"><article class="chapter" data-chapter="1-6" data-title="1-6 가치·영향·위기·통제">
+<div class="card"><div class="card-body">
+<h4><span class="card-title-num">1-6</span>빅데이터의 가치·영향 / 위기 3가지 / 통제 방안</h4>
+<h5>① 가치 산정이 어려운 이유</h5>
+<ul><li>활용 방식·시점·대상의 다양성</li>
+<li>가치는 시간에 따라 변동(나중에 가치 발생 가능)</li></ul>
+<h5>② 빅데이터 활용 방법론</h5>
+<table class="tbl"><thead><tr><th>기법</th><th>한 줄</th></tr></thead>
+<tbody>
+<tr><td>연관 규칙(Association)</td><td>변수 간 의미 있는 상관 발견 (기저귀↔맥주)</td></tr>
+<tr><td>유형 분석(Clustering)</td><td>유사 그룹 분류·범주화</td></tr>
+<tr><td>유전 알고리즘</td><td>자연선택·돌연변이로 최적화</td></tr>
+<tr><td>기계학습</td><td>훈련 데이터로 패턴 파악·예측</td></tr>
+<tr><td>회귀 분석</td><td>선형 관계로 수치 예측</td></tr>
+<tr><td>감정 분석</td><td>텍스트의 감정 추출</td></tr>
+<tr><td>소셜 네트워크 분석</td><td>관계망·영향력자 파악</td></tr></tbody></table>
+<h5>③ 빅데이터의 위기 요인 3가지 — 자주 출제 ★</h5>
+<table class="tbl"><thead><tr><th>위기</th><th>설명</th><th>통제 방안</th></tr></thead>
+<tbody>
+<tr><td><b>사생활 침해</b></td><td>데이터가 n차 가공·공유, 익명화로 부족</td><td><b>동의제 → 책임제 전환</b> (사용자 책임)</td></tr>
+<tr><td><b>책임 원칙 훼손</b></td><td>예측만으로 잠재적 위험에 책임 묻기 (<i>Minority Report</i>)</td><td><b>결과 기반 책임 원칙 강화</b></td></tr>
+<tr><td><b>데이터 오용</b></td><td>분석 결과가 항상 옳지 않음, 잘못된 의사결정</td><td><b>알고리즈미스트(Algorithmist) 도입</b>, 알고리즘 인증</td></tr></tbody></table>
+<h5>④ 개인정보 비식별화 5기법 ★</h5>
+<table class="tbl"><thead><tr><th>기법</th><th>설명</th><th>예 (홍길동, 35세, 서울)</th></tr></thead>
+<tbody>
+<tr><td>가명 처리</td><td>다른 값으로 대체</td><td>홍길동 → 임꺽정 / user_001</td></tr>
+<tr><td>총계 처리</td><td>합계·평균 통계만</td><td>35세 → 30대 평균 소득</td></tr>
+<tr><td>데이터 값 삭제</td><td>특정 값 삭제</td><td>35세 → (삭제)</td></tr>
+<tr><td>범주화</td><td>구간으로 묶음</td><td>35세 → 30~40세, 서울 → 수도권</td></tr>
+<tr><td>데이터 마스킹</td><td>* x 등 기호로 가림</td><td>홍길동 → 홍**, 서울 → 서*</td></tr></tbody></table>
+<h5>⑤ 가치 패러다임의 변화</h5>
+<div class="formula">Digitalization (아날로그→디지털) → Connection (디지털 간 연결) → Agency (자율·능동적 시스템)</div>
+<ul class="checklist">
+<li>위기 3가지(사생활/책임원칙/오용)와 각 통제 방안 매칭</li>
+<li>비식별 5기법 모두 예시와 함께 안다</li>
+<li>Digitalization → Connection → Agency 순서</li>
+</ul>
+</div></div>
+</article></template>
+<template id="tpl-1-7"><article class="chapter" data-chapter="1-7" data-title="1-7 데이터 사이언티스트">
+<div class="card"><div class="card-body">
+<h4><span class="card-title-num">1-7</span>데이터 사이언티스트 · 알고리즈미스트</h4>
+<h5>① 정의</h5>
+<p>정형/반정형/비정형의 다양한 데이터에서 의미·가치를 추출하는 전문가.</p>
+<h5>② 역량 분류</h5>
+<table class="tbl"><thead><tr><th>구분</th><th>Hard Skill (기술)</th><th>Soft Skill (인문)</th></tr></thead>
+<tbody>
+<tr><th>역량</th><td>빅데이터 이론, ML/통계, 프로그래밍(R/Python/SQL), IT 인프라</td><td>통찰·스토리텔링·의사소통·창의 사고·시각화</td></tr>
+<tr><th>도구</th><td>컴퓨터·코드</td><td>입·머리·뇌</td></tr>
+<tr><th>키워드</th><td>분석</td><td>설득·전달</td></tr></tbody></table>
+<h5>③ 데이터 사이언티스트 vs 데이터 분석가</h5>
+<table class="tbl"><thead><tr><th>구분</th><th>사이언티스트</th><th>분석가</th></tr></thead>
+<tbody>
+<tr><th>초점</th><td>ML·AI 활용</td><td>분석 보고서·시각화</td></tr>
+<tr><th>스킬</th><td>코딩+통계</td><td>분석 도구 활용</td></tr>
+<tr><th>산출</th><td>예측 모델·알고리즘</td><td>의사결정 자료</td></tr></tbody></table>
+<h5>④ 가트너가 말한 4가지 역량</h5>
+<ol><li>데이터 관리</li><li>분석 모델링</li><li>비즈니스 분석</li><li>소프트 스킬</li></ol>
+<h5>⑤ 인문학 통찰의 필요성</h5>
+<ul>
+<li>모델이 예측 못 하는 위험을 지속 판단</li>
+<li>모델 능력을 의심·한계 고찰</li>
+<li>모델 범위 밖 외부 요인은 판단 보류 (가정과 현실의 불일치)</li>
+<li>정량 분석 + 인문학적 추론의 통합</li>
+</ul>
+<h5>⑥ 알고리즈미스트(Algorithmist)</h5>
+<p>알고리즘이 분류·예측한 결과로 인한 피해자를 구제·보호하는 전문가. 빅데이터 위기 통제 인력.</p>
+<ul class="checklist">
+<li>Hard/Soft Skill을 4가지 이상씩 든다</li>
+<li>알고리즈미스트의 역할(피해자 구제)을 안다</li>
+</ul>
+</div></div>
+</article></template>
+<template id="tpl-1-8"><article class="chapter" data-chapter="1-8" data-title="1-8 데이터 거버넌스">
+<div class="card"><div class="card-body">
+<h4><span class="card-title-num">1-8</span>데이터 거버넌스 (전사 데이터 관리체계)</h4>
+<h5>① 정의</h5>
+<p>전사 차원의 데이터 관리 체계 구축. 데이터 품질·보안·활용을 통제·표준화하는 활동.</p>
+<h5>② 거버넌스 3요소 — 필수 ★ <span class="mn">원·조·절</span></h5>
+<table class="tbl"><thead><tr><th>요소</th><th>의미</th><th>예</th></tr></thead>
+<tbody>
+<tr><td><b>원칙</b> (Principle)</td><td>관리 지침·가이드</td><td>보안 원칙, 품질 기준, 변경 관리</td></tr>
+<tr><td><b>조직</b> (Organization)</td><td>관리 사람·역할</td><td>데이터 관리자, 아키텍트, 데이터 오너</td></tr>
+<tr><td><b>절차</b> (Process)</td><td>관리 활동·체계</td><td>작업 절차, 모니터링, 문제 해결</td></tr></tbody></table>
+<div class="tip"><b>한 줄로</b> · "원칙을 세우고, 조직을 만들어, 절차대로 수행한다."</div>
+<h5>③ 관리 대상</h5>
+<ul><li>마스터 데이터 (기준 데이터)</li><li>메타데이터</li><li>데이터 사전(Data Dictionary)</li></ul>
+<h5>④ 거버넌스 체계 구성</h5>
+<table class="tbl"><thead><tr><th>요소</th><th>핵심</th></tr></thead>
+<tbody>
+<tr><td><b>데이터 표준화</b></td><td>표준용어·명명규칙·메타데이터·데이터 사전</td></tr>
+<tr><td><b>데이터 관리체계</b></td><td>관리 원칙 수립</td></tr>
+<tr><td><b>데이터 저장소관리</b></td><td>전사 차원 저장소 구성</td></tr>
+<tr><td><b>표준화 활동</b></td><td>표준 준수 여부 주기적 점검</td></tr></tbody></table>
+<ul class="checklist">
+<li>"원·조·절" 즉시 떠오른다</li>
+<li>관리 대상 3종을 안다(마스터/메타/사전)</li>
+</ul>
+</div></div>
+</article></template>
+<!-- 2과목 -->
+<template id="tpl-2-1"><article class="chapter" data-chapter="2-1" data-title="2-1 분석 기획 개요">
+<div class="card"><div class="card-body">
+<h4><span class="card-title-num">2-1</span>분석 기획의 정의 · 고려사항</h4>
+<h5>① 분석 기획이란</h5>
+<p>분석을 수행할 과제를 정의하고 관리 방안을 사전에 계획하는 작업. <b>균형 잡힌 시각</b>(비즈니스+기술), 데이터 프로그래밍 기술, 역량의 객관적 평가가 핵심.</p>
+<h5>② 고려사항 3가지</h5>
+<table class="tbl"><thead><tr><th>요소</th><th>핵심 질문</th></tr></thead>
+<tbody>
+<tr><td><b>Data</b></td><td>필요한 데이터 확보 가능한가? 정형·반정형·비정형 비중은?</td></tr>
+<tr><td><b>Model</b></td><td>어떤 알고리즘으로 가치를 뽑을 것인가? 기술적 실행 가능성?</td></tr>
+<tr><td><b>Business Case</b></td><td>이 분석이 돈/경영에 도움 되는가? ROI는?</td></tr></tbody></table>
+<h5>③ 시점별 기획 스타일</h5>
+<table class="tbl"><thead><tr><th>구분</th><th>과제 중심(단기)</th><th>마스터플랜(장기)</th></tr></thead>
+<tbody>
+<tr><th>관점</th><td>Speed &amp; Test</td><td>Accuracy &amp; Deploy</td></tr>
+<tr><th>접근</th><td>Problem <b>Solving</b></td><td>Problem <b>Definition</b></td></tr>
+<tr><th>특징</th><td>Quick Win</td><td>Long Term View</td></tr></tbody></table>
+<ul class="checklist">
+<li>고려 3요소(Data·Model·Business Case)</li>
+<li>단기/장기 기획의 차이</li>
+</ul>
+</div></div>
+</article></template>
+<template id="tpl-2-2"><article class="chapter" data-chapter="2-2" data-title="2-2 분석 주제 4유형">
+<div class="card"><div class="card-body">
+<h4><span class="card-title-num">2-2</span>분석 주제 4유형 (What/How 매트릭스) ★</h4>
+<table class="tbl"><thead><tr><th>대상(What)</th><th>방법(How)</th><th>유형</th><th>예</th></tr></thead>
+<tbody>
+<tr><td>O 안다</td><td>O 안다</td><td><b>최적화</b> Optimization</td><td>택배 최단 경로</td></tr>
+<tr><td>X 모름</td><td>O 안다</td><td><b>솔루션</b> Solution</td><td>고객 이탈 방지</td></tr>
+<tr><td>O 안다</td><td>X 모름</td><td><b>통찰</b> Insight</td><td>기저귀-맥주 연관</td></tr>
+<tr><td>X 모름</td><td>X 모름</td><td><b>발견</b> Discovery</td><td>미개척 시장 발굴</td></tr></tbody></table>
+<div class="tip"><b>암기 표</b> · O/O 최적, O/X 통찰(O는 What), X/O 솔루션(O는 How), X/X 발견. 시험에서는 What/How 두 축 중 무엇이 O/X인지 매칭이 핵심.</div>
+<ul class="checklist">
+<li>네 유형의 W/H 위치를 매트릭스로 그릴 수 있다</li>
+<li>예시(택배·이탈·기저귀맥주·신시장) 매칭</li>
+</ul>
+</div></div>
+</article></template>
+<template id="tpl-2-3"><article class="chapter" data-chapter="2-3" data-title="2-3 KDD 5단계">
+<div class="card"><div class="card-body">
+<h4><span class="card-title-num">2-3</span>KDD 방법론 (Knowledge Discovery in Databases)</h4>
+<h5>5단계 <span class="mn">선·전·변·마·평</span></h5>
+<table class="tbl"><thead><tr><th>#</th><th>단계</th><th>활동</th></tr></thead>
+<tbody>
+<tr><td>1</td><td><b>선택</b> (Selection)</td><td>분석 대상 데이터 선택 (도메인 이해)</td></tr>
+<tr><td>2</td><td><b>전처리</b> (Preprocessing)</td><td>잡음 제거·이상치 처리</td></tr>
+<tr><td>3</td><td><b>변환</b> (Transformation)</td><td>변수 생성·차원 축소</td></tr>
+<tr><td>4</td><td><b>마이닝</b> (Data Mining)</td><td>알고리즘 적용·패턴 발견</td></tr>
+<tr><td>5</td><td><b>해석/평가</b> (Interpretation/Evaluation)</td><td>결과 해석·활용 결정</td></tr></tbody></table>
+<ul class="checklist">
+<li>"선·전·변·마·평" 즉시 떠오른다</li>
+<li>각 단계의 영문 이름 매칭</li>
+</ul>
+</div></div>
+</article></template>
+<template id="tpl-2-4"><article class="chapter" data-chapter="2-4" data-title="2-4 CRISP-DM 6단계">
+<div class="card"><div class="card-body">
+<h4><span class="card-title-num">2-4</span>CRISP-DM (현업 표준)</h4>
+<h5>6단계 <span class="mn">업·데·준·모·평·전</span> · 단계 간 피드백 가능</h5>
+<table class="tbl"><thead><tr><th>#</th><th>단계</th><th>활동</th></tr></thead>
+<tbody>
+<tr><td>1</td><td><b>업무 이해</b> Business Understanding</td><td>비즈니스 목표·계획·<b>데이터 수집 계획 수립</b></td></tr>
+<tr><td>2</td><td><b>데이터 이해</b> Data Understanding</td><td>데이터 수집·탐색·품질 확인 (기술 통계)</td></tr>
+<tr><td>3</td><td><b>데이터 준비</b> Data Preparation</td><td>정제·통합·포맷팅 (전처리 — 가장 시간 소요 ≈70%)</td></tr>
+<tr><td>4</td><td><b>모델링</b> Modeling</td><td>기법 선택·모델 작성·기술적 평가</td></tr>
+<tr><td>5</td><td><b>평가</b> Evaluation</td><td><b>비즈니스 관점</b>의 평가 (모델링 단계 평가와 다름)</td></tr>
+<tr><td>6</td><td><b>전개</b> Deployment</td><td>실 업무 적용·유지보수·최종 보고서</td></tr></tbody></table>
+<div class="warn"><b>혼동 주의</b> · "전처리"는 <b>데이터 준비</b>에서. "데이터 이해"가 아님. "수집 계획"은 1단계 업무 이해에서.</div>
+<h5>KDD vs CRISP-DM 비교</h5>
+<table class="tbl"><thead><tr><th>구분</th><th>KDD</th><th>CRISP-DM</th></tr></thead>
+<tbody>
+<tr><th>단계 수</th><td>5</td><td>6</td></tr>
+<tr><th>피드백</th><td>대체로 직선</td><td>단계 간 피드백 가능(반복)</td></tr>
+<tr><th>지향</th><td>학술·DB 관점</td><td>현업 표준·산업적</td></tr></tbody></table>
+<ul class="checklist">
+<li>"업·데·준·모·평·전" 즉시 떠오름</li>
+<li>전처리=준비, 비즈 평가=5단계, 수집 계획=1단계 등 함정 알기</li>
+</ul>
+</div></div>
+</article></template>
+<template id="tpl-2-5"><article class="chapter" data-chapter="2-5" data-title="2-5 빅데이터 분석 5단계">
+<div class="card"><div class="card-body">
+<h4><span class="card-title-num">2-5</span>빅데이터 분석 방법론 (5단계)</h4>
+<h5>① 계층 구조 <span class="mn">단·태·스</span> (Phase·Task·Step)</h5>
+<table class="tbl"><thead><tr><th>계층</th><th>의미</th><th>예</th></tr></thead>
+<tbody>
+<tr><td><b>단계</b> Phase</td><td>최상위 묶음</td><td>"분석 기획 단계"</td></tr>
+<tr><td><b>태스크</b> Task</td><td>단계의 단위 활동</td><td>"비즈니스 이해"</td></tr>
+<tr><td><b>스텝</b> Step</td><td>구체적 작업</td><td>"자료 수집·인터뷰"</td></tr></tbody></table>
+<h5>② 5단계 프로세스</h5>
+<ol>
+<li><b>분석 기획</b> · 비즈니스 이해·범위·프로젝트 정의·위험 계획. <span class="kw">SOW</span>(작업기술서), <span class="kw">WBS</span>(업무분업도), 위험 대응(<b>회피·전이·완화·수용</b>).</li>
+<li><b>데이터 준비</b> · 필요 데이터 정의·데이터 스토어 수립·정합성 점검. <span class="kw">웹 크롤링</span>, <span class="kw">API</span>, <span class="kw">ETL</span>.</li>
+<li><b>데이터 분석</b> · 분석용 데이터 준비·EDA·분할(훈련/검증)·모델링·검증.</li>
+<li><b>시스템 구현</b> · 설계·구현·테스트·운영. (단순 분석은 생략 가능)</li>
+<li><b>평가 및 전개</b> · 모델 발전 계획·프로젝트 평가·보고.</li>
+</ol>
+<h5>③ 위험 대응 4가지</h5>
+<table class="tbl"><thead><tr><th>전략</th><th>의미</th></tr></thead>
+<tbody>
+<tr><td><b>회피</b> Avoid</td><td>위험을 만들지 않음(범위 변경 등)</td></tr>
+<tr><td><b>전이</b> Transfer</td><td>외주·보험으로 책임 이전</td></tr>
+<tr><td><b>완화</b> Mitigate</td><td>발생 확률·영향 축소</td></tr>
+<tr><td><b>수용</b> Accept</td><td>발생 시 비용 처리·예비비</td></tr></tbody></table>
+<ul class="checklist">
+<li>5단계 순서를 안다</li>
+<li>위험 대응 4가지 안다</li>
+<li>SOW와 WBS 차이를 한 줄로</li>
+</ul>
+</div></div>
+</article></template>
+<template id="tpl-2-6"><article class="chapter" data-chapter="2-6" data-title="2-6 과제 발굴 3방식">
+<div class="card"><div class="card-body">
+<h4><span class="card-title-num">2-6</span>분석 과제 발굴 — 하향식 / 상향식 / 디자인씽킹</h4>
+<table class="tbl"><thead><tr><th>구분</th><th>하향식 (Top-Down)</th><th>상향식 (Bottom-up)</th></tr></thead>
+<tbody>
+<tr><th>키워드</th><td>Problem Solving</td><td>Discovery·Insight</td></tr>
+<tr><th>흐름</th><td>문제 탐색→정의→해결→타당성</td><td>데이터 탐색→패턴 발견→문제 정의</td></tr>
+<tr><th>학습</th><td>지도 학습</td><td>비지도 학습·EDA</td></tr>
+<tr><th>주제 유형</th><td>최적화·솔루션</td><td>통찰·발견</td></tr></tbody></table>
+<h5>① 하향식 4단계</h5>
+<ol>
+<li><b>문제 탐색</b> — 비즈니스 모델 캔버스(9블록→5블록), <span class="kw">STEEP</span>(사회·기술·경제·환경·정치), 경쟁 확대 관점(대체자·경쟁자·신규진입자), 시장 니즈(고객·채널·영향자), 외부 참조(벤치마킹), 분석 유즈케이스</li>
+<li><b>문제 정의</b> — 비즈 문제를 분석 문제로 변환</li>
+<li><b>해결방안 탐색</b> — 분석 기법·데이터 확보·인프라 옵션</li>
+<li><b>타당성 검토</b> — 비용 vs 편익·데이터 존재 여부·시스템 환경</li>
+</ol>
+<h5>② 상향식</h5>
+<p>데이터 자체의 특성에서 출발해 새로운 패턴·문제를 발견. 비지도 학습·연관·군집·EDA가 대표.</p>
+<h5>③ 디자인 씽킹 — 발산 + 수렴</h5>
+<table class="tbl"><thead><tr><th>방향</th><th>역할</th></tr></thead>
+<tbody>
+<tr><td><b>발산</b> Diverge</td><td>상향식 — 아이디어 폭발</td></tr>
+<tr><td><b>수렴</b> Converge</td><td>하향식 — 문제 정의·정리</td></tr></tbody></table>
+<p>프로세스: 공감 → 문제정의 → 아이디어 → 프로토타입 → 테스트.</p>
+<ul class="checklist">
+<li>하향식=Problem Solving, 상향식=Discovery 매칭</li>
+<li>STEEP 5요소</li>
+<li>디자인씽킹의 발산/수렴이 어디서 왔는지</li>
+</ul>
+</div></div>
+</article></template>
+<template id="tpl-2-7"><article class="chapter" data-chapter="2-7" data-title="2-7 마스터플랜 · 우선순위">
+<div class="card"><div class="card-body">
+<h4><span class="card-title-num">2-7</span>분석 마스터플랜 · 과제 우선순위</h4>
+<h5>① 마스터플랜이란</h5>
+<p>분석 과제 도출 → 우선순위 결정 → 적용 우선순위 → 분석 구현 로드맵 수립. 관련 개념 <span class="kw">ISP</span>(Information Strategy Planning).</p>
+<h5>② 우선순위 사분면 (시급성 × 난이도) ★</h5>
+<table class="tbl"><thead><tr><th>영역</th><th>시급성</th><th>난이도</th><th>전략</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>높음</td><td>낮음</td><td><b>Quick Win — 가장 먼저</b></td></tr>
+<tr><td>3</td><td>높음</td><td>높음</td><td>장애 해결 후 추진</td></tr>
+<tr><td>2</td><td>낮음</td><td>낮음</td><td>여유 있게</td></tr>
+<tr><td>4</td><td>낮음</td><td>높음</td><td>중장기 과제로 보류</td></tr></tbody></table>
+<div class="tip">시험 함정 · "가장 먼저 해야 할 과제는?" → <b>시급성↑ + 난이도↓</b>(1영역). 시급성을 더 우선 판단 기준으로 본다.</div>
+<h5>③ ROI 관점</h5>
+<table class="tbl"><thead><tr><th>요소</th><th>관점</th></tr></thead>
+<tbody>
+<tr><td><b>투자비용</b></td><td>3V (Volume·Variety·Velocity) — 낮을수록 ↑</td></tr>
+<tr><td><b>비즈니스 효과</b></td><td>4V의 Value — 높을수록 ↑</td></tr></tbody></table>
+<ul class="checklist">
+<li>1영역(Quick Win) 즉답</li>
+<li>시급성·난이도 두 축</li>
+<li>ROI에서 3V=비용·Value=효과</li>
+</ul>
+</div></div>
+</article></template>
+<template id="tpl-2-8"><article class="chapter" data-chapter="2-8" data-title="2-8 분석 조직 3유형">
+<div class="card"><div class="card-body">
+<h4><span class="card-title-num">2-8</span>분석 조직 3유형 (자주 출제) ★</h4>
+<table class="tbl"><thead><tr><th>구분</th><th>집중형</th><th>기능형</th><th>분산형</th></tr></thead>
+<tbody>
+<tr><th>구조</th><td>전담 조직(DSCoE)</td><td>각 부서 안에 분석가</td><td>전사+부서 파견(하이브리드)</td></tr>
+<tr><th>장점</th><td>전사 우선순위 조율·전문가 육성·전략 과제</td><td>업무 적용 빠름·도메인 이해 ↑</td><td>전사 조율 + 현업 적용 모두 가능</td></tr>
+<tr><th>단점</th><td>현업 협조·도메인 이해 부족</td><td>전사 핵심 과제 어려움·Silo</td><td>관리 복잡·갈등 소지</td></tr>
+<tr><th>비유</th><td>"따로 모여 있다"</td><td>"각자 알아서"</td><td>"흩어져 협업"</td></tr>
+<tr><th>평가</th><td>★★★</td><td>★★</td><td>★★★★★ (가장 이상적)</td></tr></tbody></table>
+<div class="tip"><b>DSCoE</b>(Data Science Center of Excellence) = 전사 분석 전담 센터.</div>
+<ul class="checklist">
+<li>3유형 장단점 한 줄씩</li>
+<li>가장 이상적=분산형</li>
+<li>DSCoE의 의미</li>
+</ul>
+</div></div>
+</article></template>
+<template id="tpl-2-9"><article class="chapter" data-chapter="2-9" data-title="2-9 분석 거버넌스·성숙도">
+<div class="card"><div class="card-body">
+<h4><span class="card-title-num">2-9</span>분석 거버넌스 · 수준 진단 · 성숙도 모델</h4>
+<h5>① 분석 준비도(Readiness) 6영역</h5>
+<table class="tbl"><thead><tr><th>영역</th><th>대표 항목</th></tr></thead>
+<tbody>
+<tr><td>분석 업무</td><td>분석 유형·정기 개선</td></tr>
+<tr><td>인력·조직</td><td>전문가·관리자 능력·경영진 인지</td></tr>
+<tr><td>분석 기법</td><td>기법 선정·라이브러리</td></tr>
+<tr><td>분석 데이터</td><td>관리 시스템·외부 데이터·MDM</td></tr>
+<tr><td>분석 문화</td><td>사실 기반 의사결정·데이터 공유</td></tr>
+<tr><td>IT 인프라</td><td>운영 시스템·데이터 아키텍처</td></tr></tbody></table>
+<h5>② 성숙도(Maturity) 4단계 — CMMI 기반 ★</h5>
+<table class="tbl"><thead><tr><th>단계</th><th>특징</th></tr></thead>
+<tbody>
+<tr><td><b>도입</b></td><td>분석 시작·일부 부서 활용</td></tr>
+<tr><td><b>활용</b></td><td>업무에 일반적 활용</td></tr>
+<tr><td><b>확산</b></td><td>전사 차원 활용·관리</td></tr>
+<tr><td><b>최적화</b></td><td>지속 진화·혁신·차별화</td></tr></tbody></table>
+<h5>③ 준비도×성숙도 4사분면</h5>
+<table class="tbl"><thead><tr><th>준비도\성숙도</th><th>낮음</th><th>높음</th></tr></thead>
+<tbody>
+<tr><th>낮음</th><td><b>준비형</b></td><td><b>도입형</b></td></tr>
+<tr><th>높음</th><td><b>정착형</b></td><td><b>확산형</b></td></tr></tbody></table>
+<h5>④ 성숙도 평가 관점</h5>
+<ul><li>비즈니스(목표·투자효과)</li><li>조직·역량(구조·인력·교육)</li><li>IT 부문(통합·플랫폼·ETL·대시보드)</li></ul>
+<ul class="checklist">
+<li>성숙도 4단계: 도입·활용·확산·최적화</li>
+<li>4분면 명칭(준비/도입/정착/확산형)</li>
+</ul>
+</div></div>
+</article></template>
+<template id="tpl-2-10"><article class="chapter" data-chapter="2-10" data-title="2-10 SOW·WBS·과제관리">
+<div class="card"><div class="card-body">
+<h4><span class="card-title-num">2-10</span>SOW · WBS · 분석 과제 관리</h4>
+<h5>① SOW vs WBS</h5>
+<table class="tbl"><thead><tr><th>구분</th><th>SOW (Statement of Work)</th><th>WBS (Work Breakdown Structure)</th></tr></thead>
+<tbody>
+<tr><th>역할</th><td>작업 기술서·명세서</td><td>업무 분업 구조도</td></tr>
+<tr><th>내용</th><td>요구사항·결과물·소스 데이터·분석 방법·검증 방안</td><td>전체 업무 계층 분해·담당·일정·비용</td></tr></tbody></table>
+<h5>② 분석 과제의 5가지 주요 특성</h5>
+<table class="tbl"><thead><tr><th>특성</th><th>설명</th></tr></thead>
+<tbody>
+<tr><td><b>Data Size</b></td><td>대용량 → 분산 처리(Hadoop 등) 인프라 비용</td></tr>
+<tr><td><b>Data Complexity</b></td><td>비정형·다출처 → 통합 난도</td></tr>
+<tr><td><b>Speed</b></td><td>실시간 vs 배치(주·월간)</td></tr>
+<tr><td><b>Analytic Complexity</b></td><td>알고리즘 복잡도 ↔ 해석 가능성 트레이드오프</td></tr>
+<tr><td><b>Accuracy &amp; Precision</b></td><td>맞히는 정도 vs 일관성</td></tr></tbody></table>
+<h5>③ 정확도 vs 정밀도</h5>
+<ul><li><b>Accuracy</b> · 모델 ↔ 실제 차이가 작을수록 ↑</li>
+<li><b>Precision</b> · 반복 시 결과 편차가 작을수록 ↑</li>
+<li>트레이드오프: 정확도 ↑ ⇒ 모델 복잡도 ↑</li></ul>
+<h5>④ 분석 프로젝트 관리 10영역</h5>
+<p>시간·범위·품질·통합·이해관계자·자원·원가·리스크·조달·의사소통.</p>
+<ul class="checklist">
+<li>SOW=명세, WBS=분해</li>
+<li>5특성 (Size·Complexity·Speed·Analytic Complexity·Accuracy)</li>
+<li>정확도/정밀도 차이</li>
+</ul>
+</div></div>
+</article></template>
+<!-- 3과목 v2 — 강화 -->
+<template id="tpl-3-1"><article class="chapter" data-chapter="3-1" data-title="3-1 R 기초·자료구조">
+<div class="card"><div class="card-body">
+<h4><span class="card-title-num">3-1</span>R 기초 문법 · 자료구조 <span class="exam-tag">★기본</span></h4>
+<div class="beg">v2 시작 — 3과목은 30문제 60점입니다. 한 문제 한 문제가 합격 당락을 가르므로 차근차근! ADSP 시험에서 R 코드 자체를 작성하라는 건 안 나오지만, "어떤 함수가 무얼 하는지"는 자주 나옵니다.</div>
+
+<h5>① R의 데이터 구조 5종 — 한눈에 비교</h5>
+<svg class="diagram" viewBox="0 0 540 240" width="540" height="240">
+<defs><style>.lbl{font:12px sans-serif;fill:#212529;} .ttl{font:bold 13px sans-serif;fill:#1864ab;} .box{fill:#e7f5ff;stroke:#339af0;stroke-width:1.5;}</style></defs>
+<rect x="10" y="20" width="100" height="60" rx="6" class="box"/>
+<text x="60" y="42" class="ttl" text-anchor="middle">Vector</text>
+<text x="60" y="60" class="lbl" text-anchor="middle">1차원·동질</text>
+<text x="60" y="74" class="lbl" text-anchor="middle">[1,2,3]</text>
+<rect x="120" y="20" width="100" height="60" rx="6" class="box"/>
+<text x="170" y="42" class="ttl" text-anchor="middle">Matrix</text>
+<text x="170" y="60" class="lbl" text-anchor="middle">2차원·동질</text>
+<text x="170" y="74" class="lbl" text-anchor="middle">행×열</text>
+<rect x="230" y="20" width="100" height="60" rx="6" class="box"/>
+<text x="280" y="42" class="ttl" text-anchor="middle">Array</text>
+<text x="280" y="60" class="lbl" text-anchor="middle">n차원·동질</text>
+<text x="280" y="74" class="lbl" text-anchor="middle">3D 큐브</text>
+<rect x="340" y="20" width="100" height="60" rx="6" class="box" fill="#fff3cd" stroke="#fab005"/>
+<text x="390" y="42" class="ttl" text-anchor="middle" fill="#e67700">List</text>
+<text x="390" y="60" class="lbl" text-anchor="middle">1차원·이질 OK</text>
+<text x="390" y="74" class="lbl" text-anchor="middle">{1,"a",T}</text>
+<rect x="60" y="120" width="380" height="80" rx="6" class="box" fill="#d3f9d8" stroke="#37b24d"/>
+<text x="250" y="148" class="ttl" text-anchor="middle" fill="#2b8a3e">Data Frame ⭐ ADSP 핵심</text>
+<text x="250" y="170" class="lbl" text-anchor="middle">2차원·열별로 다른 자료형 OK (가장 많이 사용)</text>
+<text x="250" y="188" class="lbl" text-anchor="middle">엑셀 표처럼 보면 됨 — 행=관측, 열=변수</text>
+</svg>
+<div class="story">엑셀 표는 Data Frame · 한 줄 가격표는 Vector · 여러 종류 잡동사니가 든 박스는 List · 사진(R·G·B 3장)은 Array.</div>
+
+<h5>② 자료형(Type)</h5>
+<table class="tbl"><thead><tr><th>자료형</th><th>설명</th><th>예</th></tr></thead>
+<tbody>
+<tr><td><b>numeric</b></td><td>실수</td><td>3.14, 5</td></tr>
+<tr><td><b>integer</b></td><td>정수(L 붙임)</td><td>5L</td></tr>
+<tr><td><b>character</b></td><td>문자열</td><td>"안녕"</td></tr>
+<tr><td><b>logical</b></td><td>참/거짓</td><td>TRUE, FALSE</td></tr>
+<tr><td><b>factor</b></td><td>범주형 — <b>레벨(level)</b> 가짐</td><td>성별, 등급</td></tr>
+<tr><td><b>complex</b></td><td>복소수</td><td>2+3i</td></tr>
+</tbody></table>
+<div class="brain">factor는 "범주형 변수" — 회귀·분류 모델은 character가 아니라 factor를 자동으로 더미(0/1)로 만듭니다. as.factor()로 변환.</div>
+
+<h5>③ 자주 쓰는 함수 — 시험 단골</h5>
+<pre class="code">str(df)        # 구조(structure) 확인 ★ 자주 묻습니다
+summary(df)    # 요약통계(min·1Q·median·mean·3Q·max·NA)
+head(df, 6)    # 앞 6행
+nrow(df); ncol(df); dim(df)
+table(x)       # 빈도표 (범주형 분포)
+cbind(a,b)     # 열로 합치기 (column bind)
+rbind(a,b)     # 행으로 합치기 (row bind)
+apply(m, 1, mean)  # margin=1 → 행 평균, 2 → 열 평균
+sapply(lst, fn)   # list 반복, simplify
+ifelse(cond, T값, F값)  # 벡터 단위 if</pre>
+
+<h5>④ dplyr 파이프 연산자 <code>%&gt;%</code></h5>
+<pre class="code">library(dplyr)
+df %&gt;%
+  filter(age &gt; 30) %&gt;%       # 행 필터
+  mutate(score2 = score*2) %&gt;% # 새 변수
+  group_by(group) %&gt;%         # 그룹화
+  summarise(m = mean(score2)) # 요약</pre>
+
+<ul class="checklist">
+<li>Vector·Matrix·List·DataFrame 차이를 즉답</li>
+<li>apply 계열에서 margin 1=행, 2=열</li>
+<li>str() / summary() / head() 역할</li>
+<li>factor가 범주형 자료형임</li>
+</ul>
+</div></div>
+</article></template>
+
+<template id="tpl-3-2"><article class="chapter" data-chapter="3-2" data-title="3-2 데이터마트·결측·이상치">
+<div class="card"><div class="card-body">
+<h4><span class="card-title-num">3-2</span>데이터 마트 · 전처리(결측치·이상치) <span class="exam-tag">★46회 출제</span></h4>
+
+<h5>① 데이터 마트(Data Mart) — 분석용 작은 창고</h5>
+<div class="story">DW(데이터 웨어하우스)가 백화점이라면, 데이터 마트는 부서별 작은 매장. 분석 주제 1개에 집중. 마케팅팀은 마케팅 마트, CRM팀은 CRM 마트.</div>
+
+<h5>② 요약변수 vs 파생변수 — 헷갈림 주의 ★</h5>
+<svg class="diagram" viewBox="0 0 540 180" width="540" height="180">
+<rect x="20" y="30" width="220" height="120" rx="8" fill="#e7f5ff" stroke="#339af0" stroke-width="2"/>
+<text x="130" y="55" class="ttl" text-anchor="middle" font-weight="700" font-size="14" fill="#1864ab">요약변수</text>
+<text x="130" y="78" class="lbl" text-anchor="middle" font-size="12">합·평균·횟수 — 객관적</text>
+<text x="130" y="100" class="lbl" text-anchor="middle" font-size="12">예) 월평균 구매액</text>
+<text x="130" y="118" class="lbl" text-anchor="middle" font-size="12">총 방문 횟수</text>
+<text x="130" y="138" class="lbl" text-anchor="middle" font-size="11" fill="#1864ab" font-weight="600">"기존 데이터 × 통계"</text>
+<rect x="300" y="30" width="220" height="120" rx="8" fill="#fff0f6" stroke="#f06595" stroke-width="2"/>
+<text x="410" y="55" class="ttl" text-anchor="middle" font-weight="700" font-size="14" fill="#a61e4d">파생변수</text>
+<text x="410" y="78" class="lbl" text-anchor="middle" font-size="12">도메인 지식 — 주관적</text>
+<text x="410" y="100" class="lbl" text-anchor="middle" font-size="12">예) VIP 여부 (Y/N)</text>
+<text x="410" y="118" class="lbl" text-anchor="middle" font-size="12">구매 사이클(주기)</text>
+<text x="410" y="138" class="lbl" text-anchor="middle" font-size="11" fill="#a61e4d" font-weight="600">"새 의미를 부여"</text>
+</svg>
+
+<h5>③ 결측치(Missing Value) 처리 5법</h5>
+<table class="tbl"><thead><tr><th>방법</th><th>설명</th><th>장단점</th></tr></thead>
+<tbody>
+<tr><td><b>완전 제거</b><br>(Listwise/Casewise)</td><td>NA 포함 행 모두 삭제</td><td>간단 / 표본 손실 ↑</td></tr>
+<tr><td><b>단순 대치</b></td><td>평균·중앙값·최빈값으로 대체</td><td>분산 과소추정</td></tr>
+<tr><td><b>회귀 대치</b></td><td>다른 변수로 회귀해 예측값 입력</td><td>비교적 정확 / 모형 의존</td></tr>
+<tr><td><b>다중 대치</b><br>Multiple Imputation</td><td>여러 번 대체 → 결합 (mice)</td><td>이론적 우수·복잡</td></tr>
+<tr><td><b>핫덱·콜덱</b></td><td>유사한 다른 사례의 값 차용</td><td>구조 보존 / 수동</td></tr>
+</tbody></table>
+<div class="tip"><b>46회 출제</b> · "결측값 대체는 표본 수를 유지하고 정보 손실을 최소화한다" — 정답!</div>
+<p>R 함수: <code>is.na()</code>, <code>complete.cases()</code>, <code>na.omit()</code>, <code>mice::mice()</code></p>
+
+<h5>④ 이상치(Outlier) 탐지 — IQR 룰 ★</h5>
+<svg class="diagram" viewBox="0 0 540 180" width="540" height="180">
+<line x1="40" y1="100" x2="500" y2="100" stroke="#495057" stroke-width="2" class="axis"/>
+<rect x="180" y="80" width="180" height="40" fill="#a5d8ff" stroke="#1864ab" stroke-width="2"/>
+<line x1="270" y1="80" x2="270" y2="120" stroke="#1864ab" stroke-width="3"/>
+<line x1="120" y1="100" x2="180" y2="100" stroke="#495057" stroke-width="2"/>
+<line x1="120" y1="90" x2="120" y2="110" stroke="#495057" stroke-width="2"/>
+<line x1="360" y1="100" x2="420" y2="100" stroke="#495057" stroke-width="2"/>
+<line x1="420" y1="90" x2="420" y2="110" stroke="#495057" stroke-width="2"/>
+<circle cx="60" cy="100" r="5" fill="#fa5252"/>
+<circle cx="470" cy="100" r="5" fill="#fa5252"/>
+<text x="60" y="80" class="lbl" text-anchor="middle" font-size="11" fill="#c92a2a" font-weight="700">이상치</text>
+<text x="180" y="145" class="lbl" text-anchor="middle" font-size="11">Q1</text>
+<text x="270" y="145" class="lbl" text-anchor="middle" font-size="11" font-weight="700">중앙값</text>
+<text x="360" y="145" class="lbl" text-anchor="middle" font-size="11">Q3</text>
+<text x="120" y="145" class="lbl" text-anchor="middle" font-size="11" fill="#1864ab">Q1−1.5IQR</text>
+<text x="420" y="145" class="lbl" text-anchor="middle" font-size="11" fill="#1864ab">Q3+1.5IQR</text>
+<text x="270" y="170" class="lbl" text-anchor="middle" font-size="12" font-weight="700" fill="#1864ab">박스플롯 — 박스(IQR) 안 50% 데이터</text>
+</svg>
+<div class="formula"><b>IQR</b> = Q3 − Q1 (4분위 범위)<br>이상치 경계 = [Q1 − <b>1.5</b>·IQR, Q3 + <b>1.5</b>·IQR]<br><span style="color:#888">3·IQR 밖이면 "극단 이상치(Extreme)"</span></div>
+<table class="tbl"><thead><tr><th>방법</th><th>판단 기준</th></tr></thead>
+<tbody>
+<tr><td><b>ESD</b> (Extreme Studentized Deviate)</td><td>평균 ± 3σ 밖</td></tr>
+<tr><td><b>IQR 룰</b></td><td>Q1−1.5IQR 미만 또는 Q3+1.5IQR 초과</td></tr>
+<tr><td><b>박스플롯</b></td><td>박스 외곽의 점</td></tr>
+<tr><td><b>마할라노비스 거리</b></td><td>다변량 이상치 (공분산 고려)</td></tr>
+</tbody></table>
+<div class="tip"><b>46회 출제</b> · "중앙 50% 데이터가 흩어진 정도를 나타내는 것은? → IQR(사분위수 범위)"</div>
+
+<h5>⑤ 이상치 처리</h5>
+<ul>
+<li><b>제거</b> — 명백한 입력 오류만</li>
+<li><b>대체</b> — 평균·중위로 대치</li>
+<li><b>변환</b> — log·sqrt로 분포 완화</li>
+<li><b>Winsorizing</b> — 상하 일정 % 값으로 cap (자르지 않고 한계치로 누름)</li>
+</ul>
+
+<ul class="checklist">
+<li>IQR 1.5배 룰 공식 즉답</li>
+<li>요약변수(객관) vs 파생변수(주관)</li>
+<li>결측 대체의 효과(정보 손실 최소화)</li>
+<li>마할라노비스 = 다변량 이상치</li>
+</ul>
+</div></div>
+</article></template>
+
+<template id="tpl-3-3"><article class="chapter" data-chapter="3-3" data-title="3-3 통계 기초·표본추출">
+<div class="card"><div class="card-body">
+<h4><span class="card-title-num">3-3</span>통계 기초 · 표본추출 · 척도 · 분포 <span class="exam-tag">★매회 출제</span></h4>
+
+<h5>① 모집단 vs 표본 — 직관 이해</h5>
+<div class="story">전국 라면 한 그릇의 평균 가격을 알고 싶다. 모든 가게 다 조사(전수)는 불가능 → 일부 1000곳만 조사(표본). 표본 평균(X̄)을 모집단 평균(μ)의 추정치로 사용.</div>
+<table class="tbl"><thead><tr><th>구분</th><th>모집단(Population)</th><th>표본(Sample)</th></tr></thead>
+<tbody>
+<tr><th>특성치</th><td><b>모수</b>(Parameter)</td><td><b>통계량</b>(Statistic)</td></tr>
+<tr><th>평균</th><td>μ (mu)</td><td>X̄ (엑스바)</td></tr>
+<tr><th>분산</th><td>σ²</td><td>s²</td></tr>
+<tr><th>표준편차</th><td>σ</td><td>s</td></tr>
+<tr><th>비율</th><td>p</td><td>p̂</td></tr>
+<tr><th>크기</th><td>N</td><td>n</td></tr>
+</tbody></table>
+<div class="brain"><b>"통계적 추론"이란?</b> 표본을 통해 모집단을 추론하는 것. <b>전수조사 ≠ 통계적 추론</b> (46회 함정 출제).</div>
+
+<h5>② 표본추출 4방법 ★ 매년 출제</h5>
+<svg class="diagram" viewBox="0 0 540 240" width="540" height="240">
+<rect x="20" y="20" width="120" height="100" rx="6" fill="#e7f5ff" stroke="#339af0"/>
+<text x="80" y="42" class="ttl" text-anchor="middle" font-weight="700" font-size="13">단순임의</text>
+<text x="80" y="62" class="lbl" text-anchor="middle" font-size="11">완전 무작위</text>
+<text x="80" y="80" class="lbl" text-anchor="middle" font-size="11">"제비뽑기"</text>
+<g transform="translate(40,90)"><circle cx="0" cy="10" r="3" fill="#1864ab"/><circle cx="15" cy="15" r="3" fill="#1864ab"/><circle cx="30" cy="5" r="3" fill="#1864ab"/><circle cx="45" cy="12" r="3" fill="#1864ab"/><circle cx="60" cy="8" r="3" fill="#fa5252"/><circle cx="75" cy="18" r="3" fill="#1864ab"/></g>
+<rect x="150" y="20" width="120" height="100" rx="6" fill="#e7f5ff" stroke="#339af0"/>
+<text x="210" y="42" class="ttl" text-anchor="middle" font-weight="700" font-size="13">계통(Systematic)</text>
+<text x="210" y="62" class="lbl" text-anchor="middle" font-size="11">k 간격으로 추출</text>
+<text x="210" y="80" class="lbl" text-anchor="middle" font-size="11">10·20·30·40번…</text>
+<g transform="translate(170,90)"><circle cx="0" cy="10" r="3" fill="#fa5252"/><circle cx="20" cy="10" r="3" fill="#1864ab"/><circle cx="40" cy="10" r="3" fill="#fa5252"/><circle cx="60" cy="10" r="3" fill="#1864ab"/><circle cx="80" cy="10" r="3" fill="#fa5252"/></g>
+<rect x="280" y="20" width="120" height="100" rx="6" fill="#fff3cd" stroke="#fab005"/>
+<text x="340" y="42" class="ttl" text-anchor="middle" font-weight="700" font-size="13" fill="#e67700">층화(Stratified)</text>
+<text x="340" y="62" class="lbl" text-anchor="middle" font-size="11">모든 그룹에서</text>
+<text x="340" y="80" class="lbl" text-anchor="middle" font-size="11">"골고루"</text>
+<g transform="translate(290,90)"><rect x="0" y="0" width="40" height="20" fill="#ffd8a8"/><rect x="50" y="0" width="40" height="20" fill="#a5d8ff"/><circle cx="10" cy="10" r="3" fill="#fa5252"/><circle cx="30" cy="10" r="3" fill="#fa5252"/><circle cx="60" cy="10" r="3" fill="#fa5252"/><circle cx="80" cy="10" r="3" fill="#fa5252"/></g>
+<rect x="410" y="20" width="120" height="100" rx="6" fill="#ffd8d8" stroke="#fa5252"/>
+<text x="470" y="42" class="ttl" text-anchor="middle" font-weight="700" font-size="13" fill="#c92a2a">집락(Cluster)</text>
+<text x="470" y="62" class="lbl" text-anchor="middle" font-size="11">몇 그룹만 통째</text>
+<text x="470" y="80" class="lbl" text-anchor="middle" font-size="11">"한 학교만"</text>
+<g transform="translate(420,90)"><rect x="0" y="0" width="40" height="20" fill="#ffc9c9"/><rect x="50" y="0" width="40" height="20" fill="#dee2e6"/><circle cx="10" cy="10" r="3" fill="#fa5252"/><circle cx="20" cy="10" r="3" fill="#fa5252"/><circle cx="30" cy="10" r="3" fill="#fa5252"/></g>
+<text x="270" y="160" class="ttl" text-anchor="middle" font-weight="700" font-size="14" fill="#c92a2a">★ 층화 vs 집락 — 매년 함정! ★</text>
+<rect x="60" y="180" width="200" height="50" rx="6" fill="#fff9db" stroke="#fab005"/>
+<text x="160" y="202" class="lbl" text-anchor="middle" font-size="12" font-weight="700">층화: 모든 층에서 일부씩</text>
+<text x="160" y="220" class="lbl" text-anchor="middle" font-size="11">남50명 + 여50명</text>
+<rect x="280" y="180" width="200" height="50" rx="6" fill="#ffe3e3" stroke="#fa5252"/>
+<text x="380" y="202" class="lbl" text-anchor="middle" font-size="12" font-weight="700" fill="#c92a2a">집락: 몇 층만 통째로</text>
+<text x="380" y="220" class="lbl" text-anchor="middle" font-size="11">A중 전교생 / B중 안 함</text>
+</svg>
+
+<h5>③ 측정 척도 4종 ★ 매년 출제</h5>
+<table class="tbl"><thead><tr><th>구분</th><th>척도</th><th>특징</th><th>예</th><th>가능한 연산</th></tr></thead>
+<tbody>
+<tr><th rowspan="2">질적</th><td><b>명목</b>(Nominal)</td><td>분류만 (=, ≠)</td><td>성별, 혈액형, 학과</td><td>최빈값</td></tr>
+<tr><td><b>서열</b>(Ordinal)</td><td>순서 있음, 간격 의미 X</td><td>학점(A·B·C), 등수</td><td>중앙값·순위</td></tr>
+<tr><th rowspan="2">양적</th><td><b>등간</b>(Interval)</td><td>간격 일정, <b>절대 0 없음</b></td><td>온도(℃), IQ, 연도</td><td>+, − (×, ÷ 안 됨)</td></tr>
+<tr><td><b>비율</b>(Ratio)</td><td><b>절대 0 있음</b>, 사칙연산 OK</td><td>키, 몸무게, 금액, 시간</td><td>+, −, ×, ÷ 모두</td></tr>
+</tbody></table>
+<div class="brain"><b>"0이 진짜 없음을 의미하면 비율"</b> · 0℃는 추울 뿐 "온도가 없음"이 아님 → 등간. 0kg은 진짜 무게가 없음 → 비율.</div>
+
+<h5>④ 확률분포 — 시험 단골 정리</h5>
+<table class="tbl"><thead><tr><th>이산분포</th><th>정의</th><th>기대값/분산</th></tr></thead>
+<tbody>
+<tr><td><b>베르누이</b></td><td>성공/실패 1회 시행</td><td>E=p, V=p(1−p)</td></tr>
+<tr><td><b>이항</b> B(n,p)</td><td>n번 독립시행 성공 횟수</td><td><b>E=np, V=np(1−p)</b></td></tr>
+<tr><td><b>포아송</b> P(λ)</td><td>단위 시간 희귀 사건 수</td><td><b>E=V=λ</b></td></tr>
+<tr><td><b>기하</b></td><td>첫 성공까지 시행 수</td><td>E=1/p</td></tr>
+</tbody></table>
+<table class="tbl"><thead><tr><th>연속분포</th><th>정의</th><th>특징</th></tr></thead>
+<tbody>
+<tr><td><b>정규</b> N(μ,σ²)</td><td>좌우 대칭 종모양</td><td><b>68-95-99.7</b> 법칙</td></tr>
+<tr><td><b>표준정규</b> N(0,1)</td><td>μ=0, σ=1</td><td>Z = (X−μ)/σ</td></tr>
+<tr><td><b>t</b></td><td>n&lt;30 평균검정</td><td>자유도 n−1</td></tr>
+<tr><td><b>χ²</b> (카이제곱)</td><td>적합도·독립성·분산</td><td>df=k−1</td></tr>
+<tr><td><b>F</b></td><td>두 분산 비교·ANOVA</td><td>df 두 개</td></tr>
+</tbody></table>
+
+<svg class="diagram" viewBox="0 0 540 160" width="540" height="160">
+<line x1="40" y1="130" x2="500" y2="130" stroke="#495057" stroke-width="2"/>
+<path d="M 40 130 Q 270 -20 500 130" fill="#a5d8ff" opacity=".7" stroke="#1864ab" stroke-width="2"/>
+<line x1="270" y1="130" x2="270" y2="20" stroke="#1864ab" stroke-dasharray="3,3"/>
+<text x="270" y="148" class="lbl" text-anchor="middle" font-size="11">μ</text>
+<text x="200" y="148" class="lbl" text-anchor="middle" font-size="11">μ−σ</text>
+<text x="340" y="148" class="lbl" text-anchor="middle" font-size="11">μ+σ</text>
+<text x="130" y="148" class="lbl" text-anchor="middle" font-size="11">μ−2σ</text>
+<text x="410" y="148" class="lbl" text-anchor="middle" font-size="11">μ+2σ</text>
+<text x="270" y="100" class="lbl" text-anchor="middle" font-size="13" font-weight="700" fill="#1864ab">정규분포 — 68% / 95% / 99.7%</text>
+</svg>
+
+<h5>⑤ 표준화(Standardization)</h5>
+<div class="formula"><b>Z = (X − μ) / σ</b><br>Z=2: "평균보다 2σ 위" · 분포가 어떻든 비교 가능</div>
+
+<ul class="checklist">
+<li>층화 = 모든 층 / 집락 = 몇 층만 통째</li>
+<li>온도(℃)=등간, 무게=비율 (0의 의미)</li>
+<li>이항 E=np / 포아송 E=V=λ</li>
+<li>Z 표준화 공식</li>
+<li>통계적 추론 ≠ 전수조사</li>
+</ul>
+</div></div>
+</article></template>
+
+<template id="tpl-3-4"><article class="chapter" data-chapter="3-4" data-title="3-4 추정·가설검정">
+<div class="card"><div class="card-body">
+<h4><span class="card-title-num">3-4</span>추정 · 가설검정 · 1·2종 오류 <span class="exam-tag">★46회 출제</span></h4>
+
+<h5>① 점추정 / 구간추정</h5>
+<div class="story">사장님이 "이번 달 매출 평균 얼마야?"<br>→ "650만원입니다" (점추정)<br>→ "95% 확률로 600~700만원 사이입니다" (구간추정)<br>구간추정이 더 안전한 답.</div>
+<table class="tbl"><thead><tr><th>좋은 점추정량의 조건</th><th>의미</th></tr></thead>
+<tbody>
+<tr><td><b>불편성</b>(Unbiased)</td><td>E(추정량) = 모수. 평균적으로 정확.</td></tr>
+<tr><td><b>일관성</b>(Consistency)</td><td>n 커지면 모수에 수렴</td></tr>
+<tr><td><b>유효성</b>(Efficiency)</td><td>분산이 가장 작은 추정량 (가장 안정적)</td></tr>
+<tr><td><b>충분성</b>(Sufficiency)</td><td>표본의 모든 정보 포함</td></tr>
+</tbody></table>
+<div class="formula"><b>μ의 95% 신뢰구간</b> = X̄ ± t<sub>α/2,n−1</sub> · (s / √n)<br><span style="color:#888">n 클수록 √n 커져 구간 좁아짐 → 정밀↑</span></div>
+<div class="brain"><b>"95% 신뢰도"의 진짜 의미</b> · 같은 방식으로 100번 추출하면 <b>약 95번의 신뢰구간</b>이 모수를 포함. (한 번의 구간이 95% 확률로 모수를 포함한다는 뜻이 아님!)</div>
+
+<h5>② 가설(Hypothesis)</h5>
+<svg class="diagram" viewBox="0 0 540 130" width="540" height="130">
+<rect x="40" y="20" width="200" height="80" rx="6" fill="#e7f5ff" stroke="#339af0" stroke-width="2"/>
+<text x="140" y="44" class="ttl" text-anchor="middle" font-weight="700" font-size="14" fill="#1864ab">H₀ 귀무가설</text>
+<text x="140" y="65" class="lbl" text-anchor="middle" font-size="12">"차이가 없다"</text>
+<text x="140" y="83" class="lbl" text-anchor="middle" font-size="11">현재의 통념·기준</text>
+<rect x="300" y="20" width="200" height="80" rx="6" fill="#fff3cd" stroke="#fab005" stroke-width="2"/>
+<text x="400" y="44" class="ttl" text-anchor="middle" font-weight="700" font-size="14" fill="#e67700">H₁ 대립가설</text>
+<text x="400" y="65" class="lbl" text-anchor="middle" font-size="12">"차이가 있다"</text>
+<text x="400" y="83" class="lbl" text-anchor="middle" font-size="11">증명하고 싶은 것</text>
+<line x1="240" y1="60" x2="300" y2="60" stroke="#495057" stroke-width="2" marker-end="url(#arr)"/>
+<defs><marker id="arr" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><polygon points="0 0, 10 3, 0 6" fill="#495057"/></marker></defs>
+<text x="270" y="50" class="lbl" text-anchor="middle" font-size="10">기각</text>
+</svg>
+
+<h5>③ 1·2종 오류 ★★★ 거의 매년 출제</h5>
+<div class="matrix2">
+<div class="hdr">실제 \ 판정</div><div class="hdr">H₀ 채택</div><div class="hdr">H₀ 기각</div>
+<div class="hdr">H₀ 참 (실제 차이 X)</div><div class="ok">올바름 ✓</div><div class="err">1종 오류 (α)</div>
+<div class="hdr">H₀ 거짓 (실제 차이 O)</div><div class="err">2종 오류 (β)</div><div class="ok">올바름 ✓ (검정력 1−β)</div>
+</div>
+<div class="story"><b>1종 오류</b> · 임신 안 했는데 "임신!" 진단 (거짓 양성). <b>2종 오류</b> · 진짜 임신했는데 "정상" (놓침). 1종은 "겁쟁이가 호들갑", 2종은 "둔감해서 못 잡음".</div>
+<table class="tbl"><thead><tr><th>용어</th><th>정의</th></tr></thead>
+<tbody>
+<tr><td><b>유의수준 α</b></td><td>1종 오류의 허용 한계 (보통 0.05)</td></tr>
+<tr><td><b>β</b></td><td>2종 오류 확률</td></tr>
+<tr><td><b>검정력</b>(Power) = 1 − β</td><td>참 차이를 올바르게 잡아내는 확률 ★</td></tr>
+<tr><td><b>p-value</b></td><td>H₀ 참일 때 관측보다 극단적인 결과 확률</td></tr>
+</tbody></table>
+
+<h5>④ p-value 판정 ★</h5>
+<div class="formula"><b>p &lt; α (보통 0.05)</b> ⇒ H₀ <b>기각</b> (대립가설 채택)<br><b>p ≥ α</b> ⇒ H₀ 기각 못함 (채택)</div>
+<div class="warn"><b>46회 함정</b> · "p &lt; α면 대립가설을 기각" → <b>틀림!</b> 정답은 "귀무가설을 기각·대립가설 채택".</div>
+
+<h5>⑤ 검정 종류 한눈에</h5>
+<table class="tbl"><thead><tr><th>검정</th><th>언제</th></tr></thead>
+<tbody>
+<tr><td><b>Z검정</b></td><td>모분산 σ² 알고 n 큼 (n≥30)</td></tr>
+<tr><td><b>t검정</b></td><td>모분산 σ² 모름 또는 n&lt;30 — 평균</td></tr>
+<tr><td><b>F검정</b></td><td>두 분산 비교, ANOVA</td></tr>
+<tr><td><b>χ² 검정</b></td><td>적합도·독립성·동질성 (범주형)</td></tr>
+</tbody></table>
+
+<ul class="checklist">
+<li>1종=α(참인데 기각) / 2종=β(거짓인데 채택)</li>
+<li>검정력 = 1−β</li>
+<li>p&lt;α ⇒ <b>귀무</b> 기각 (대립이 아님!)</li>
+<li>95% 신뢰도의 진짜 의미</li>
+</ul>
+</div></div>
+</article></template>
+
+<template id="tpl-3-5"><article class="chapter" data-chapter="3-5" data-title="3-5 t·ANOVA·카이제곱">
+<div class="card"><div class="card-body">
+<h4><span class="card-title-num">3-5</span>t-검정 · 분산분석(ANOVA) · 카이제곱 <span class="exam-tag">★단골</span></h4>
+
+<h5>① 어떤 검정을 써야 하나? — 결정 트리</h5>
+<svg class="diagram" viewBox="0 0 580 280" width="580" height="280">
+<rect x="220" y="10" width="160" height="40" rx="6" fill="#e7f5ff" stroke="#1864ab" stroke-width="2"/>
+<text x="300" y="35" class="ttl" text-anchor="middle" font-weight="700" font-size="13">독립변수 종류?</text>
+<line x1="300" y1="50" x2="180" y2="80" stroke="#495057" stroke-width="2"/>
+<line x1="300" y1="50" x2="420" y2="80" stroke="#495057" stroke-width="2"/>
+<text x="220" y="68" class="lbl" font-size="11">범주형</text>
+<text x="370" y="68" class="lbl" font-size="11">연속형</text>
+<rect x="100" y="80" width="160" height="40" rx="6" fill="#fff3cd" stroke="#fab005"/>
+<text x="180" y="105" class="ttl" text-anchor="middle" font-weight="700" font-size="13">집단 수?</text>
+<rect x="340" y="80" width="160" height="40" rx="6" fill="#d3f9d8" stroke="#37b24d"/>
+<text x="420" y="100" class="ttl" text-anchor="middle" font-weight="700" font-size="13" fill="#2b8a3e">상관 / 회귀</text>
+<text x="420" y="115" class="lbl" text-anchor="middle" font-size="10">(연속×연속)</text>
+<line x1="180" y1="120" x2="100" y2="160" stroke="#495057" stroke-width="2"/>
+<line x1="180" y1="120" x2="260" y2="160" stroke="#495057" stroke-width="2"/>
+<text x="120" y="145" class="lbl" font-size="11">2 집단</text>
+<text x="240" y="145" class="lbl" font-size="11">3 집단↑</text>
+<rect x="20" y="160" width="160" height="80" rx="6" fill="#fff9db" stroke="#fab005"/>
+<text x="100" y="185" class="ttl" text-anchor="middle" font-weight="700" font-size="13" fill="#e67700">t-검정</text>
+<text x="100" y="205" class="lbl" text-anchor="middle" font-size="11">일·독립·대응</text>
+<text x="100" y="222" class="lbl" text-anchor="middle" font-size="11">2 집단 평균 비교</text>
+<rect x="200" y="160" width="160" height="80" rx="6" fill="#ffe3e3" stroke="#fa5252"/>
+<text x="280" y="185" class="ttl" text-anchor="middle" font-weight="700" font-size="13" fill="#c92a2a">ANOVA</text>
+<text x="280" y="205" class="lbl" text-anchor="middle" font-size="11">F-검정</text>
+<text x="280" y="222" class="lbl" text-anchor="middle" font-size="11">3 집단↑ 평균 비교</text>
+<rect x="380" y="160" width="180" height="80" rx="6" fill="#f8f0fc" stroke="#cc5de8"/>
+<text x="470" y="185" class="ttl" text-anchor="middle" font-weight="700" font-size="13" fill="#862e9c">χ² 카이제곱</text>
+<text x="470" y="205" class="lbl" text-anchor="middle" font-size="11">범주×범주</text>
+<text x="470" y="222" class="lbl" text-anchor="middle" font-size="11">독립성·적합도</text>
+<text x="290" y="270" class="lbl" text-anchor="middle" font-size="12" fill="#495057" font-weight="600">※ 종속변수가 연속형 가정</text>
+</svg>
+
+<h5>② t-검정 3종</h5>
+<table class="tbl"><thead><tr><th>구분</th><th>언제</th><th>R</th></tr></thead>
+<tbody>
+<tr><td><b>일표본</b></td><td>μ 가 특정 값(예: 100)과 같은가</td><td><code>t.test(x, mu=100)</code></td></tr>
+<tr><td><b>독립 이표본</b></td><td>두 모집단 평균 비교 (남 vs 여)</td><td><code>t.test(x, y)</code></td></tr>
+<tr><td><b>대응 이표본</b><br>(Paired)</td><td><b>같은 대상</b>의 전·후 비교</td><td><code>t.test(x, y, paired=TRUE)</code></td></tr>
+</tbody></table>
+<div class="story"><b>대응 vs 독립</b> · 같은 사람이 다이어트 전후 체중 비교 = 대응. 다른 두 그룹의 체중 비교 = 독립.</div>
+
+<h5>③ 분산분석(ANOVA)</h5>
+<ul>
+<li>3개 이상 집단의 <b>평균</b> 비교 (F 분포 사용)</li>
+<li><b>가정 3가지</b> · 정규성·독립성·등분산성 ★ </li>
+<li>F = 처리간 분산 / 처리내 분산 — <b>F 클수록 H₀ 기각</b></li>
+<li><b>일원배치</b> = 요인 1개 / <b>이원배치</b> = 요인 2개 (상호작용 검정 가능)</li>
+</ul>
+<div class="formula">F = MSB / MSW = (그룹 간 변동) / (그룹 내 변동)</div>
+
+<h5>④ 사후검정(Post-hoc)</h5>
+<p>ANOVA가 H₀ 기각하면 "어느 집단끼리 다른가?" 확인. <b>Tukey HSD</b>(가장 흔함), Bonferroni, Scheffé, Duncan.</p>
+
+<h5>⑤ 카이제곱(χ²) 검정 — 3종</h5>
+<table class="tbl"><thead><tr><th>유형</th><th>용도</th><th>예</th></tr></thead>
+<tbody>
+<tr><td><b>적합도</b></td><td>관측 분포가 이론과 같은가</td><td>주사위 6면 균등?</td></tr>
+<tr><td><b>독립성</b></td><td>두 범주변수 독립인가</td><td>성별 ↔ 흡연 여부</td></tr>
+<tr><td><b>동질성</b></td><td>두 모집단 분포 같은가</td><td>지역별 선호도</td></tr>
+</tbody></table>
+<div class="formula">χ² = Σ (관측도수 − 기대도수)² / 기대도수</div>
+
+<h5>⑥ 분석 매트릭스 — 한 줄 비교 ★</h5>
+<table class="tbl"><thead><tr><th>분석</th><th>독립변수</th><th>종속변수</th><th>목적</th></tr></thead>
+<tbody>
+<tr><td>상관분석</td><td>연속</td><td>연속</td><td>관계 강도</td></tr>
+<tr><td>회귀분석</td><td>연속/범주</td><td>연속</td><td>예측·인과</td></tr>
+<tr><td>t-검정</td><td>범주(2)</td><td>연속</td><td>평균 차이</td></tr>
+<tr><td>ANOVA</td><td>범주(≥3)</td><td>연속</td><td>평균 차이</td></tr>
+<tr><td>χ² 독립성</td><td>범주</td><td>범주</td><td>관계 유무</td></tr>
+<tr><td>로지스틱 회귀</td><td>연속/범주</td><td>범주(2)</td><td>분류 확률</td></tr>
+</tbody></table>
+
+<ul class="checklist">
+<li>대응표본 t = 같은 대상 전후 비교</li>
+<li>ANOVA 가정 3가지 (정규·독립·등분산)</li>
+<li>χ² 3종 (적합·독립·동질)</li>
+<li>분석 매트릭스에서 변수 종류로 검정 선택</li>
+</ul>
+</div></div>
+</article></template>
+
+<template id="tpl-3-6"><article class="chapter" data-chapter="3-6" data-title="3-6 상관·회귀분석">
+<div class="card"><div class="card-body">
+<h4><span class="card-title-num">3-6</span>상관·회귀·R²·VIF·변수선택 <span class="exam-tag">★46회 핵심</span></h4>
+
+<h5>① 상관계수(Correlation) — 직관 그림</h5>
+<svg class="diagram" viewBox="0 0 540 160" width="540" height="160">
+<g transform="translate(20,20)"><rect x="0" y="0" width="120" height="120" fill="#fff" stroke="#dee2e6"/>
+<circle cx="20" cy="100" r="3" fill="#1864ab"/><circle cx="35" cy="85" r="3" fill="#1864ab"/><circle cx="50" cy="75" r="3" fill="#1864ab"/><circle cx="65" cy="60" r="3" fill="#1864ab"/><circle cx="80" cy="40" r="3" fill="#1864ab"/><circle cx="95" cy="25" r="3" fill="#1864ab"/>
+<text x="60" y="140" class="lbl" text-anchor="middle" font-size="12" font-weight="700" fill="#1864ab">r ≈ +1</text>
+</g>
+<g transform="translate(160,20)"><rect x="0" y="0" width="120" height="120" fill="#fff" stroke="#dee2e6"/>
+<circle cx="20" cy="60" r="3" fill="#495057"/><circle cx="40" cy="80" r="3" fill="#495057"/><circle cx="60" cy="40" r="3" fill="#495057"/><circle cx="80" cy="70" r="3" fill="#495057"/><circle cx="100" cy="50" r="3" fill="#495057"/><circle cx="50" cy="100" r="3" fill="#495057"/>
+<text x="60" y="140" class="lbl" text-anchor="middle" font-size="12" font-weight="700">r ≈ 0</text>
+</g>
+<g transform="translate(300,20)"><rect x="0" y="0" width="120" height="120" fill="#fff" stroke="#dee2e6"/>
+<circle cx="20" cy="20" r="3" fill="#fa5252"/><circle cx="35" cy="35" r="3" fill="#fa5252"/><circle cx="50" cy="50" r="3" fill="#fa5252"/><circle cx="65" cy="65" r="3" fill="#fa5252"/><circle cx="80" cy="80" r="3" fill="#fa5252"/><circle cx="95" cy="100" r="3" fill="#fa5252"/>
+<text x="60" y="140" class="lbl" text-anchor="middle" font-size="12" font-weight="700" fill="#c92a2a">r ≈ −1</text>
+</g>
+<g transform="translate(440,20)"><rect x="0" y="0" width="80" height="120" fill="#fff3cd" stroke="#fab005"/>
+<text x="40" y="40" class="lbl" text-anchor="middle" font-size="11">−1 ≤ r ≤ +1</text>
+<text x="40" y="65" class="lbl" text-anchor="middle" font-size="10">선형 강도</text>
+<text x="40" y="85" class="lbl" text-anchor="middle" font-size="10">|r|=1 완전</text>
+<text x="40" y="105" class="lbl" text-anchor="middle" font-size="10">0 무관</text>
+</g>
+</svg>
+<table class="tbl"><thead><tr><th>종류</th><th>적용</th></tr></thead>
+<tbody>
+<tr><td><b>피어슨</b>(Pearson)</td><td>연속·선형 관계 (정규성 가정)</td></tr>
+<tr><td><b>스피어만</b>(Spearman)</td><td>순위 기반 — 비선형 단조</td></tr>
+<tr><td><b>켄달</b>(Kendall) τ</td><td>순위 일치/불일치 비율</td></tr>
+</tbody></table>
+<div class="warn"><b>주의</b> · 상관 ≠ 인과! "키와 몸무게는 상관관계가 강하다"고 키가 몸무게의 원인은 아님. 인과는 회귀·실험으로.</div>
+
+<h5>② 단순 선형회귀</h5>
+<svg class="diagram" viewBox="0 0 540 200" width="540" height="200">
+<line x1="40" y1="170" x2="500" y2="170" stroke="#495057" stroke-width="2"/>
+<line x1="40" y1="170" x2="40" y2="20" stroke="#495057" stroke-width="2"/>
+<text x="270" y="195" class="lbl" text-anchor="middle" font-size="12">X (독립변수)</text>
+<text x="20" y="100" class="lbl" text-anchor="middle" font-size="12" transform="rotate(-90, 20, 100)">Y (종속)</text>
+<line x1="60" y1="160" x2="480" y2="40" stroke="#1864ab" stroke-width="3"/>
+<text x="450" y="35" class="ttl" text-anchor="end" font-size="13" fill="#1864ab" font-weight="700">Ŷ = a + bX</text>
+<circle cx="80" cy="155" r="4" fill="#fa5252"/>
+<circle cx="130" cy="140" r="4" fill="#fa5252"/>
+<circle cx="180" cy="120" r="4" fill="#fa5252"/>
+<circle cx="240" cy="115" r="4" fill="#fa5252"/>
+<circle cx="290" cy="95" r="4" fill="#fa5252"/>
+<circle cx="350" cy="70" r="4" fill="#fa5252"/>
+<circle cx="420" cy="55" r="4" fill="#fa5252"/>
+<line x1="180" y1="120" x2="180" y2="125" stroke="#fa5252" stroke-dasharray="2,2"/>
+<text x="200" y="125" class="lbl" font-size="10" fill="#c92a2a">잔차 e</text>
+</svg>
+<div class="formula"><b>Ŷ = a + b·X</b><br>b = Σ(Xᵢ−X̄)(Yᵢ−Ȳ) / Σ(Xᵢ−X̄)² (기울기)<br>a = Ȳ − b·X̄ (절편)<br>잔차 eᵢ = Yᵢ − Ŷᵢ — 최소제곱법은 Σeᵢ²을 최소화</div>
+
+<h5>③ 결정계수 R² ★ 매년 출제</h5>
+<svg class="diagram" viewBox="0 0 540 110" width="540" height="110">
+<rect x="40" y="30" width="460" height="50" fill="#dee2e6" stroke="#495057"/>
+<rect x="40" y="30" width="320" height="50" fill="#a5d8ff" stroke="#1864ab"/>
+<text x="200" y="60" class="lbl" text-anchor="middle" font-weight="700" font-size="14" fill="#1864ab">SSR (회귀가 설명)</text>
+<text x="430" y="60" class="lbl" text-anchor="middle" font-weight="700" font-size="14">SSE (잔차)</text>
+<text x="270" y="20" class="lbl" text-anchor="middle" font-weight="700" font-size="13">SST = SSR + SSE</text>
+<text x="270" y="100" class="lbl" text-anchor="middle" font-weight="700" font-size="13" fill="#1864ab">R² = SSR/SST = 1 − SSE/SST</text>
+</svg>
+<div class="formula"><b>R² = SSR / SST = 1 − SSE/SST</b><br>0 ≤ R² ≤ 1 — 1에 가까울수록 설명력↑<br>다중회귀에서는 <b>조정된 R²</b>(adj-R²) 사용 — 변수 늘면 페널티</div>
+<div class="tip"><b>46회 출제</b> · "SSE=200, SSR=300이면 R²=?" → R² = 300/(200+300) = 300/500 = <b>0.60</b></div>
+
+<h5>④ 다중공선성(Multicollinearity) · VIF ★</h5>
+<div class="brain">독립변수끼리 강한 상관 = 다중공선성. 키와 몸무게를 둘 다 변수로 넣으면 회귀계수가 불안정해짐. <b>VIF</b>로 진단.</div>
+<div class="formula"><b>VIF<sub>k</sub> = 1 / (1 − R²<sub>k</sub>)</b><br>R²<sub>k</sub>는 변수 k를 다른 변수들로 회귀한 결정계수<br><b>VIF &gt; 10</b> 이면 다중공선성 의심 ★ <span style="color:#888">(VIF&gt;5만 돼도 주의 필요)</span></div>
+<p><b>해결</b> · 상관 높은 변수 제거 / PCA로 합성 / 능형회귀(Ridge) / Lasso</p>
+
+<h5>⑤ 변수선택법 3종</h5>
+<table class="tbl"><thead><tr><th>방법</th><th>방향</th><th>특징</th></tr></thead>
+<tbody>
+<tr><td><b>전진선택</b></td><td>0개 → 가장 유의한 변수 추가</td><td>속도↑, 한 번 들어오면 제거 X</td></tr>
+<tr><td><b>후진제거</b></td><td>전체 → 가장 무의미한 변수 제거</td><td>안정·계산↑</td></tr>
+<tr><td><b>단계별</b><br>(stepwise)</td><td>전진+후진 결합, 매 단계 재검토</td><td>가장 균형적</td></tr>
+</tbody></table>
+<p><b>선택 기준 통계량</b> · AIC(작을수록 좋음) · BIC · Mallows Cp · F-통계량</p>
+
+<h5>⑥ 회귀 가정 5가지</h5>
+<table class="tbl"><thead><tr><th>가정</th><th>점검</th></tr></thead>
+<tbody>
+<tr><td>① <b>선형성</b></td><td>X-Y 산점도</td></tr>
+<tr><td>② <b>독립성</b> (잔차 자기상관 X)</td><td>Durbin-Watson</td></tr>
+<tr><td>③ <b>잔차의 정규성</b></td><td>Q-Q plot</td></tr>
+<tr><td>④ <b>등분산성</b></td><td>잔차도 — 나팔모양 X</td></tr>
+<tr><td>⑤ <b>비상관성</b></td><td>독립변수끼리 (VIF)</td></tr>
+</tbody></table>
+<div class="formula"><b>Durbin-Watson</b> · 0~4 범위<br>≈2 자기상관 없음 (이상) / &lt;2 양의 자기상관 / &gt;2 음의 자기상관</div>
+
+<h5>⑦ 로지스틱 회귀(Logistic Regression)</h5>
+<p>종속변수가 <b>이진(0/1)</b>일 때 — 분류용. 시그모이드로 0~1 확률 출력.</p>
+<div class="formula">P(Y=1) = 1 / (1 + e<sup>−(a+bX)</sup>) <br>오즈비 = e<sup>b</sup> · X 1단위↑ 시 확률 변화</div>
+
+<pre class="code">m &lt;- lm(y ~ x1 + x2, data=df)
+summary(m); plot(m)
+library(car); vif(m)
+step(m, direction="both")  # 단계별
+glm(y ~ ., data=df, family="binomial")  # 로지스틱</pre>
+
+<ul class="checklist">
+<li>R² 의미 + SST = SSR + SSE</li>
+<li>VIF &gt; 10 다중공선성</li>
+<li>DW ≈ 2 자기상관 없음</li>
+<li>전진/후진/단계별 차이</li>
+<li>회귀 가정 5가지</li>
+<li>로지스틱은 종속변수가 이진</li>
+</ul>
+</div></div>
+</article></template>
+
+<template id="tpl-3-7"><article class="chapter" data-chapter="3-7" data-title="3-7 시계열분석">
+<div class="card"><div class="card-body">
+<h4><span class="card-title-num">3-7</span>시계열·정상성·ARIMA <span class="exam-tag">★46회 출제</span></h4>
+
+<h5>① 정상성(Stationarity) 3조건 ★</h5>
+<svg class="diagram" viewBox="0 0 540 180" width="540" height="180">
+<g transform="translate(0,0)">
+<text x="135" y="20" class="ttl" text-anchor="middle" font-weight="700" fill="#37b24d">정상 시계열</text>
+<line x1="20" y1="80" x2="270" y2="80" stroke="#495057" stroke-dasharray="2,2"/>
+<polyline points="20,80 40,70 60,90 80,75 100,85 120,72 140,88 160,78 180,82 200,75 220,85 240,77 260,80" fill="none" stroke="#37b24d" stroke-width="2"/>
+<text x="135" y="160" class="lbl" text-anchor="middle" font-size="11">평균·분산 일정</text>
+</g>
+<g transform="translate(280,0)">
+<text x="125" y="20" class="ttl" text-anchor="middle" font-weight="700" fill="#fa5252">비정상 (추세)</text>
+<polyline points="20,130 40,120 60,110 80,100 100,90 120,80 140,70 160,60 180,55 200,45 220,40 240,30 260,25" fill="none" stroke="#fa5252" stroke-width="2"/>
+<text x="125" y="160" class="lbl" text-anchor="middle" font-size="11">시간 따라 평균↑</text>
+</g>
+</svg>
+<ol>
+<li>평균이 시점에 무관하게 <b>일정</b></li>
+<li>분산이 시점에 무관하게 <b>일정</b></li>
+<li>자기공분산은 시점이 아닌 <b>시차(lag)</b>에만 의존</li>
+</ol>
+<div class="tip"><b>46회 정답</b> · "정상 시계열의 특징은 시점에 관계없이 평균과 분산이 일정하다"</div>
+<p><b>정상성 검정</b> · <b>ADF</b>(Augmented Dickey-Fuller, 단위근 검정), KPSS</p>
+
+<h5>② 차분(Differencing) — 비정상 → 정상</h5>
+<div class="formula">∇Yₜ = Yₜ − Yₜ₋₁ (1차 차분) — 추세 제거<br>∇²Yₜ = ∇Yₜ − ∇Yₜ₋₁ (2차 차분)<br>로그변환 → 분산 안정화 / 차분 → 평균 안정화</div>
+
+<h5>③ 시계열 분해 4성분</h5>
+<svg class="diagram" viewBox="0 0 540 130" width="540" height="130">
+<text x="270" y="20" class="ttl" text-anchor="middle" font-weight="700">Yₜ = Tₜ + Sₜ + Cₜ + Eₜ</text>
+<g transform="translate(20,40)"><rect width="100" height="60" fill="#e7f5ff" stroke="#1864ab"/>
+<text x="50" y="20" class="ttl" text-anchor="middle" font-size="11" font-weight="700">T (추세)</text>
+<text x="50" y="40" class="lbl" text-anchor="middle" font-size="10">장기 ↑↓</text>
+<text x="50" y="55" class="lbl" text-anchor="middle" font-size="10">예: 인구↑</text>
+</g>
+<g transform="translate(140,40)"><rect width="100" height="60" fill="#fff3cd" stroke="#fab005"/>
+<text x="50" y="20" class="ttl" text-anchor="middle" font-size="11" font-weight="700" fill="#e67700">S (계절)</text>
+<text x="50" y="40" class="lbl" text-anchor="middle" font-size="10">주기 12개월</text>
+<text x="50" y="55" class="lbl" text-anchor="middle" font-size="10">예: 아이스크림</text>
+</g>
+<g transform="translate(260,40)"><rect width="100" height="60" fill="#fff0f6" stroke="#f06595"/>
+<text x="50" y="20" class="ttl" text-anchor="middle" font-size="11" font-weight="700" fill="#a61e4d">C (순환)</text>
+<text x="50" y="40" class="lbl" text-anchor="middle" font-size="10">불규칙 주기</text>
+<text x="50" y="55" class="lbl" text-anchor="middle" font-size="10">경기 사이클</text>
+</g>
+<g transform="translate(380,40)"><rect width="100" height="60" fill="#e9ecef" stroke="#495057"/>
+<text x="50" y="20" class="ttl" text-anchor="middle" font-size="11" font-weight="700">E (불규칙)</text>
+<text x="50" y="40" class="lbl" text-anchor="middle" font-size="10">잔차·노이즈</text>
+<text x="50" y="55" class="lbl" text-anchor="middle" font-size="10">예측 불가</text>
+</g>
+<text x="270" y="125" class="lbl" text-anchor="middle" font-size="11">가법 모형 vs 곱셈 모형 (× 으로 결합)</text>
+</svg>
+
+<h5>④ ACF · PACF — 차수 결정의 핵심 ★</h5>
+<table class="tbl"><thead><tr><th>함수</th><th>의미</th><th>결정</th></tr></thead>
+<tbody>
+<tr><td><b>ACF</b><br>(자기상관함수)</td><td>시차 k와의 상관 (직접+간접)</td><td><b>MA 차수 q</b></td></tr>
+<tr><td><b>PACF</b><br>(편자기상관함수)</td><td>중간 시차 영향 제거 후 직접 상관</td><td><b>AR 차수 p</b></td></tr>
+</tbody></table>
+<div class="brain"><b>판정 패턴</b><br>• AR(p): ACF 점진 감소, PACF 시차 p 이후 절단<br>• MA(q): ACF 시차 q 이후 절단, PACF 점진 감소<br>• ARMA(p,q): 둘 다 점진 감소</div>
+
+<h5>⑤ AR · MA · ARIMA</h5>
+<div class="formula"><b>AR(p)</b>: Yₜ = c + φ₁Yₜ₋₁ + … + φₚYₜ₋ₚ + εₜ <span style="color:#888">(과거 자기 값)</span><br><b>MA(q)</b>: Yₜ = μ + εₜ + θ₁εₜ₋₁ + … + θ_qεₜ₋q <span style="color:#888">(과거 오차)</span><br><b>ARIMA(p,d,q)</b>: 차분 d번 후 ARMA(p,q)</div>
+<table class="tbl"><thead><tr><th>매개변수</th><th>의미</th><th>결정</th></tr></thead>
+<tbody>
+<tr><td><b>p</b></td><td>AR 차수</td><td>PACF 절단점</td></tr>
+<tr><td><b>d</b></td><td>차분 횟수</td><td>ADF / 정상성 확보</td></tr>
+<tr><td><b>q</b></td><td>MA 차수</td><td>ACF 절단점</td></tr>
+</tbody></table>
+
+<h5>⑥ 백색잡음(White Noise)</h5>
+<p>평균 0, 일정 분산, 자기상관 0 — <b>완전 무작위</b> 시계열. <b>잔차가 백색잡음</b>이면 모델이 잘 적합된 것.</p>
+
+<pre class="code">library(forecast)
+ts1 &lt;- ts(x, frequency=12)  # 월별 데이터
+plot(decompose(ts1))         # 분해
+acf(ts1); pacf(ts1)
+m &lt;- auto.arima(ts1)         # 자동 차수 결정
+forecast(m, h=12)            # 12기 앞 예측</pre>
+
+<ul class="checklist">
+<li>정상성 3조건 (평균·분산·자기공분산)</li>
+<li>ACF → MA(q), PACF → AR(p)</li>
+<li>분해 4성분 T·S·C·E</li>
+<li>차분 = 정상화 (d 결정)</li>
+<li>백색잡음의 의미</li>
+</ul>
+</div></div>
+</article></template>
+
+<template id="tpl-3-8"><article class="chapter" data-chapter="3-8" data-title="3-8 다변량 (PCA·요인)">
+<div class="card"><div class="card-body">
+<h4><span class="card-title-num">3-8</span>주성분분석(PCA)·요인분석·MDS <span class="exam-tag">★46회 출제</span></h4>
+
+<h5>① 주성분분석 PCA — 직관 그림</h5>
+<svg class="diagram" viewBox="0 0 540 220" width="540" height="220">
+<line x1="40" y1="180" x2="500" y2="180" stroke="#495057"/>
+<line x1="40" y1="180" x2="40" y2="20" stroke="#495057"/>
+<text x="510" y="185" class="lbl" font-size="11">X₁</text>
+<text x="35" y="20" class="lbl" font-size="11">X₂</text>
+<g fill="#1864ab"><circle cx="80" cy="160" r="3"/><circle cx="100" cy="150" r="3"/><circle cx="130" cy="135" r="3"/><circle cx="160" cy="120" r="3"/><circle cx="200" cy="100" r="3"/><circle cx="240" cy="85" r="3"/><circle cx="280" cy="70" r="3"/><circle cx="320" cy="60" r="3"/><circle cx="360" cy="45" r="3"/><circle cx="400" cy="35" r="3"/></g>
+<line x1="60" y1="170" x2="430" y2="25" stroke="#fa5252" stroke-width="3"/>
+<text x="430" y="20" class="ttl" text-anchor="end" font-size="13" font-weight="700" fill="#c92a2a">PC1 (분산 최대)</text>
+<line x1="200" y1="20" x2="280" y2="180" stroke="#37b24d" stroke-width="2" stroke-dasharray="5,5"/>
+<text x="290" y="180" class="ttl" font-size="12" font-weight="700" fill="#2b8a3e">PC2 ⊥ PC1</text>
+</svg>
+<ul>
+<li>고차원 → 저차원 <b>축소</b>. 정보(분산) 최대 보존.</li>
+<li><b>PC1</b> = 분산이 가장 큰 방향 / <b>PC2</b> = PC1에 수직, 그 다음 분산</li>
+<li>주성분들은 서로 <b>직교(무상관)</b> ★</li>
+<li>변수 단위 다르면 <b>상관행렬</b>(=표준화 후 공분산), 같으면 <b>공분산행렬</b></li>
+</ul>
+<div class="tip"><b>46회 출제</b> · "PCA 생성 가능한 주성분 최대 개수는 <b>변수(특성) 개수</b>와 동일" (관측치 수가 아님!)</div>
+
+<h5>② 주성분 개수 결정 3법</h5>
+<table class="tbl"><thead><tr><th>방법</th><th>기준</th></tr></thead>
+<tbody>
+<tr><td><b>누적기여도</b></td><td>분산의 <b>70~85% 이상</b> 설명되도록 선택</td></tr>
+<tr><td><b>Kaiser 규칙</b></td><td>고유값 ≥ 1인 주성분만 선택</td></tr>
+<tr><td><b>Scree Plot</b></td><td>꺾이는 지점(elbow)까지 선택</td></tr>
+</tbody></table>
+<div class="formula">누적기여도 = (선택된 PC들의 고유값 합) / (전체 고유값 합)</div>
+
+<h5>③ 요인분석(Factor Analysis) vs PCA</h5>
+<table class="tbl"><thead><tr><th>구분</th><th>PCA</th><th>요인분석</th></tr></thead>
+<tbody>
+<tr><th>목적</th><td>차원 <b>축소</b></td><td>잠재 <b>요인 발견</b></td></tr>
+<tr><th>분산</th><td>전체 분산</td><td>공통분산만</td></tr>
+<tr><th>회전</th><td>선택사항</td><td><b>필수</b> (Varimax 등) — 해석성</td></tr>
+<tr><th>변수 수</th><td>줄임</td><td>줄임</td></tr>
+</tbody></table>
+<div class="story"><b>요인분석 예</b> · 수학·과학·국어·영어 점수 → 잠재요인 "이과력", "어학력" 두 개를 발견.</div>
+
+<h5>④ 다차원척도법(MDS)</h5>
+<p>객체 간 <b>거리(유사성)</b>를 저차원(2D)으로 시각화. 거리행렬 → 좌표.</p>
+<div class="tip"><b>46회 출제</b> · "MDS 활용 사례 → <b>영화 간 유사성 분석 및 시각화</b>"</div>
+<table class="tbl"><thead><tr><th>구분</th><th>설명</th></tr></thead>
+<tbody>
+<tr><td>계량적 MDS</td><td>유클리드 거리 — 양적 데이터</td></tr>
+<tr><td>비계량적 MDS</td><td>순위 기반 — 질적 데이터</td></tr>
+</tbody></table>
+
+<pre class="code">pr &lt;- prcomp(scale(X))      # 표준화 후 PCA
+summary(pr)                  # 누적기여도
+biplot(pr)
+factanal(X, factors=2, rotation="varimax")
+cmdscale(dist(X), k=2)       # 고전 MDS</pre>
+
+<ul class="checklist">
+<li>PCA 주성분들은 직교(무상관)</li>
+<li>최대 PC 개수 = 변수(특성) 개수</li>
+<li>PCA(전체분산) vs 요인분석(공통분산·회전 필수)</li>
+<li>MDS는 거리 → 좌표 시각화</li>
+<li>누적기여도 70~85%</li>
+</ul>
+</div></div>
+</article></template>
+
+<template id="tpl-3-9"><article class="chapter" data-chapter="3-9" data-title="3-9 군집분석">
+<div class="card"><div class="card-body">
+<h4><span class="card-title-num">3-9</span>군집분석 — 계층·K-means·DBSCAN <span class="exam-tag">★46회 출제</span></h4>
+
+<div class="story">"비슷한 것끼리 묶기" — 마트 고객을 비슷한 구매 패턴으로 묶어 마케팅. 답(라벨)이 없는 <b>비지도 학습</b>.</div>
+
+<h5>① 거리(유사성) 척도</h5>
+<table class="tbl"><thead><tr><th>척도</th><th>공식·특징</th><th>적합</th></tr></thead>
+<tbody>
+<tr><td><b>유클리드</b></td><td>√Σ(xᵢ−yᵢ)² · 직선 거리</td><td>가장 흔함</td></tr>
+<tr><td><b>맨하탄</b></td><td>Σ|xᵢ−yᵢ| · 격자(택시) 거리</td><td>도시 좌표</td></tr>
+<tr><td><b>민코우스키</b></td><td>(Σ|xᵢ−yᵢ|^p)^(1/p) · 일반화</td><td>p=2 유클리드</td></tr>
+<tr><td><b>마할라노비스</b></td><td>공분산 고려·표준화 거리</td><td>변수 상관 시</td></tr>
+<tr><td><b>코사인 유사도</b></td><td>cos θ = A·B / (|A||B|)</td><td>텍스트·고차원</td></tr>
+<tr><td><b>자카드</b></td><td>|A∩B| / |A∪B|</td><td>이진(0/1) 데이터</td></tr>
+</tbody></table>
+
+<h5>② 계층적 군집(Hierarchical) — 5가지 연결법 ★</h5>
+<svg class="diagram" viewBox="0 0 540 200" width="540" height="200">
+<line x1="20" y1="180" x2="20" y2="40" stroke="#495057"/>
+<line x1="20" y1="180" x2="500" y2="180" stroke="#495057"/>
+<text x="20" y="30" class="lbl" font-size="11">거리</text>
+<line x1="50" y1="180" x2="50" y2="160" stroke="#1864ab"/>
+<line x1="80" y1="180" x2="80" y2="160" stroke="#1864ab"/>
+<line x1="50" y1="160" x2="80" y2="160" stroke="#1864ab"/>
+<line x1="65" y1="160" x2="65" y2="120" stroke="#1864ab" stroke-width="2"/>
+<line x1="120" y1="180" x2="120" y2="140" stroke="#37b24d"/>
+<line x1="150" y1="180" x2="150" y2="140" stroke="#37b24d"/>
+<line x1="120" y1="140" x2="150" y2="140" stroke="#37b24d"/>
+<line x1="135" y1="140" x2="135" y2="120" stroke="#37b24d" stroke-width="2"/>
+<line x1="65" y1="120" x2="135" y2="120" stroke="#495057" stroke-width="2"/>
+<line x1="100" y1="120" x2="100" y2="60" stroke="#495057" stroke-width="2"/>
+<line x1="220" y1="180" x2="220" y2="100" stroke="#fa5252"/>
+<line x1="260" y1="180" x2="260" y2="100" stroke="#fa5252"/>
+<line x1="220" y1="100" x2="260" y2="100" stroke="#fa5252" stroke-width="2"/>
+<line x1="240" y1="100" x2="240" y2="60" stroke="#fa5252" stroke-width="2"/>
+<line x1="100" y1="60" x2="240" y2="60" stroke="#495057" stroke-width="2"/>
+<text x="170" y="50" class="lbl" text-anchor="middle" font-size="12" font-weight="700" fill="#1864ab">덴드로그램(Dendrogram)</text>
+<text x="50" y="195" class="lbl" font-size="10">A</text>
+<text x="80" y="195" class="lbl" font-size="10">B</text>
+<text x="120" y="195" class="lbl" font-size="10">C</text>
+<text x="150" y="195" class="lbl" font-size="10">D</text>
+<text x="220" y="195" class="lbl" font-size="10">E</text>
+<text x="260" y="195" class="lbl" font-size="10">F</text>
+<line x1="320" y1="80" x2="500" y2="80" stroke="#fa5252" stroke-dasharray="4,4"/>
+<text x="490" y="75" class="lbl" text-anchor="end" font-size="11" fill="#c92a2a" font-weight="600">자르는 높이로</text>
+<text x="490" y="92" class="lbl" text-anchor="end" font-size="11" fill="#c92a2a" font-weight="600">군집 수 결정</text>
+</svg>
+<table class="tbl"><thead><tr><th>연결법</th><th>군집 간 거리 정의</th><th>특성</th></tr></thead>
+<tbody>
+<tr><td><b>단일</b>(Single, 최단)</td><td>가장 가까운 두 점</td><td>체이닝(긴 사슬) 위험</td></tr>
+<tr><td><b>완전</b>(Complete, 최장)</td><td>가장 먼 두 점</td><td>구형 군집 선호</td></tr>
+<tr><td><b>평균</b>(Average)</td><td>모든 쌍의 평균</td><td>균형적</td></tr>
+<tr><td><b>중심</b>(Centroid)</td><td>중심 간 거리</td><td>역전 가능 (단조성 깨짐)</td></tr>
+<tr><td><b>와드</b>(Ward) ⭐</td><td>군집 내 분산 증가량 최소</td><td>가장 효과적·균등</td></tr>
+</tbody></table>
+<div class="tip"><b>46회 출제</b> · "최장연결법은 결정론적이므로 동일한 결과 반복" — 재분석해도 같은 결과 (옳지 않은 보기 찾기 함정).</div>
+<div class="brain"><b>응집형(Agglomerative, bottom-up)</b> · 각 점을 시작 → 합치기. 가장 흔함.<br><b>분할형(Divisive, top-down)</b> · 전체 → 쪼개기.</div>
+
+<h5>③ K-means — 비계층 4단계 ★</h5>
+<svg class="diagram" viewBox="0 0 540 130" width="540" height="130">
+<g transform="translate(0,20)"><rect x="10" y="0" width="100" height="80" fill="#fff" stroke="#dee2e6"/>
+<circle cx="30" cy="20" r="3" fill="#495057"/><circle cx="60" cy="40" r="3" fill="#495057"/><circle cx="80" cy="15" r="3" fill="#495057"/><circle cx="50" cy="60" r="3" fill="#495057"/><circle cx="90" cy="65" r="3" fill="#495057"/>
+<circle cx="40" cy="30" r="6" fill="none" stroke="#fa5252" stroke-width="2"/><circle cx="75" cy="55" r="6" fill="none" stroke="#1864ab" stroke-width="2"/>
+<text x="60" y="100" class="lbl" text-anchor="middle" font-weight="700" font-size="11">① 중심 K=2 임의</text></g>
+<g transform="translate(120,20)"><rect x="10" y="0" width="100" height="80" fill="#fff" stroke="#dee2e6"/>
+<circle cx="30" cy="20" r="3" fill="#fa5252"/><circle cx="60" cy="40" r="3" fill="#fa5252"/><circle cx="80" cy="15" r="3" fill="#fa5252"/><circle cx="50" cy="60" r="3" fill="#1864ab"/><circle cx="90" cy="65" r="3" fill="#1864ab"/>
+<circle cx="40" cy="30" r="6" fill="none" stroke="#fa5252" stroke-width="2"/><circle cx="75" cy="55" r="6" fill="none" stroke="#1864ab" stroke-width="2"/>
+<text x="60" y="100" class="lbl" text-anchor="middle" font-weight="700" font-size="11">② 가까운 중심 할당</text></g>
+<g transform="translate(240,20)"><rect x="10" y="0" width="100" height="80" fill="#fff" stroke="#dee2e6"/>
+<circle cx="30" cy="20" r="3" fill="#fa5252"/><circle cx="60" cy="40" r="3" fill="#fa5252"/><circle cx="80" cy="15" r="3" fill="#fa5252"/><circle cx="50" cy="60" r="3" fill="#1864ab"/><circle cx="90" cy="65" r="3" fill="#1864ab"/>
+<circle cx="57" cy="25" r="7" fill="#fa5252" opacity=".5"/><circle cx="70" cy="62" r="7" fill="#1864ab" opacity=".5"/>
+<text x="60" y="100" class="lbl" text-anchor="middle" font-weight="700" font-size="11">③ 평균으로 중심 갱신</text></g>
+<g transform="translate(360,20)"><rect x="10" y="0" width="100" height="80" fill="#fff" stroke="#dee2e6"/>
+<text x="60" y="40" class="ttl" text-anchor="middle" font-size="20">↻</text>
+<text x="60" y="100" class="lbl" text-anchor="middle" font-weight="700" font-size="11">④ 변화 없을 때까지</text>
+<text x="60" y="115" class="lbl" text-anchor="middle" font-size="10">②③ 반복</text></g>
+</svg>
+<ol>
+<li>군집 수 <b>k 지정</b> · 중심 k개 임의 선택</li>
+<li>각 점을 <b>가장 가까운 중심</b>에 할당</li>
+<li>각 군집의 <b>평균</b>으로 중심 갱신</li>
+<li>변화 없을 때까지 ②·③ 반복</li>
+</ol>
+<div class="tip"><b>46회 출제</b> · "K-means 초기 중심 = 데이터 집합에서 무작위 K개 추출" → 정답!</div>
+<table class="tbl"><thead><tr><th>장점</th><th>단점</th></tr></thead>
+<tbody>
+<tr><td>빠름·단순·해석 쉬움</td><td>초기값 민감 (nstart로 완화)</td></tr>
+<tr><td>대용량 가능</td><td>구형 군집 가정·k 미리 결정</td></tr>
+<tr><td/><td>이상치에 민감</td></tr>
+</tbody></table>
+
+<h5>④ DBSCAN — 밀도 기반</h5>
+<ul>
+<li>임의 형태 군집 탐지·이상치 자동 식별 ★</li>
+<li>파라미터: <b>ε</b>(반경), <b>MinPts</b>(최소 점)</li>
+<li>점 분류: 핵심점(core)·경계점(border)·잡음점(noise)</li>
+</ul>
+
+<h5>⑤ 군집 평가 — 실루엣(Silhouette)</h5>
+<div class="formula">s(i) = (b(i) − a(i)) / max(a(i), b(i))<br>a = 같은 군집 내 평균거리 / b = 가장 가까운 다른 군집 평균거리<br>범위 [−1, 1] · ≥0.5 양호 / ~0 경계 / 음수 잘못 분류</div>
+
+<h5>⑥ 최적 k — 엘보우(Elbow)</h5>
+<p>k 증가에 따른 <b>WSS</b>(Within-cluster Sum of Squares) 감소가 꺾이는 지점.</p>
+
+<pre class="code">d &lt;- dist(scale(X))
+hc &lt;- hclust(d, method="ward.D2"); plot(hc)
+km &lt;- kmeans(scale(X), centers=3, nstart=20)
+library(cluster); silhouette(km$cluster, d)
+library(dbscan); dbscan(X, eps=.5, minPts=5)</pre>
+
+<ul class="checklist">
+<li>연결법 5종과 특성 (최단·최장·평균·중심·와드)</li>
+<li>K-means 4단계 + 초기 중심 무작위 K개</li>
+<li>실루엣 [−1,1], ≥0.5 양호</li>
+<li>DBSCAN ε·MinPts·핵심·경계·잡음</li>
+<li>계층적은 결정론적 (반복 동일 결과)</li>
+</ul>
+</div></div>
+</article></template>
+
+<template id="tpl-3-10"><article class="chapter" data-chapter="3-10" data-title="3-10 의사결정나무">
+<div class="card"><div class="card-body">
+<h4><span class="card-title-num">3-10</span>의사결정나무 (Decision Tree) <span class="exam-tag">★46회 출제</span></h4>
+
+<svg class="diagram" viewBox="0 0 540 220" width="540" height="220">
+<rect x="220" y="10" width="100" height="40" rx="6" fill="#1864ab"/>
+<text x="270" y="35" class="lbl" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">소득 &gt; 50?</text>
+<line x1="240" y1="50" x2="120" y2="80" stroke="#495057" stroke-width="2"/>
+<line x1="300" y1="50" x2="420" y2="80" stroke="#495057" stroke-width="2"/>
+<text x="170" y="68" class="lbl" font-size="11" fill="#c92a2a">No</text>
+<text x="350" y="68" class="lbl" font-size="11" fill="#2b8a3e">Yes</text>
+<rect x="60" y="80" width="120" height="40" rx="6" fill="#fff3cd" stroke="#fab005"/>
+<text x="120" y="105" class="lbl" text-anchor="middle" font-size="12" font-weight="700" fill="#e67700">나이 &gt; 30?</text>
+<rect x="370" y="80" width="100" height="40" rx="6" fill="#d3f9d8" stroke="#37b24d"/>
+<text x="420" y="105" class="lbl" text-anchor="middle" font-size="12" font-weight="700" fill="#2b8a3e">고객 ✓</text>
+<line x1="100" y1="120" x2="50" y2="160" stroke="#495057"/>
+<line x1="140" y1="120" x2="200" y2="160" stroke="#495057"/>
+<rect x="10" y="160" width="80" height="40" rx="6" fill="#ffd8d8" stroke="#fa5252"/>
+<text x="50" y="185" class="lbl" text-anchor="middle" font-size="12" font-weight="700" fill="#c92a2a">비고객</text>
+<rect x="160" y="160" width="80" height="40" rx="6" fill="#d3f9d8" stroke="#37b24d"/>
+<text x="200" y="185" class="lbl" text-anchor="middle" font-size="12" font-weight="700" fill="#2b8a3e">고객 ✓</text>
+<text x="60" y="148" class="lbl" font-size="10">No</text>
+<text x="180" y="148" class="lbl" font-size="10">Yes</text>
+<text x="490" y="200" class="lbl" font-size="11" fill="#1864ab">루트 → 분기 → 잎</text>
+</svg>
+
+<h5>① 알고리즘 비교</h5>
+<table class="tbl"><thead><tr><th>알고리즘</th><th>분할 기준</th><th>분할 형태</th><th>비고</th></tr></thead>
+<tbody>
+<tr><td><b>CART</b></td><td>지니(분류) / 분산감소(회귀)</td><td>이진</td><td>가장 보편적</td></tr>
+<tr><td><b>ID3</b></td><td>엔트로피·정보이득</td><td>다지(범주)</td><td>연속형 미지원</td></tr>
+<tr><td><b>C4.5/C5.0</b></td><td>이득비(Gain Ratio)</td><td>다지</td><td>ID3 개선·연속 OK</td></tr>
+<tr><td><b>CHAID</b></td><td>카이제곱(χ²)</td><td>다지</td><td>범주형 강점</td></tr>
+</tbody></table>
+
+<h5>② 불순도(Impurity) ★ 빈출</h5>
+<div class="formula"><b>지니지수</b>: G = 1 − Σpᵢ² · 이진 최대 <b>0.5</b><br><b>엔트로피</b>: H = −Σ pᵢ log₂ pᵢ · 이진 최대 <b>1</b><br><b>정보이득</b>: 부모 H − Σ(자식 가중평균 H)</div>
+<table class="tbl"><thead><tr><th>측도</th><th>완벽 순수</th><th>최대 불순(이진)</th></tr></thead>
+<tbody>
+<tr><td>지니</td><td>0</td><td>0.5</td></tr>
+<tr><td>엔트로피</td><td>0</td><td>1</td></tr>
+</tbody></table>
+<div class="story">한 군집에 토끼만 있으면 순수 0 (지니=0). 토끼·거북이 50:50이면 가장 불순 (지니=0.5). <b>분할은 지니가 더 작아지는 방향으로</b>.</div>
+
+<h5>③ 가지치기(Pruning) — 과적합 방지 ★</h5>
+<svg class="diagram" viewBox="0 0 540 130" width="540" height="130">
+<g transform="translate(20,10)">
+<rect x="40" y="0" width="80" height="20" rx="3" fill="#1864ab"/>
+<rect x="0" y="40" width="60" height="20" rx="3" fill="#339af0"/>
+<rect x="100" y="40" width="60" height="20" rx="3" fill="#339af0"/>
+<rect x="-20" y="80" width="40" height="20" rx="3" fill="#74c0fc"/>
+<rect x="40" y="80" width="40" height="20" rx="3" fill="#74c0fc"/>
+<rect x="80" y="80" width="40" height="20" rx="3" fill="#74c0fc"/>
+<rect x="140" y="80" width="40" height="20" rx="3" fill="#74c0fc"/>
+<text x="80" y="120" class="lbl" text-anchor="middle" font-weight="700" font-size="12">완전 성장 (과적합)</text>
+</g>
+<g transform="translate(280,10)">
+<rect x="40" y="0" width="80" height="20" rx="3" fill="#1864ab"/>
+<rect x="0" y="40" width="60" height="20" rx="3" fill="#339af0"/>
+<rect x="100" y="40" width="60" height="20" rx="3" fill="#37b24d"/>
+<rect x="-20" y="80" width="40" height="20" rx="3" fill="#37b24d"/>
+<rect x="40" y="80" width="40" height="20" rx="3" fill="#37b24d"/>
+<text x="80" y="120" class="lbl" text-anchor="middle" font-weight="700" font-size="12" fill="#2b8a3e">가지치기 후 (일반화↑)</text>
+</g>
+</svg>
+<table class="tbl"><thead><tr><th>방법</th><th>설명</th></tr></thead>
+<tbody>
+<tr><td><b>사전 가지치기</b><br>(Pre-pruning)</td><td>min-samples·max-depth로 <b>조기 정지</b></td></tr>
+<tr><td><b>사후 가지치기</b><br>(Post-pruning)</td><td>완전 성장 후 비용복잡도(α)로 가지 제거</td></tr>
+</tbody></table>
+<div class="tip"><b>46회 출제</b> · "Post-pruning 평가기준으로 사용되기 어려운 것 → <b>잔차 제곱합(SSR)</b>" (SSR은 회귀나무 분할에 쓰지, 가지치기 평가에는 부적절)</div>
+
+<h5>④ 장단점</h5>
+<table class="tbl"><thead><tr><th>장점</th><th>단점</th></tr></thead>
+<tbody>
+<tr><td>해석 쉬움 (if-then 규칙)</td><td>과적합 쉬움</td></tr>
+<tr><td>전처리 적음 (정규화 X)</td><td>작은 변화에 트리 큰 변동 (불안정)</td></tr>
+<tr><td>범주/연속 변수 모두 OK</td><td>외삽 약함 (학습 범위 밖)</td></tr>
+<tr><td>비선형 관계 포착</td><td>변수 간 상호작용 표현 제한</td></tr>
+</tbody></table>
+
+<pre class="code">library(rpart); library(rpart.plot)
+m &lt;- rpart(y ~ ., data=df, method="class",
+           parms=list(split="gini"))
+rpart.plot(m); printcp(m); plotcp(m)
+m2 &lt;- prune(m, cp=0.02)  # 가지치기</pre>
+
+<ul class="checklist">
+<li>지니/엔트로피 공식 + 이진 최대값(0.5/1)</li>
+<li>알고리즘별 분할 기준 (CART·ID3·C4.5·CHAID)</li>
+<li>가지치기 목적 = 과적합 방지</li>
+<li>사전 vs 사후 가지치기</li>
+</ul>
+</div></div>
+</article></template>
+
+<template id="tpl-3-11"><article class="chapter" data-chapter="3-11" data-title="3-11 앙상블">
+<div class="card"><div class="card-body">
+<h4><span class="card-title-num">3-11</span>앙상블 — 배깅·부스팅·랜덤포레스트 <span class="exam-tag">★46회 출제</span></h4>
+
+<div class="story">한 명의 의사보다 여러 의사의 진단이 더 정확. <b>약한 학습기를 결합해 강한 학습기로</b> — 그게 앙상블.</div>
+
+<h5>① 배깅(Bagging) — Bootstrap Aggregating</h5>
+<svg class="diagram" viewBox="0 0 540 200" width="540" height="200">
+<rect x="220" y="10" width="100" height="30" rx="4" fill="#1864ab"/>
+<text x="270" y="30" class="lbl" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">원본 데이터</text>
+<line x1="270" y1="40" x2="100" y2="65" stroke="#495057"/>
+<line x1="270" y1="40" x2="270" y2="65" stroke="#495057"/>
+<line x1="270" y1="40" x2="440" y2="65" stroke="#495057"/>
+<text x="180" y="55" class="lbl" font-size="10">복원추출</text>
+<rect x="50" y="65" width="100" height="25" rx="4" fill="#a5d8ff"/>
+<text x="100" y="83" class="lbl" text-anchor="middle" font-size="11">샘플 1</text>
+<rect x="220" y="65" width="100" height="25" rx="4" fill="#a5d8ff"/>
+<text x="270" y="83" class="lbl" text-anchor="middle" font-size="11">샘플 2</text>
+<rect x="390" y="65" width="100" height="25" rx="4" fill="#a5d8ff"/>
+<text x="440" y="83" class="lbl" text-anchor="middle" font-size="11">샘플 N</text>
+<line x1="100" y1="90" x2="100" y2="110" stroke="#495057"/>
+<line x1="270" y1="90" x2="270" y2="110" stroke="#495057"/>
+<line x1="440" y1="90" x2="440" y2="110" stroke="#495057"/>
+<rect x="50" y="110" width="100" height="30" rx="4" fill="#fff3cd" stroke="#fab005"/>
+<text x="100" y="130" class="lbl" text-anchor="middle" font-size="11" font-weight="700">모델 1</text>
+<rect x="220" y="110" width="100" height="30" rx="4" fill="#fff3cd" stroke="#fab005"/>
+<text x="270" y="130" class="lbl" text-anchor="middle" font-size="11" font-weight="700">모델 2</text>
+<rect x="390" y="110" width="100" height="30" rx="4" fill="#fff3cd" stroke="#fab005"/>
+<text x="440" y="130" class="lbl" text-anchor="middle" font-size="11" font-weight="700">모델 N</text>
+<line x1="100" y1="140" x2="270" y2="160" stroke="#495057"/>
+<line x1="270" y1="140" x2="270" y2="160" stroke="#495057"/>
+<line x1="440" y1="140" x2="270" y2="160" stroke="#495057"/>
+<rect x="200" y="160" width="140" height="30" rx="4" fill="#d3f9d8" stroke="#37b24d"/>
+<text x="270" y="180" class="lbl" text-anchor="middle" font-size="12" font-weight="700" fill="#2b8a3e">투표/평균 → 최종</text>
+</svg>
+<ul>
+<li>원본 → <b>복원추출</b>로 부분표본 N개 → 각각 모델 학습 → 결합</li>
+<li>분류: <b>다수결</b> / 회귀: <b>평균</b></li>
+<li><b>분산 감소</b> · 과적합 완화 · 병렬 가능</li>
+<li>한 부트스트랩에서 약 <b>63.2%</b>가 선택됨 → 나머지 ~36.8%가 <b>OOB</b>(out-of-bag) 평가용</li>
+</ul>
+
+<h5>② 부스팅(Boosting)</h5>
+<svg class="diagram" viewBox="0 0 540 130" width="540" height="130">
+<rect x="20" y="40" width="80" height="40" rx="4" fill="#fff3cd" stroke="#fab005"/>
+<text x="60" y="65" class="lbl" text-anchor="middle" font-size="11" font-weight="700">모델 1</text>
+<text x="60" y="100" class="lbl" text-anchor="middle" font-size="10">오분류↑가중</text>
+<line x1="100" y1="60" x2="140" y2="60" stroke="#495057" stroke-width="2" marker-end="url(#a2)"/>
+<defs><marker id="a2" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><polygon points="0 0, 10 3, 0 6" fill="#495057"/></marker></defs>
+<rect x="140" y="40" width="80" height="40" rx="4" fill="#ffd8a8" stroke="#fd7e14"/>
+<text x="180" y="65" class="lbl" text-anchor="middle" font-size="11" font-weight="700">모델 2</text>
+<text x="180" y="100" class="lbl" text-anchor="middle" font-size="10">난이도↑ 보완</text>
+<line x1="220" y1="60" x2="260" y2="60" stroke="#495057" stroke-width="2" marker-end="url(#a2)"/>
+<rect x="260" y="40" width="80" height="40" rx="4" fill="#ffc9c9" stroke="#fa5252"/>
+<text x="300" y="65" class="lbl" text-anchor="middle" font-size="11" font-weight="700">모델 3</text>
+<text x="300" y="100" class="lbl" text-anchor="middle" font-size="10">…</text>
+<line x1="340" y1="60" x2="380" y2="60" stroke="#495057" stroke-width="2" marker-end="url(#a2)"/>
+<rect x="380" y="35" width="120" height="50" rx="4" fill="#d3f9d8" stroke="#37b24d"/>
+<text x="440" y="55" class="lbl" text-anchor="middle" font-size="12" font-weight="700" fill="#2b8a3e">강한 모델</text>
+<text x="440" y="73" class="lbl" text-anchor="middle" font-size="10">가중 결합</text>
+<text x="270" y="20" class="ttl" text-anchor="middle" font-weight="700" font-size="13">순차 학습 — 이전 모델의 오차를 다음 모델이 보완</text>
+</svg>
+<ul>
+<li><b>순차적</b> 학습 — 오분류 데이터의 <b>가중치↑</b>로 다음 모델 학습</li>
+<li><b>편향 감소</b> · 일반적으로 정확도↑</li>
+<li>이상치에 민감 · 병렬 어려움 (순차)</li>
+<li>대표: <b>AdaBoost</b>, <b>Gradient Boosting (GBM)</b>, <b>XGBoost</b>, LightGBM</li>
+</ul>
+<div class="tip"><b>46회 출제</b> · "부스팅 = 이전 모델의 오차를 보완하기 위해 약한 학습기를 순차적으로 학습시키는 앙상블 기법" → 정답!</div>
+
+<h5>③ 랜덤포레스트(Random Forest)</h5>
+<ul>
+<li><b>배깅 + 변수 임의 선택</b> = 랜덤포레스트</li>
+<li>각 분할 시 <b>√p (분류) / p/3 (회귀)</b>개 변수만 후보로 — 트리 다양화</li>
+<li>가지치기 없이 완전 성장</li>
+<li>병렬 가능·변수 중요도 제공·과적합에 강함</li>
+</ul>
+
+<h5>④ 비교 표 ★</h5>
+<table class="tbl"><thead><tr><th>구분</th><th>배깅</th><th>부스팅</th><th>RF</th></tr></thead>
+<tbody>
+<tr><th>학습</th><td>병렬·독립</td><td><b>순차·의존</b></td><td>병렬·독립</td></tr>
+<tr><th>목표</th><td>분산↓</td><td><b>편향↓</b></td><td>분산↓ + 다양성</td></tr>
+<tr><th>샘플링</th><td>복원추출</td><td>가중치 갱신</td><td>복원추출 + <b>변수 임의</b></td></tr>
+<tr><th>이상치</th><td>덜 민감</td><td>민감 ★</td><td>덜 민감</td></tr>
+</tbody></table>
+
+<pre class="code">library(randomForest)
+rf &lt;- randomForest(y ~ ., data=df, ntree=500, mtry=floor(sqrt(p)))
+importance(rf); varImpPlot(rf)
+library(gbm); gbm(y ~ ., data=df, distribution="gaussian")</pre>
+
+<ul class="checklist">
+<li>배깅=분산↓, 부스팅=편향↓</li>
+<li>RF = 배깅 + 변수 임의 선택</li>
+<li>OOB ≈ 36.8% (1−0.632)</li>
+<li>부스팅은 순차·이전 오차 보완</li>
+</ul>
+</div></div>
+</article></template>
+
+<template id="tpl-3-12"><article class="chapter" data-chapter="3-12" data-title="3-12 신경망·SVM·NB">
+<div class="card"><div class="card-body">
+<h4><span class="card-title-num">3-12</span>인공신경망·SVM·나이브베이즈 <span class="exam-tag">★46회 다수 출제</span></h4>
+
+<h5>① 퍼셉트론·신경망 구조</h5>
+<svg class="diagram" viewBox="0 0 540 200" width="540" height="200">
+<circle cx="60" cy="50" r="18" fill="#74c0fc"/>
+<text x="60" y="55" class="lbl" text-anchor="middle" font-size="12" font-weight="700">x₁</text>
+<circle cx="60" cy="100" r="18" fill="#74c0fc"/>
+<text x="60" y="105" class="lbl" text-anchor="middle" font-size="12" font-weight="700">x₂</text>
+<circle cx="60" cy="150" r="18" fill="#74c0fc"/>
+<text x="60" y="155" class="lbl" text-anchor="middle" font-size="12" font-weight="700">x₃</text>
+<text x="60" y="20" class="lbl" text-anchor="middle" font-size="12" font-weight="700" fill="#1864ab">입력층</text>
+<circle cx="240" cy="60" r="20" fill="#fab005"/>
+<circle cx="240" cy="120" r="20" fill="#fab005"/>
+<circle cx="240" cy="180" r="20" fill="#fab005"/>
+<text x="240" y="20" class="lbl" text-anchor="middle" font-size="12" font-weight="700" fill="#e67700">은닉층</text>
+<circle cx="420" cy="100" r="22" fill="#37b24d"/>
+<text x="420" y="105" class="lbl" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">y</text>
+<text x="420" y="20" class="lbl" text-anchor="middle" font-size="12" font-weight="700" fill="#2b8a3e">출력층</text>
+<g stroke="#adb5bd" stroke-width="1">
+<line x1="80" y1="50" x2="220" y2="60"/><line x1="80" y1="50" x2="220" y2="120"/><line x1="80" y1="50" x2="220" y2="180"/>
+<line x1="80" y1="100" x2="220" y2="60"/><line x1="80" y1="100" x2="220" y2="120"/><line x1="80" y1="100" x2="220" y2="180"/>
+<line x1="80" y1="150" x2="220" y2="60"/><line x1="80" y1="150" x2="220" y2="120"/><line x1="80" y1="150" x2="220" y2="180"/>
+<line x1="260" y1="60" x2="400" y2="100"/><line x1="260" y1="120" x2="400" y2="100"/><line x1="260" y1="180" x2="400" y2="100"/>
+</g>
+</svg>
+<div class="formula">출력 = f(Σ wᵢ·xᵢ + b)<br>w 가중치, b 편향, f 활성화함수</div>
+
+<h5>② 활성화함수 5종 — 그래프 ★ 매년 출제</h5>
+<svg class="diagram" viewBox="0 0 540 160" width="540" height="160">
+<g transform="translate(20,20)"><line x1="0" y1="60" x2="100" y2="60" stroke="#495057"/>
+<line x1="50" y1="0" x2="50" y2="120" stroke="#495057"/>
+<path d="M 0 105 Q 40 105 50 60 Q 60 15 100 15" fill="none" stroke="#1864ab" stroke-width="2.5"/>
+<text x="50" y="140" class="lbl" text-anchor="middle" font-size="11" font-weight="700">시그모이드</text>
+<text x="50" y="155" class="lbl" text-anchor="middle" font-size="10">(0, 1)</text>
+</g>
+<g transform="translate(140,20)"><line x1="0" y1="60" x2="100" y2="60" stroke="#495057"/>
+<line x1="50" y1="0" x2="50" y2="120" stroke="#495057"/>
+<path d="M 0 110 Q 30 110 50 60 Q 70 10 100 10" fill="none" stroke="#fab005" stroke-width="2.5"/>
+<text x="50" y="140" class="lbl" text-anchor="middle" font-size="11" font-weight="700">tanh</text>
+<text x="50" y="155" class="lbl" text-anchor="middle" font-size="10">(−1, 1)</text>
+</g>
+<g transform="translate(260,20)"><line x1="0" y1="60" x2="100" y2="60" stroke="#495057"/>
+<line x1="50" y1="0" x2="50" y2="120" stroke="#495057"/>
+<line x1="0" y1="60" x2="50" y2="60" stroke="#37b24d" stroke-width="3"/>
+<line x1="50" y1="60" x2="100" y2="10" stroke="#37b24d" stroke-width="3"/>
+<text x="50" y="140" class="lbl" text-anchor="middle" font-size="11" font-weight="700" fill="#2b8a3e">ReLU</text>
+<text x="50" y="155" class="lbl" text-anchor="middle" font-size="10">[0, ∞)</text>
+</g>
+<g transform="translate(380,20)"><line x1="0" y1="60" x2="100" y2="60" stroke="#495057"/>
+<line x1="50" y1="0" x2="50" y2="120" stroke="#495057"/>
+<rect x="20" y="20" width="15" height="40" fill="#cc5de8" opacity=".5"/>
+<rect x="40" y="35" width="15" height="25" fill="#cc5de8" opacity=".7"/>
+<rect x="60" y="10" width="15" height="50" fill="#cc5de8"/>
+<text x="50" y="140" class="lbl" text-anchor="middle" font-size="11" font-weight="700" fill="#862e9c">소프트맥스</text>
+<text x="50" y="155" class="lbl" text-anchor="middle" font-size="10">다중 분류</text>
+</g>
+</svg>
+<table class="tbl"><thead><tr><th>함수</th><th>식</th><th>범위</th><th>주 용도</th></tr></thead>
+<tbody>
+<tr><td>선형(Linear)</td><td>x</td><td>(−∞,∞)</td><td>회귀 출력</td></tr>
+<tr><td>시그모이드</td><td>1/(1+e<sup>−x</sup>)</td><td>(0,1)</td><td>이진 분류 출력</td></tr>
+<tr><td>tanh</td><td>(eˣ−e⁻ˣ)/(eˣ+e⁻ˣ)</td><td>(−1,1)</td><td>은닉층</td></tr>
+<tr><td><b>ReLU</b></td><td>max(0,x)</td><td>[0,∞)</td><td><b>은닉층 주력</b></td></tr>
+<tr><td><b>소프트맥스</b></td><td>eˣⁱ/Σeˣʲ</td><td>(0,1) 합=1</td><td><b>다중 분류 출력</b> ★</td></tr>
+</tbody></table>
+<div class="tip"><b>46회 출제</b><br>• "출력 다변(multiclass)일 때 → 소프트맥스"<br>• "시그모이드 출력 범위 → 0 &lt; y &lt; 1"<br>• "ReLU 활성화로 은닉층 없어도 로지스틱 회귀와 동일?" → <b>틀림</b> (비선형 함수)</div>
+
+<h5>③ 학습 — 순전파·역전파</h5>
+<table class="tbl"><thead><tr><th>단계</th><th>방향</th><th>역할</th></tr></thead>
+<tbody>
+<tr><td><b>순전파</b>(Forward)</td><td>입력 → 출력</td><td>예측·손실 계산</td></tr>
+<tr><td><b>역전파</b>(Backprop)</td><td>출력 → 입력</td><td>경사하강으로 가중치 갱신</td></tr>
+</tbody></table>
+
+<h5>④ 가중치 개수 계산 ★ 46회 신유형</h5>
+<div class="formula">완전연결 신경망의 가중치 수 (편향 제외) = Σ (이전층 노드 × 다음층 노드)</div>
+<div class="tip"><b>46회 출제</b> · "입력 20, 은닉 50, 출력 3 → 가중치 수?"<br>(20×50) + (50×3) = 1000 + 150 = <b>1150</b></div>
+
+<h5>⑤ 흔한 문제와 해결</h5>
+<table class="tbl"><thead><tr><th>문제</th><th>원인</th><th>해결</th></tr></thead>
+<tbody>
+<tr><td>기울기 소실<br>(Vanishing)</td><td>층 깊고 시그모이드</td><td>ReLU·정규화·잔차연결</td></tr>
+<tr><td>기울기 폭발</td><td>가중치 발산</td><td>그래디언트 클리핑</td></tr>
+<tr><td>과적합</td><td>은닉층/에폭 多</td><td>Dropout·L1/L2·조기종료</td></tr>
+<tr><td>포화(Saturation)</td><td>입력 극단</td><td>가중치 초기화·BatchNorm</td></tr>
+</tbody></table>
+
+<h5>⑥ SVM (Support Vector Machine)</h5>
+<svg class="diagram" viewBox="0 0 540 160" width="540" height="160">
+<line x1="40" y1="140" x2="500" y2="140" stroke="#495057"/>
+<line x1="40" y1="140" x2="40" y2="20" stroke="#495057"/>
+<g fill="#1864ab"><circle cx="100" cy="120" r="5"/><circle cx="140" cy="100" r="5"/><circle cx="180" cy="115" r="5"/><circle cx="100" cy="80" r="5"/></g>
+<g fill="#fa5252"><circle cx="380" cy="50" r="5"/><circle cx="350" cy="40" r="5"/><circle cx="420" cy="70" r="5"/><circle cx="450" cy="55" r="5"/></g>
+<line x1="80" y1="140" x2="500" y2="20" stroke="#37b24d" stroke-width="2.5"/>
+<line x1="80" y1="120" x2="500" y2="0" stroke="#adb5bd" stroke-dasharray="4,4"/>
+<line x1="80" y1="160" x2="500" y2="40" stroke="#adb5bd" stroke-dasharray="4,4"/>
+<text x="450" y="20" class="ttl" text-anchor="end" font-size="12" font-weight="700" fill="#2b8a3e">초평면 (최대 마진)</text>
+<text x="240" y="60" class="lbl" font-size="11" fill="#fa5252" font-weight="600">↑ 마진</text>
+<circle cx="180" cy="115" r="9" fill="none" stroke="#1864ab" stroke-width="2"/>
+<circle cx="350" cy="40" r="9" fill="none" stroke="#fa5252" stroke-width="2"/>
+<text x="200" y="135" class="lbl" font-size="10" fill="#1864ab" font-weight="700">서포트 벡터</text>
+</svg>
+<ul>
+<li>두 클래스를 <b>최대 마진</b>으로 분리하는 초평면 탐색</li>
+<li>마진에 닿는 점 = <b>서포트 벡터</b></li>
+<li>비선형은 <b>커널 트릭</b>: 선형/다항/RBF/시그모이드</li>
+<li>고차원에 강함·소표본에 잘 맞음</li>
+</ul>
+
+<h5>⑦ 나이브베이즈(Naive Bayes)</h5>
+<div class="formula"><b>P(A|B) = P(B|A)·P(A) / P(B)</b><br>사후 ∝ 우도 × 사전</div>
+<ul>
+<li><b>핵심 가정</b>: 입력 변수들이 <b>조건부 독립</b> (현실과 다를 수 있음)</li>
+<li>학습 빠름·텍스트 분류·스팸 필터에 강력</li>
+</ul>
+
+<pre class="code">library(neuralnet); library(e1071)
+nn &lt;- neuralnet(y ~ ., data=df, hidden=c(5,3))
+sv &lt;- svm(y ~ ., data=df, kernel="radial", cost=1)
+nb &lt;- naiveBayes(y ~ ., data=df)</pre>
+
+<ul class="checklist">
+<li>활성화함수 5종 식·범위·용도</li>
+<li>다중분류 출력 = 소프트맥스</li>
+<li>가중치 수 계산 (입×은 + 은×출)</li>
+<li>역전파 = 출력→입력 가중치 갱신</li>
+<li>나이브베이즈 = 조건부 독립 가정</li>
+<li>SVM 마진·서포트벡터·커널</li>
+</ul>
+</div></div>
+</article></template>
+
+<template id="tpl-3-13"><article class="chapter" data-chapter="3-13" data-title="3-13 연관분석">
+<div class="card"><div class="card-body">
+<h4><span class="card-title-num">3-13</span>연관분석 — 지지도·신뢰도·향상도 <span class="exam-tag">★★★ 매년 필출</span></h4>
+
+<div class="story">"맥주를 산 사람이 기저귀도 자주 산다" — 마트 장바구니 분석. 비지도 학습. <b>A → B</b> 같은 규칙을 발견.</div>
+
+<h5>① 3대 지표 ★★★ 공식 그대로 외우기</h5>
+<svg class="diagram" viewBox="0 0 540 180" width="540" height="180">
+<rect x="20" y="40" width="160" height="120" rx="8" fill="#e7f5ff" stroke="#1864ab" stroke-width="2"/>
+<text x="100" y="65" class="ttl" text-anchor="middle" font-weight="700" font-size="14" fill="#1864ab">지지도 Support</text>
+<text x="100" y="90" class="lbl" text-anchor="middle" font-size="13">P(A ∩ B)</text>
+<text x="100" y="113" class="lbl" text-anchor="middle" font-size="11">A·B 동시</text>
+<text x="100" y="128" class="lbl" text-anchor="middle" font-size="11">전체 거래</text>
+<text x="100" y="148" class="lbl" text-anchor="middle" font-size="10" fill="#1864ab">"규칙의 빈도"</text>
+<rect x="190" y="40" width="160" height="120" rx="8" fill="#fff3cd" stroke="#fab005" stroke-width="2"/>
+<text x="270" y="65" class="ttl" text-anchor="middle" font-weight="700" font-size="14" fill="#e67700">신뢰도 Confidence</text>
+<text x="270" y="90" class="lbl" text-anchor="middle" font-size="13">P(B | A)</text>
+<text x="270" y="113" class="lbl" text-anchor="middle" font-size="11">A·B 동시</text>
+<text x="270" y="128" class="lbl" text-anchor="middle" font-size="11">A 거래</text>
+<text x="270" y="148" class="lbl" text-anchor="middle" font-size="10" fill="#e67700">"A주면 B올 확률"</text>
+<rect x="360" y="40" width="160" height="120" rx="8" fill="#ffd8d8" stroke="#fa5252" stroke-width="2"/>
+<text x="440" y="65" class="ttl" text-anchor="middle" font-weight="700" font-size="14" fill="#c92a2a">향상도 Lift</text>
+<text x="440" y="90" class="lbl" text-anchor="middle" font-size="12">신뢰도 / P(B)</text>
+<text x="440" y="113" class="lbl" text-anchor="middle" font-size="11">&gt;1 양의 연관</text>
+<text x="440" y="128" class="lbl" text-anchor="middle" font-size="11">=1 독립</text>
+<text x="440" y="148" class="lbl" text-anchor="middle" font-size="10" fill="#c92a2a">"독립보다 얼마나↑"</text>
+<text x="270" y="25" class="ttl" text-anchor="middle" font-weight="700" font-size="14">A → B 규칙의 3대 지표</text>
+</svg>
+
+<div class="formula">
+<b>지지도</b>(Support, A→B) = P(A ∩ B) = (A·B 동시 거래) / 전체 거래<br>
+<b>신뢰도</b>(Confidence, A→B) = P(B|A) = (A·B 동시) / A 거래 — 조건부 확률<br>
+<b>향상도</b>(Lift, A→B) = 신뢰도 / P(B) = P(A∩B) / [P(A)·P(B)]
+</div>
+<table class="tbl"><thead><tr><th>향상도 값</th><th>의미</th></tr></thead>
+<tbody>
+<tr><td>= 1</td><td>A·B 독립 (관련 없음)</td></tr>
+<tr><td>&gt; 1</td><td><b>양의 연관</b> — A 산 사람이 B 살 확률↑</td></tr>
+<tr><td>&lt; 1</td><td>음의 연관 — A 산 사람이 B 안 삼</td></tr>
+</tbody></table>
+
+<h5>② 예시 계산 ★ 시험에 그대로 나옴</h5>
+<div class="infobox">
+<h6>마트 데이터: 전체 1000건. {빵} 400건, {우유} 500건, {빵·우유 동시} 300건</h6>
+<ul class="mb-0">
+<li>지지도(빵→우유) = 300/1000 = <b>0.30</b> (30%)</li>
+<li>신뢰도(빵→우유) = 300/400 = <b>0.75</b> (75%)</li>
+<li>P(우유) = 500/1000 = 0.5</li>
+<li>향상도 = 0.75 / 0.5 = <b>1.5</b> → 양의 연관</li>
+</ul>
+</div>
+<div class="tip"><b>46회 출제</b> · "음료 데이터에서 커피→우유의 지지도 → 300/1000 = 0.3"</div>
+
+<h5>③ 알고리즘</h5>
+<table class="tbl"><thead><tr><th>알고리즘</th><th>특징</th></tr></thead>
+<tbody>
+<tr><td><b>Apriori</b></td><td>최소 지지도 이상 빈발 항목집합 탐색·후보 생성·반복</td></tr>
+<tr><td><b>FP-Growth</b></td><td>FP-Tree 사용·후보 생성 X·Apriori보다 빠름</td></tr>
+<tr><td><b>DHP</b></td><td>해시 테이블 활용 후보 축소</td></tr>
+</tbody></table>
+<div class="brain"><b>Apriori 원리</b> · "빈발 항목집합의 모든 부분집합도 빈발이다" — 거꾸로, 비빈발 부분집합을 가진 항목집합은 빈발일 수 없으므로 가지치기.</div>
+
+<h5>④ 장단점</h5>
+<table class="tbl"><thead><tr><th>장점</th><th>단점</th></tr></thead>
+<tbody>
+<tr><td>비지도·결과 해석 쉬움</td><td>항목 多 시 계산 폭발</td></tr>
+<tr><td>활용도 높음 (마케팅·추천)</td><td>연속형 부적합 (이산화 필요)</td></tr>
+<tr><td>전처리 적음</td><td>드문 상품 누락 (지지도 ↓)</td></tr>
+</tbody></table>
+
+<h5>⑤ 자주 묻는 함정 ★</h5>
+<div class="warn"><b>46회 출제</b> · "지지도보다 신뢰도가 더 중요" → <b>틀림!</b> 둘 다 중요. 지지도 너무 낮으면 신뢰도 높아도 의미 없음 (드문 사건의 우연한 공출현일 수 있음).</div>
+
+<pre class="code">library(arules)
+rules &lt;- apriori(trans, parameter=list(supp=0.01, conf=0.5))
+inspect(sort(rules, by="lift")[1:10])  # 향상도 순</pre>
+
+<ul class="checklist">
+<li>지지도·신뢰도·향상도 공식 즉답</li>
+<li>향상도 1·&gt;1·&lt;1 의미</li>
+<li>Apriori vs FP-Growth (후보생성 유무)</li>
+<li>지지도 ≠ 신뢰도, 둘 다 중요</li>
+</ul>
+</div></div>
+</article></template>
+
+<template id="tpl-3-14"><article class="chapter" data-chapter="3-14" data-title="3-14 모형평가">
+<div class="card"><div class="card-body">
+<h4><span class="card-title-num">3-14</span>모형 평가 — 혼동행렬·ROC·교차검증 <span class="exam-tag">★★★ 합격 핵심</span></h4>
+
+<h5>① 혼동행렬(Confusion Matrix) — 시각화</h5>
+<svg class="diagram" viewBox="0 0 540 220" width="540" height="220">
+<rect x="180" y="20" width="170" height="40" fill="#dee2e6"/>
+<text x="265" y="45" class="lbl" text-anchor="middle" font-size="12" font-weight="700">예측 (Predicted)</text>
+<rect x="180" y="60" width="85" height="40" fill="#e9ecef"/>
+<text x="222" y="85" class="lbl" text-anchor="middle" font-size="11" font-weight="600">Positive</text>
+<rect x="265" y="60" width="85" height="40" fill="#e9ecef"/>
+<text x="307" y="85" class="lbl" text-anchor="middle" font-size="11" font-weight="600">Negative</text>
+<rect x="20" y="100" width="40" height="170" fill="#dee2e6" transform="rotate(-90 60 130)"/>
+<text x="60" y="155" class="lbl" text-anchor="middle" font-size="12" font-weight="700" transform="rotate(-90 60 155)">실제 (Actual)</text>
+<rect x="100" y="100" width="80" height="40" fill="#e9ecef"/>
+<text x="140" y="125" class="lbl" text-anchor="middle" font-size="11" font-weight="600">Positive</text>
+<rect x="100" y="140" width="80" height="40" fill="#e9ecef"/>
+<text x="140" y="165" class="lbl" text-anchor="middle" font-size="11" font-weight="600">Negative</text>
+<rect x="180" y="100" width="85" height="40" fill="#d3f9d8" stroke="#37b24d" stroke-width="2"/>
+<text x="222" y="120" class="lbl" text-anchor="middle" font-size="14" font-weight="700" fill="#2b8a3e">TP</text>
+<text x="222" y="135" class="lbl" text-anchor="middle" font-size="9" fill="#2b8a3e">참양성</text>
+<rect x="265" y="100" width="85" height="40" fill="#ffd8d8" stroke="#fa5252" stroke-width="2"/>
+<text x="307" y="120" class="lbl" text-anchor="middle" font-size="14" font-weight="700" fill="#c92a2a">FN</text>
+<text x="307" y="135" class="lbl" text-anchor="middle" font-size="9" fill="#c92a2a">2종 오류</text>
+<rect x="180" y="140" width="85" height="40" fill="#ffd8d8" stroke="#fa5252" stroke-width="2"/>
+<text x="222" y="160" class="lbl" text-anchor="middle" font-size="14" font-weight="700" fill="#c92a2a">FP</text>
+<text x="222" y="175" class="lbl" text-anchor="middle" font-size="9" fill="#c92a2a">1종 오류</text>
+<rect x="265" y="140" width="85" height="40" fill="#d3f9d8" stroke="#37b24d" stroke-width="2"/>
+<text x="307" y="160" class="lbl" text-anchor="middle" font-size="14" font-weight="700" fill="#2b8a3e">TN</text>
+<text x="307" y="175" class="lbl" text-anchor="middle" font-size="9" fill="#2b8a3e">참음성</text>
+<text x="380" y="120" class="lbl" font-size="11" fill="#2b8a3e" font-weight="700">진짜 환자를 환자로</text>
+<text x="380" y="160" class="lbl" font-size="11" fill="#c92a2a" font-weight="700">건강한데 환자로 (헛알람)</text>
+<text x="380" y="200" class="lbl" font-size="11" fill="#c92a2a" font-weight="700">환자인데 놓침 (위험!)</text>
+</svg>
+
+<h5>② 분류 평가지표 ★★★ 공식 즉답</h5>
+<div class="formula">
+<b>정확도</b> Accuracy = (TP + TN) / (TP + TN + FP + FN) — 전체 맞춘 비율<br>
+<b>정밀도</b> Precision = TP / (TP + FP) — "양성 예측 중 진짜 양성" <br>
+<b>재현율</b> Recall (민감도) = TP / (TP + FN) — "실제 양성 중 잡아낸 비율" ★<br>
+<b>특이도</b> Specificity = TN / (TN + FP) — "실제 음성 중 음성으로"<br>
+<b>F1 score</b> = 2 · (Precision · Recall) / (Precision + Recall) — 조화평균
+</div>
+<div class="tip"><b>46회 출제</b> · "실제 참(P)인 사례 중 모델이 참으로 올바르게 예측한 비율 = <b>재현율(Recall)</b>"</div>
+<div class="brain"><b>언제 무엇을 보나?</b><br>• <b>암 진단·스팸 차단</b> = 놓치면 큰일 → <b>재현율</b> 우선<br>• <b>가짜 알람이 비싸면</b> (정상을 의심하면 안 됨) → <b>정밀도</b> 우선<br>• 둘 다 중요·균형 → <b>F1</b><br>• 클래스 불균형 데이터 → Accuracy 신뢰 X, F1·AUC 사용</div>
+
+<h5>③ ROC · AUC ★ 거의 매년</h5>
+<svg class="diagram" viewBox="0 0 540 220" width="540" height="220">
+<line x1="60" y1="180" x2="60" y2="20" stroke="#495057" stroke-width="2"/>
+<line x1="60" y1="180" x2="220" y2="180" stroke="#495057" stroke-width="2"/>
+<text x="140" y="200" class="lbl" text-anchor="middle" font-size="11" font-weight="600">1−특이도 (FPR)</text>
+<text x="50" y="100" class="lbl" text-anchor="middle" font-size="11" font-weight="600" transform="rotate(-90 50 100)">민감도 (TPR)</text>
+<line x1="60" y1="180" x2="220" y2="20" stroke="#adb5bd" stroke-dasharray="4,4"/>
+<text x="160" y="120" class="lbl" font-size="10" fill="#868e96">무작위 (AUC=0.5)</text>
+<path d="M 60 180 Q 80 80 220 20" fill="none" stroke="#1864ab" stroke-width="3"/>
+<text x="100" y="60" class="lbl" font-size="11" fill="#1864ab" font-weight="700">좋은 모델</text>
+<text x="80" y="40" class="lbl" font-size="11" fill="#1864ab">(AUC 클수록 좋음)</text>
+<rect x="280" y="20" width="240" height="180" rx="6" fill="#f8f9fa" stroke="#dee2e6"/>
+<text x="400" y="50" class="ttl" text-anchor="middle" font-weight="700" font-size="13">AUC 해석</text>
+<text x="300" y="80" class="lbl" font-size="11">• 1.0 — 완벽 분류기</text>
+<text x="300" y="100" class="lbl" font-size="11">• ≥ 0.9 — 매우 우수</text>
+<text x="300" y="120" class="lbl" font-size="11" font-weight="700" fill="#1864ab">• ≥ 0.7 — 양호 ★</text>
+<text x="300" y="140" class="lbl" font-size="11">• 0.5 — 무작위(쓸모없음)</text>
+<text x="300" y="160" class="lbl" font-size="11">• &lt; 0.5 — 반대로 예측</text>
+<text x="300" y="185" class="lbl" font-size="10" fill="#868e96">x축=FPR=1−특이도</text>
+<text x="300" y="198" class="lbl" font-size="10" fill="#868e96">y축=TPR=재현율</text>
+</svg>
+<div class="tip"><b>46회 출제</b> · "x축 1−특이도(FPR), y축 민감도(TPR) 그래프 → <b>ROC 곡선</b>"</div>
+
+<h5>④ 회귀 평가지표</h5>
+<div class="formula">
+<b>MAE</b> = (1/n) Σ |yᵢ − ŷᵢ| — 평균 절대 오차<br>
+<b>MSE</b> = (1/n) Σ (yᵢ − ŷᵢ)² — 평균 제곱 오차<br>
+<b>RMSE</b> = √MSE — 단위 복원<br>
+<b>MAPE</b> = (100/n) Σ |yᵢ − ŷᵢ| / |yᵢ| (%) — 비율 오차<br>
+<b>R²</b> = 1 − SSE/SST — 설명력 (0~1)
+</div>
+
+<h5>⑤ 교차검증(Cross Validation) ★</h5>
+<svg class="diagram" viewBox="0 0 540 130" width="540" height="130">
+<text x="270" y="20" class="ttl" text-anchor="middle" font-weight="700" font-size="13">5-Fold 교차검증</text>
+<g transform="translate(40,40)">
+<rect x="0" y="0" width="80" height="20" fill="#fa5252"/><rect x="80" y="0" width="80" height="20" fill="#74c0fc"/><rect x="160" y="0" width="80" height="20" fill="#74c0fc"/><rect x="240" y="0" width="80" height="20" fill="#74c0fc"/><rect x="320" y="0" width="80" height="20" fill="#74c0fc"/>
+<text x="-10" y="14" class="lbl" font-size="10" text-anchor="end">Iter 1</text>
+<rect x="0" y="22" width="80" height="20" fill="#74c0fc"/><rect x="80" y="22" width="80" height="20" fill="#fa5252"/><rect x="160" y="22" width="80" height="20" fill="#74c0fc"/><rect x="240" y="22" width="80" height="20" fill="#74c0fc"/><rect x="320" y="22" width="80" height="20" fill="#74c0fc"/>
+<text x="-10" y="36" class="lbl" font-size="10" text-anchor="end">Iter 2</text>
+<rect x="0" y="44" width="80" height="20" fill="#74c0fc"/><rect x="80" y="44" width="80" height="20" fill="#74c0fc"/><rect x="160" y="44" width="80" height="20" fill="#fa5252"/><rect x="240" y="44" width="80" height="20" fill="#74c0fc"/><rect x="320" y="44" width="80" height="20" fill="#74c0fc"/>
+<text x="-10" y="58" class="lbl" font-size="10" text-anchor="end">Iter 3</text>
+<rect x="0" y="66" width="80" height="20" fill="#74c0fc"/><rect x="80" y="66" width="80" height="20" fill="#74c0fc"/><rect x="160" y="66" width="80" height="20" fill="#74c0fc"/><rect x="240" y="66" width="80" height="20" fill="#fa5252"/><rect x="320" y="66" width="80" height="20" fill="#74c0fc"/>
+<text x="-10" y="80" class="lbl" font-size="10" text-anchor="end">Iter 4</text>
+<rect x="0" y="0" width="320" height="20" stroke-width="0"/>
+<text x="430" y="14" class="lbl" font-size="10" fill="#fa5252" font-weight="700">검증</text>
+<text x="430" y="36" class="lbl" font-size="10" fill="#1864ab">학습</text>
+</g>
+</svg>
+<table class="tbl"><thead><tr><th>방법</th><th>특징</th></tr></thead>
+<tbody>
+<tr><td><b>홀드아웃</b></td><td>학습/검증 7:3 또는 6:2:2 (검증·테스트 분리)</td></tr>
+<tr><td><b>K-Fold</b></td><td>K개 폴드 순회 평가 (보통 K=5 또는 10) ★</td></tr>
+<tr><td><b>LOOCV</b></td><td>n−1 학습·1 검증 — K=n. 데이터 적을 때</td></tr>
+<tr><td><b>층화 K-Fold</b></td><td>클래스 비율 유지 (불균형 데이터)</td></tr>
+<tr><td><b>부트스트랩</b></td><td>복원추출 반복 — OOB 평가 가능</td></tr>
+</tbody></table>
+
+<h5>⑥ 향상도 차트(Lift Chart) · 이익도표(Gain)</h5>
+<p>등급(decile)별로 모델이 무작위 대비 얼마나 잘 골라내는지. <b>마케팅 응답률</b> 평가에 자주.</p>
+
+<h5>⑦ 모델 선택 기준 — 한 줄 요약</h5>
+<div class="toc-grid">
+<div class="toc-card"><b>분류·균형</b>Accuracy, F1</div>
+<div class="toc-card"><b>분류·불균형</b>F1, ROC-AUC, PR-AUC</div>
+<div class="toc-card"><b>회귀</b>RMSE, R², MAPE</div>
+<div class="toc-card"><b>마케팅</b>Lift Chart, Gain</div>
+</div>
+
+<pre class="code">library(caret)
+cm &lt;- confusionMatrix(pred, actual)  # 혼동행렬·지표 일괄
+library(pROC); roc_obj &lt;- roc(actual, prob); auc(roc_obj)
+trainControl(method="cv", number=10)  # 10-Fold</pre>
+
+<ul class="checklist">
+<li>정확도/정밀도/재현율/특이도/F1 공식</li>
+<li>ROC: x=1−특이도, y=재현율 / AUC≥0.7 양호</li>
+<li>K-Fold·층화 K-Fold·LOOCV</li>
+<li>회귀: MAE·MSE·RMSE·MAPE·R²</li>
+<li>불균형 데이터에서 Accuracy 신뢰 X</li>
+</ul>
+</div></div>
+</article></template>
+
+<!-- ===== 3과목 출제경향 + 기출문제 풀이 ===== -->
+<template id="tpl-trend"><article class="chapter" data-chapter="trend" data-title="최근 3과목 출제 경향">
+<div class="card"><div class="card-body">
+<h4><i class="fas fa-chart-line text-info"></i> 최근 ADSP 3과목 출제 경향 (41~47회)</h4>
+<div class="infobox">
+<h6>📌 핵심 변화 요약</h6>
+<ul class="mb-0">
+<li><b>2024년 부터 단답형 폐지</b> — 전 50문항 객관식 4지선다</li>
+<li>3과목은 <b>30문항 60점</b>으로 합격을 좌우</li>
+<li>고정 유형 60% + 신유형/계산문제 40% — <b>기출 60%, 응용 40%</b> 전략</li>
+<li>최근에는 <b>ADP 시험 수준의 신유형</b>이 일부 등장 (가중치 계산 등)</li>
+</ul>
+</div>
+
+<h5>① 회차별 시행일</h5>
+<table class="tbl"><thead><tr><th>회차</th><th>시행일</th><th>특징</th></tr></thead>
+<tbody>
+<tr><td>41회</td><td>2024.05.11</td><td>주관식 폐지 첫 시험</td></tr>
+<tr><td>42회</td><td>2024.08.10</td><td>평이</td></tr>
+<tr><td>43회</td><td>2024.11.03</td><td>평이·기출 반복 多</td></tr>
+<tr><td>44회</td><td>2025.02.22</td><td>약간 어려움·신유형 일부</td></tr>
+<tr><td>45회</td><td>2025.05.10</td><td>평이</td></tr>
+<tr><td><b>46회</b></td><td><b>2025.08.09</b></td><td>가중치 계산·MDS 등 신유형</td></tr>
+<tr><td>47회</td><td>2025.11.02</td><td>—</td></tr>
+</tbody></table>
+
+<h5>② 3과목 단원별 출제 빈도 (최근 7회 기준 추정)</h5>
+<table class="tbl"><thead><tr><th>단원</th><th>출제율</th><th>난이도</th><th>핵심</th></tr></thead>
+<tbody>
+<tr><td>3-1 R 기초</td><td>★☆☆</td><td>쉬움</td><td>자료구조·apply</td></tr>
+<tr><td>3-2 전처리</td><td>★★★</td><td>쉬움~중</td><td>IQR·결측·이상치</td></tr>
+<tr><td>3-3 통계 기초</td><td>★★★</td><td>중</td><td>척도·표본·분포</td></tr>
+<tr><td>3-4 가설검정</td><td>★★★</td><td>중</td><td>1·2종 오류·p-value</td></tr>
+<tr><td>3-5 t·ANOVA·χ²</td><td>★★☆</td><td>중</td><td>검정 선택·가정</td></tr>
+<tr><td>3-6 회귀</td><td>★★★★</td><td>중상</td><td>R²·VIF·변수선택</td></tr>
+<tr><td>3-7 시계열</td><td>★★★</td><td>중</td><td>정상성·ARIMA</td></tr>
+<tr><td>3-8 PCA·MDS</td><td>★★☆</td><td>중</td><td>PC 직교·누적기여</td></tr>
+<tr><td>3-9 군집</td><td>★★★★</td><td>중</td><td>K-means·연결법</td></tr>
+<tr><td>3-10 의사결정나무</td><td>★★★</td><td>중</td><td>지니·가지치기</td></tr>
+<tr><td>3-11 앙상블</td><td>★★★</td><td>중</td><td>배깅·부스팅·RF</td></tr>
+<tr><td>3-12 신경망/SVM/NB</td><td>★★★★</td><td>중상</td><td>활성화·역전파</td></tr>
+<tr><td>3-13 연관분석</td><td>★★★★★</td><td>쉬움</td><td>지지·신뢰·향상도</td></tr>
+<tr><td>3-14 모형평가</td><td>★★★★★</td><td>중</td><td>혼동행렬·ROC</td></tr>
+</tbody></table>
+
+<h5>③ 자주 나오는 함정 TOP 10</h5>
+<ol>
+<li><b>층화 vs 집락 추출</b> — "모든 층" vs "몇 층만"</li>
+<li><b>1·2종 오류</b> — α=참인데 기각, β=거짓인데 채택</li>
+<li><b>p-value</b> — 작으면 <b>귀무</b>가설 기각 (대립 아님)</li>
+<li><b>VIF</b> — &gt; 10 다중공선성</li>
+<li><b>R²</b> — SSR/SST = 1 − SSE/SST (혼동 주의)</li>
+<li><b>지지도 vs 신뢰도</b> — 둘 다 중요 (한쪽 우위 X)</li>
+<li><b>K-means 초기화</b> — 데이터 중 무작위 K개</li>
+<li><b>PCA 최대 PC 수</b> — 변수(특성) 개수 (관측치 X)</li>
+<li><b>온도</b>(℃) = 등간 / <b>무게</b> = 비율</li>
+<li><b>대응표본</b> = 같은 대상 전후 / <b>독립표본</b> = 다른 두 그룹</li>
+</ol>
+
+<h5>④ 추천 학습 자료 (2026 기준)</h5>
+<div class="toc-grid">
+<div class="toc-card"><b>📘 윤종식 민트책</b>2026 ADsP 데이터분석 준전문가 (데이터에듀) — 11년 베스트셀러. 30~47회 18회분 기출 앱 제공</div>
+<div class="toc-card"><b>📘 시나공</b>2025 ADsP 기출문제의 재구성 (길벗) — 기출 변형 풍부</div>
+<div class="toc-card"><b>📘 이기적</b>2026 이기적 ADsP 이론서+기출 (영진닷컴)</div>
+<div class="toc-card"><b>🎬 데이터에듀PT</b>유튜브 ADsP 44~46회 기출복원 강의 (3과목 별도 Part 영상)</div>
+<div class="toc-card"><b>🎬 인프런</b>SoYoung Yoon ADsP 자격증 강의 (이론·기출 통합)</div>
+<div class="toc-card"><b>🌐 dataq.or.kr</b>공식 데이터자격검정 — 시험일정·접수</div>
+</div>
+
+<h5>⑤ 합격 학습 전략 (2주 플랜)</h5>
+<table class="tbl"><thead><tr><th>주차</th><th>학습</th><th>목표</th></tr></thead>
+<tbody>
+<tr><td>1주차</td><td>3과목 14단원 본문 1회독 + 카드</td><td>개념 이해</td></tr>
+<tr><td>주말</td><td>43~46회 기출 풀이 + 오답노트</td><td>유형 파악</td></tr>
+<tr><td>2주차</td><td>1·2과목 + 약점 단원 보강</td><td>전 영역 커버</td></tr>
+<tr><td>D-3</td><td>핵심공식·플래시카드 + 모의고사 1회</td><td>실전 감각</td></tr>
+<tr><td>D-1</td><td>오답노트만 회독</td><td>마지막 점검</td></tr>
+</tbody></table>
+
+<div class="warn"><b>합격선 분포</b> · 60점 합격이지만 평균 65~75점이 안전. 3과목에서 24점(40문항 중 12문항) 이상 + 1·2과목 각 8점 이상 필수.</div>
+</div></div>
+</article></template>
+
+<template id="tpl-mcq-46"><article class="chapter" data-chapter="mcq-46" data-title="46회 기출 객관식 풀이">
+<div class="card"><div class="card-body">
+<h4><i class="fas fa-fire-alt text-danger"></i> 46회 (2025.8.9) 3과목 객관식 기출 풀이 <span class="exam-tag">★최신 복원</span></h4>
+<p class="text-muted">2025년 8월 9일 시행된 제46회 ADsP 3과목 30문항 복원. 보기를 클릭하면 정답·해설이 표시됩니다. <a href="https://yddaily.com/data-analysis-adsp-past-exam-46th-restored/" target="_blank">출처</a></p>
+<div id="mcq-46-host"></div>
+</div></div>
+</article></template>
+
+<template id="tpl-mcq-44-45"><article class="chapter" data-chapter="mcq-44-45" data-title="44~45회 기출 핵심 풀이">
+<div class="card"><div class="card-body">
+<h4><i class="fas fa-fire-alt text-warning"></i> 44~45회 (2025) 3과목 객관식 핵심 풀이</h4>
+<p class="text-muted">2025년 2월 22일(44회) · 2025년 5월 10일(45회) 시행. 모두의연구소·인프런·데이터에듀PT 복원 자료 기반.</p>
+<div id="mcq-44-45-host"></div>
+</div></div>
+</article></template>
+
+<template id="tpl-mcq-thm"><article class="chapter" data-chapter="mcq-thm" data-title="주제별 핵심 객관식 30">
+<div class="card"><div class="card-body">
+<h4><i class="fas fa-bullseye text-success"></i> 3과목 주제별 핵심 객관식 30문</h4>
+<p class="text-muted">최근 7회 기출의 출제 패턴을 단원별로 압축한 핵심 객관식. 시험 직전 점검용.</p>
+<div id="mcq-thm-host"></div>
+</div></div>
+</article></template>
+<!-- Special -->
+<template id="tpl-glossary"><article class="chapter" data-chapter="glossary" data-title="핵심 공식·용어 빠른조회">
+<div class="card"><div class="card-body">
+<h4><i class="fas fa-bolt text-warning"></i> 핵심 공식·용어 빠른조회</h4>
+<input id="gl-search" class="form-control glossary-search" placeholder="검색 — 예: 향상도, R², SECI, ARIMA">
+<div id="gl-list"></div>
+</div></div>
+</article></template>
+<template id="tpl-flash"><article class="chapter" data-chapter="flash" data-title="플래시카드">
+<div class="card"><div class="card-body">
+<h4><i class="fas fa-clone text-primary"></i> 플래시카드 — 탭하면 정답</h4>
+<div class="form-inline mb-2">
+  <label class="mr-2">필터:</label>
+  <select id="flash-filter" class="form-control form-control-sm">
+    <option value="all">전체</option>
+    <option value="1과목">1과목</option>
+    <option value="2과목">2과목</option>
+    <option value="3과목">3과목</option>
+  </select>
+  <button id="flash-shuffle" class="btn btn-outline-secondary btn-sm ml-2"><i class="fas fa-random"></i> 셔플</button>
+</div>
+<div class="flash-stage"><div class="flash-card" id="flash-card"></div></div>
+<div class="flash-controls">
+  <button id="flash-prev" class="btn btn-outline-primary"><i class="fas fa-chevron-left"></i> 이전</button>
+  <button id="flash-next" class="btn btn-primary">다음 <i class="fas fa-chevron-right"></i></button>
+</div>
+<div class="flash-progress" id="flash-progress">— / —</div>
+<div class="tip mt-3"><b>사용법</b> · 카드 탭으로 뒤집기 · 좌우 화살표 또는 스와이프로 이동.</div>
+</div></div>
+</article></template>
+<template id="tpl-quiz"><article class="chapter" data-chapter="quiz" data-title="기출 단답형 퀴즈">
+<div class="card"><div class="card-body">
+<h4><i class="fas fa-question-circle text-success"></i> 기출 단답형 퀴즈 (21~35회 발췌)</h4>
+<div class="form-inline mb-2">
+  <button id="quiz-shuffle" class="btn btn-outline-secondary btn-sm mr-1"><i class="fas fa-random"></i> 셔플</button>
+  <button id="quiz-wrong" class="btn btn-outline-warning btn-sm mr-1"><i class="fas fa-redo"></i> 틀린 것만</button>
+  <button id="quiz-reset" class="btn btn-outline-danger btn-sm"><i class="fas fa-undo"></i> 초기화</button>
+</div>
+<div id="quiz-host"></div>
+<div class="flash-controls mt-2">
+  <button id="quiz-prev" class="btn btn-outline-primary"><i class="fas fa-chevron-left"></i> 이전</button>
+  <button id="quiz-next" class="btn btn-primary">다음 <i class="fas fa-chevron-right"></i></button>
+</div>
+</div></div>
+</article></template>
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/js/adminlte.min.js"></script>
+<script>
+/* ===== Data (filled by Edit) ===== */
+window.FLASHCARDS = []; // populated below
+window.QUIZBANK   = []; // populated below
+window.GLOSSARY   = []; // populated below
+
+/* ===== Chapter routing ===== */
+const CHAPTERS = ["intro",
+  "1-1","1-2","1-3","1-4","1-5","1-6","1-7","1-8",
+  "2-1","2-2","2-3","2-4","2-5","2-6","2-7","2-8","2-9","2-10",
+  "3-1","3-2","3-3","3-4","3-5","3-6","3-7","3-8","3-9","3-10","3-11","3-12","3-13","3-14",
+  "trend","mcq-46","mcq-44-45","mcq-thm",
+  "glossary","flash","quiz"];
+
+const STUDY_CHAPTERS = CHAPTERS.filter(c => /^\d/.test(c)); // for progress count
+
+function $(s,p){return (p||document).querySelector(s);}
+function $$(s,p){return Array.from((p||document).querySelectorAll(s));}
+
+function renderChapter(id){
+  const host = $("#chapter-host");
+  host.innerHTML = "";
+  const tpl = document.getElementById("tpl-"+id);
+  if(!tpl){ host.innerHTML = '<div class="card"><div class="card-body">콘텐츠 준비 중입니다.</div></div>'; return; }
+  host.appendChild(tpl.content.cloneNode(true));
+  const art = $(".chapter", host);
+  if(art) art.classList.add("active");
+  // post-render hooks
+  if(id==="flash") initFlash();
+  if(id==="quiz")  initQuiz();
+  if(id==="glossary") initGlossary();
+  if(id==="mcq-46") renderMCQ("mcq-46-host", window.MCQ_46);
+  if(id==="mcq-44-45") renderMCQ("mcq-44-45-host", window.MCQ_44_45);
+  if(id==="mcq-thm") renderMCQ("mcq-thm-host", window.MCQ_THM);
+  // mark progress
+  if(STUDY_CHAPTERS.includes(id)){
+    const seen = JSON.parse(localStorage.getItem("adsp.seen")||"[]");
+    if(!seen.includes(id)){ seen.push(id); localStorage.setItem("adsp.seen", JSON.stringify(seen)); }
+  }
+  updateUI(id);
+  window.scrollTo({top:0,behavior:"instant"});
+}
+
+function updateUI(id){
+  // sidebar active
+  $$(".nav-sidebar .nav-link").forEach(a=>a.classList.remove("active"));
+  const link = $('.nav-sidebar a[href="#'+id+'"]');
+  if(link){ link.classList.add("active"); const parent = link.closest(".nav-treeview"); if(parent){ parent.style.display="block"; const li = parent.parentElement; if(li && !li.classList.contains("menu-open")) li.classList.add("menu-open"); } }
+  // header title
+  const art = $(".chapter");
+  $("#hdr-title").textContent = (art && art.dataset.title) ? art.dataset.title : "ADSP 요약본";
+  // progress badges
+  const seen = JSON.parse(localStorage.getItem("adsp.seen")||"[]");
+  $("#hdr-progress").textContent = seen.filter(s=>STUDY_CHAPTERS.includes(s)).length + " / " + STUDY_CHAPTERS.length;
+  $$(".nav-sidebar a[href^='#']").forEach(a=>{
+    const cid = a.getAttribute("href").slice(1);
+    if(seen.includes(cid)){
+      if(!a.querySelector(".badge-progress")){
+        const b = document.createElement("span");
+        b.className = "right badge badge-success badge-progress"; b.innerHTML = '<i class="fas fa-check"></i>';
+        a.appendChild(b);
+      }
+    }
+  });
+  // footer
+  const idx = CHAPTERS.indexOf(id);
+  $("#footer-pos").textContent = (idx>=0 ? (idx+1) : "—") + " / " + CHAPTERS.length;
+  // mode highlight
+  const mode = (id==="flash"?"flash":id==="quiz"?"quiz":id==="glossary"?"glossary":"summary");
+  $$(".nav-link-mode").forEach(a=>a.classList.toggle("active", a.dataset.mode===mode));
+}
+
+function go(id){
+  if(!CHAPTERS.includes(id)) id = "intro";
+  if(location.hash !== "#"+id) location.hash = id;
+  else renderChapter(id);
+}
+function next(){ const i = CHAPTERS.indexOf(currentId()); if(i<CHAPTERS.length-1) go(CHAPTERS[i+1]); }
+function prev(){ const i = CHAPTERS.indexOf(currentId()); if(i>0) go(CHAPTERS[i-1]); }
+function currentId(){ const h = location.hash.slice(1); return CHAPTERS.includes(h) ? h : "intro"; }
+
+window.addEventListener("hashchange", ()=>renderChapter(currentId()));
+
+document.addEventListener("DOMContentLoaded", ()=>{
+  // Restore prefs
+  if(localStorage.getItem("adsp.dark")==="1") document.body.classList.add("dark-mode");
+  const fs = parseFloat(localStorage.getItem("adsp.fs")||"1.05");
+  document.documentElement.style.setProperty("--app-fs", fs+"rem");
+  // Buttons
+  $("#btn-dark").addEventListener("click", e=>{e.preventDefault();document.body.classList.toggle("dark-mode");localStorage.setItem("adsp.dark", document.body.classList.contains("dark-mode")?"1":"0");});
+  $("#btn-fontplus").addEventListener("click", e=>{e.preventDefault();const v=Math.min(1.5,parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--app-fs"))+0.05);document.documentElement.style.setProperty("--app-fs",v+"rem");localStorage.setItem("adsp.fs",v.toFixed(2));});
+  $("#btn-fontminus").addEventListener("click", e=>{e.preventDefault();const v=Math.max(.85,parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--app-fs"))-0.05);document.documentElement.style.setProperty("--app-fs",v+"rem");localStorage.setItem("adsp.fs",v.toFixed(2));});
+  $("#btn-prev").addEventListener("click", prev);
+  $("#btn-next").addEventListener("click", next);
+  $$(".nav-link-mode").forEach(a=>a.addEventListener("click", e=>{e.preventDefault();const m=a.dataset.mode;go(m==="summary"?"intro":m);}));
+  // Keyboard
+  document.addEventListener("keydown", e=>{
+    if(e.target.matches("input,textarea")) return;
+    if(e.key==="ArrowRight"||e.key==="PageDown") next();
+    else if(e.key==="ArrowLeft"||e.key==="PageUp") prev();
+  });
+  // Touch swipe
+  let tx=0, ty=0;
+  document.addEventListener("touchstart", e=>{ const t=e.touches[0]; tx=t.clientX; ty=t.clientY; },{passive:true});
+  document.addEventListener("touchend", e=>{
+    if(!e.changedTouches.length) return;
+    const t=e.changedTouches[0]; const dx=t.clientX-tx, dy=t.clientY-ty;
+    if(Math.abs(dx)>60 && Math.abs(dy)<40){ if(dx<0) next(); else prev(); }
+  });
+  // Boot
+  renderChapter(currentId());
+});
+
+/* ===== Flashcards ===== */
+let flashIdx=0, flashFiltered=[];
+function initFlash(){
+  flashFiltered = window.FLASHCARDS.slice();
+  const filterSel = $("#flash-filter");
+  if(filterSel){ filterSel.addEventListener("change", ()=>{ const v=filterSel.value; flashFiltered = (v==="all")?window.FLASHCARDS.slice():window.FLASHCARDS.filter(c=>c.tag===v); flashIdx=0; renderFlashCard(); }); }
+  $("#flash-shuffle").addEventListener("click", ()=>{ flashFiltered.sort(()=>Math.random()-.5); flashIdx=0; renderFlashCard(); });
+  $("#flash-prev").addEventListener("click", ()=>{ flashIdx=(flashIdx-1+flashFiltered.length)%flashFiltered.length; renderFlashCard(); });
+  $("#flash-next").addEventListener("click", ()=>{ flashIdx=(flashIdx+1)%flashFiltered.length; renderFlashCard(); });
+  renderFlashCard();
+}
+function renderFlashCard(){
+  const card = $("#flash-card"); if(!card) return;
+  if(!flashFiltered.length){ card.innerHTML='<div class="flash-face flash-front">카드 없음</div>'; return; }
+  const c = flashFiltered[flashIdx];
+  card.classList.remove("flipped");
+  card.innerHTML = `<div class="flash-face flash-front"><span class="flash-tag">${c.tag}</span><div class="flash-q">${c.q}</div><small class="text-muted mt-2">탭하면 정답</small></div><div class="flash-face flash-back"><span class="flash-tag">${c.tag}</span><div class="flash-a">${c.a}</div></div>`;
+  card.onclick = ()=>card.classList.toggle("flipped");
+  $("#flash-progress").textContent = `${flashIdx+1} / ${flashFiltered.length}`;
+}
+
+/* ===== Quiz ===== */
+let quizIdx=0, quizPool=[], quizWrong=[], quizMode="all";
+function initQuiz(){
+  quizPool = window.QUIZBANK.slice();
+  $("#quiz-shuffle").addEventListener("click", ()=>{ quizPool.sort(()=>Math.random()-.5); quizIdx=0; renderQuiz(); });
+  $("#quiz-wrong").addEventListener("click", ()=>{ if(quizWrong.length){ quizPool=quizWrong.slice(); quizIdx=0; renderQuiz(); } else alert("틀린 문항이 없습니다."); });
+  $("#quiz-reset").addEventListener("click", ()=>{ quizPool=window.QUIZBANK.slice(); quizWrong=[]; quizIdx=0; renderQuiz(); });
+  $("#quiz-prev").addEventListener("click", ()=>{ quizIdx=(quizIdx-1+quizPool.length)%quizPool.length; renderQuiz(); });
+  $("#quiz-next").addEventListener("click", ()=>{ quizIdx=(quizIdx+1)%quizPool.length; renderQuiz(); });
+  renderQuiz();
+}
+function renderQuiz(){
+  const host = $("#quiz-host"); if(!host) return;
+  if(!quizPool.length){ host.innerHTML="문항 없음"; return; }
+  const q = quizPool[quizIdx];
+  host.innerHTML = `<div class="quiz-q">${quizIdx+1}. ${q.q}</div>
+    <input id="quiz-input" class="form-control quiz-input" placeholder="답을 입력하거나 '정답 보기' 클릭">
+    <div class="mt-2"><button class="btn btn-sm btn-outline-primary" id="quiz-show">정답 보기</button>
+    <button class="btn btn-sm btn-success ml-1" id="quiz-correct">맞음 ✓</button>
+    <button class="btn btn-sm btn-danger ml-1" id="quiz-incorrect">틀림 ✗</button></div>
+    <div class="quiz-answer" id="quiz-ans"><b>정답</b> · ${q.a}${q.e?'<div class="quiz-explain">'+q.e+'</div>':''}</div>
+    <div class="text-muted small mt-2">진행도 ${quizIdx+1} / ${quizPool.length} · 틀린 문항 ${quizWrong.length}개</div>`;
+  $("#quiz-show").onclick = ()=>$("#quiz-ans").classList.add("show");
+  $("#quiz-correct").onclick = ()=>{ const i=quizWrong.findIndex(x=>x.q===q.q); if(i>-1) quizWrong.splice(i,1); next2(); };
+  $("#quiz-incorrect").onclick = ()=>{ if(!quizWrong.find(x=>x.q===q.q)) quizWrong.push(q); next2(); };
+  function next2(){ quizIdx=(quizIdx+1)%quizPool.length; renderQuiz(); }
+}
+
+/* ===== Glossary ===== */
+function initGlossary(){
+  const inp = $("#gl-search"); const list = $("#gl-list");
+  function rerender(q){
+    q = (q||"").toLowerCase().trim();
+    list.innerHTML = window.GLOSSARY
+      .filter(g=> !q || (g.term+" "+g.def).toLowerCase().includes(q))
+      .map(g=>`<div class="glossary-item"><div class="glossary-term">${g.term} <small class="text-muted">· ${g.tag}</small></div><div>${g.def}</div></div>`)
+      .join("") || '<div class="text-muted">검색 결과 없음</div>';
+  }
+  inp.addEventListener("input", ()=>rerender(inp.value));
+  rerender("");
+}
+
+/* ===== MCQ — 객관식 기출문제 풀이 ===== */
+function escapeHtml(s){ return String(s||"").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"})[c]); }
+function renderMCQ(hostId, bank){
+  const host = document.getElementById(hostId); if(!host || !bank) return;
+  let score = 0, answered = 0;
+  const total = bank.length;
+  const summary = document.createElement("div");
+  summary.className = "infobox";
+  summary.innerHTML = `<h6>📝 진행: <span id="${hostId}-prog">0 / ${total}</span> · 정답: <span id="${hostId}-score" style="color:#37b24d;font-weight:700">0</span> · <button class="btn btn-sm btn-outline-secondary" onclick="this.closest('article').querySelectorAll('.mcq').forEach(m=>{m.querySelectorAll('li').forEach(l=>{l.classList.remove('correct','wrong','selected')});m.querySelector('.mcq-explain').classList.remove('show');});document.getElementById('${hostId}-prog').textContent='0 / ${total}';document.getElementById('${hostId}-score').textContent='0';">초기화</button></h6>`;
+  host.appendChild(summary);
+  bank.forEach((q, idx) => {
+    const card = document.createElement("div");
+    card.className = "mcq";
+    const choicesHtml = q.choices.map((c, i) =>
+      `<li data-idx="${i}" data-correct="${q.answer === i ? '1' : '0'}">${i+1}. ${escapeHtml(c)}</li>`
+    ).join("");
+    card.innerHTML = `<div class="mcq-meta">${escapeHtml(q.tag||"")}</div>
+      <div class="mcq-q">Q${idx+1}. ${q.q}</div>
+      <ul>${choicesHtml}</ul>
+      <div class="mcq-explain"><b>정답: ${q.answer+1}번</b> — ${q.explain||""}</div>`;
+    host.appendChild(card);
+    const lis = card.querySelectorAll("li");
+    lis.forEach(li => {
+      li.addEventListener("click", () => {
+        if(card.dataset.locked === "1") return;
+        card.dataset.locked = "1";
+        const correct = li.dataset.correct === "1";
+        lis.forEach(x => {
+          if(x.dataset.correct === "1") x.classList.add("correct");
+        });
+        if(!correct) li.classList.add("wrong");
+        card.querySelector(".mcq-explain").classList.add("show");
+        answered++;
+        if(correct) score++;
+        document.getElementById(hostId+"-prog").textContent = answered + " / " + total;
+        document.getElementById(hostId+"-score").textContent = score;
+      });
+    });
+  });
+}
+</script>
+
+<!-- ============ DATA &amp; CHAPTER CONTENT (filled by Edit appends) ============ -->
+<script id="mcq-data-script">
+/* ============= MCQ — 46회 (2025.8.9) 3과목 30문항 ============= */
+window.MCQ_46 = [
+{tag:"46회 21번 · 3-3 통계", q:"두 확률변수 X, Y의 표본 공분산을 구하시오. (X = [1,2,3,4,5], Y = [2,4,5,6,8])", choices:["3.5","4.0","2.5","5.0"], answer:0, explain:"X̄=3, Ȳ=5. Cov = Σ(Xᵢ−X̄)(Yᵢ−Ȳ)/(n−1) = [(−2)(−3)+(−1)(−1)+(0)(0)+(1)(1)+(2)(3)] / 4 = (6+1+0+1+6)/4 = 14/4 = 3.5"},
+{tag:"46회 22번 · 3-3 통계", q:"확률변수 X의 분포가 X=[1,2,3,4], P(X)=[0.4, 0.3, 0.2, 0.1]일 때 기대값 E(X)는?", choices:["2.0","2.5","3.0","1.5"], answer:0, explain:"E(X) = Σ x·P(x) = 1×0.4 + 2×0.3 + 3×0.2 + 4×0.1 = 0.4+0.6+0.6+0.4 = 2.0"},
+{tag:"46회 23번 · 3-12 신경망", q:"시그모이드(Sigmoid) 함수의 출력 범위는?", choices:["−1 ≤ y ≤ 1","0 < y < 1","0 ≤ y ≤ ∞","−∞ < y < ∞"], answer:1, explain:"시그모이드 σ(x) = 1/(1+e^(−x))는 모든 실수 입력을 (0, 1) 사이로 변환. 이진 분류 출력에 적합."},
+{tag:"46회 24번 · 데이터마이닝", q:"데이터 마이닝 수행 단계의 순서로 가장 적절한 것은?", choices:["데이터 가공 → 목적 정의 → 데이터 준비 → 기법 적용 → 검증","목적 정의 → 데이터 준비 → 데이터 가공 → 기법 적용 → 검증","데이터 준비 → 목적 정의 → 기법 적용 → 데이터 가공 → 검증","목적 정의 → 기법 적용 → 데이터 준비 → 데이터 가공 → 검증"], answer:1, explain:"표준 5단계: ① 목적 정의 → ② 데이터 준비 → ③ 데이터 가공(전처리) → ④ 기법 적용(모델링) → ⑤ 검증·평가."},
+{tag:"46회 25번 · 3-9 군집", q:"K-평균 군집 분석에서 초기 군집 중심(centroid) 설정 방법으로 옳은 것은?", choices:["가장 멀리 있는 K개 점","평균에서 K개","데이터셋 내의 임의의 K개 관측점을 무작위로 선택","가장 큰 분산 K개"], answer:2, explain:"K-means는 초기화 단계에서 데이터 중에서 K개 관측값을 무작위로 선택해 초기 중심으로 사용한다. (k-means++ 등 개선 버전도 있지만 표준은 무작위)"},
+{tag:"46회 26번 · 3-14 평가", q:"실제 값이 참(Positive)인 사례 중, 모델이 참(Positive)으로 올바르게 예측한 비율을 의미하는 지표는?", choices:["정확도(Accuracy)","정밀도(Precision)","특이도(Specificity)","재현율(Recall)"], answer:3, explain:"재현율(Recall, 민감도) = TP / (TP+FN). 실제 양성 중에서 잡아낸 비율. 정밀도와 헷갈림 주의 — 정밀도는 양성 예측 중 진짜의 비율."},
+{tag:"46회 27번 · 3-6 회귀", q:"회귀분석 결과 SSE = 200, SSR = 300일 때 결정계수 R²는?", choices:["0.40","0.50","0.60","0.75"], answer:2, explain:"SST = SSR + SSE = 300 + 200 = 500. R² = SSR/SST = 300/500 = 0.60"},
+{tag:"46회 28번 · 3-8 PCA", q:"주성분분석(PCA)에 대한 설명으로 부적절한 것은?", choices:["주성분들은 서로 직교한다","변수 단위 다르면 상관행렬을 사용한다","생성 가능한 주성분의 최대 개수는 데이터의 관측치 개수와 동일하다","누적기여율 70~85%까지 선택한다"], answer:2, explain:"최대 PC 수는 변수(특성)의 개수와 동일하다. 관측치 수가 아님. 함정 출제!"},
+{tag:"46회 29번 · 3-10 의사결정나무", q:"의사결정나무에서 가지치기(Post-pruning) 시 평가기준으로 사용되기 어려운 것은?", choices:["오분류율","비용복잡도(α)","교차검증 오차","잔차 제곱합(SSR)"], answer:3, explain:"잔차 제곱합(SSR)은 회귀나무에서 분할 기준으로 쓰지, 가지치기의 일반적 평가기준은 아님. 보통 오분류율·복잡도(α)·CV 오차로 평가."},
+{tag:"46회 30번 · 3-7 시계열", q:"정상(stationary) 시계열의 특징으로 옳은 것은?", choices:["시점에 관계없이 평균과 분산이 일정하다","평균은 일정하나 분산은 변한다","시간이 지날수록 분산이 증가한다","시점에 따라 자기공분산이 변한다"], answer:0, explain:"정상 시계열의 3조건: ① 평균 일정 ② 분산 일정 ③ 자기공분산이 시점이 아닌 시차(lag)에만 의존."},
+{tag:"46회 31번 · 3-12 신경망", q:"인공신경망에 대한 설명으로 옳지 않은 것은?", choices:["역전파는 출력에서 입력 방향으로 기울기를 전파한다","ReLU 함수를 활성화 함수로 사용할 때, 은닉층이 없는 신경망은 로지스틱 회귀와 동일하다","Dropout은 과적합 완화에 도움이 된다","활성화함수는 비선형성을 부여한다"], answer:1, explain:"ReLU = max(0, x)는 비선형 함수. 로지스틱 회귀(시그모이드)와 동일하지 않음. 헷갈림 출제!"},
+{tag:"46회 32번 · 3-12 신경망", q:"인공신경망에 대한 설명으로 옳지 않은 것은?", choices:["은닉층 수를 늘리면 모델 표현력이 증가한다","역전파로 가중치를 갱신한다","모든 은닉층 노드의 수는 동일해야 한다","가중치 초기화가 학습 성능에 영향을 미친다"], answer:2, explain:"은닉층마다 노드 수는 자유롭게 다를 수 있다. 일반적으로 점차 줄여가는 깔때기 구조도 사용."},
+{tag:"46회 33번 · 3-13 연관분석", q:"연관분석에 대한 설명으로 옳지 않은 것은?", choices:["향상도가 1보다 크면 양의 연관이 있다","지지도보다 신뢰도가 더 중요한 지표이다","지지도와 신뢰도는 모두 중요한 지표이다","Apriori 알고리즘은 빈발 항목집합을 찾는다"], answer:1, explain:"지지도와 신뢰도 모두 중요. 지지도가 너무 낮으면 신뢰도 높아도 의미 없는 우연한 규칙. 한쪽이 더 중요하다고 단정 X."},
+{tag:"46회 34번 · 3-12 신경망", q:"완전 연결 인공신경망의 가중치 수(편향 제외)는? (입력 20개, 은닉층 50개, 출력 3개)", choices:["1150","1050","1500","73"], answer:0, explain:"입력×은닉 + 은닉×출력 = (20×50) + (50×3) = 1000 + 150 = 1150"},
+{tag:"46회 35번 · 3-8 MDS", q:"다차원척도법(MDS)의 활용 사례로 옳은 것은?", choices:["고객 군집 발견","영화 간 유사성 분석 및 시각화","시계열 예측","연관 규칙 발견"], answer:1, explain:"MDS는 객체 간 유사도(거리)를 저차원(2D)으로 시각화. 영화·도시·브랜드 간 유사성 시각화의 전형적 사례."},
+{tag:"46회 36번 · 3-2 전처리", q:"결측값 처리에 대한 설명으로 옳은 것은?", choices:["결측값이 있는 행을 삭제하면 표본 수가 늘어난다","결측값 대체는 표본 수를 유지하고 정보 손실을 최소화한다","결측값은 항상 평균으로 대체한다","결측값은 처리하지 않는 것이 좋다"], answer:1, explain:"결측값 대체(imputation)는 행을 삭제하지 않으므로 표본 수를 유지하고 정보 손실을 최소화한다. 단, 분산 과소추정에 주의."},
+{tag:"46회 37번 · 3-4 가설검정", q:"가설 검정에 대한 설명으로 가장 적절하지 않은 것은?", choices:["귀무가설(H₀)은 일반적으로 \"차이가 없다\"는 가설이다","유의수준은 1종 오류의 허용 한계이다","P-value가 유의수준보다 작으면 대립가설을 기각한다","검정력은 1−β이다"], answer:2, explain:"P-value < α이면 귀무가설(H₀)을 기각하고 대립가설(H₁)을 채택한다. \"대립가설을 기각\"은 명백히 틀린 표현."},
+{tag:"46회 38번 · 3-3 통계", q:"통계적 추론으로 적절하지 않은 것은?", choices:["표본을 통해 모집단의 성질을 추론한다","점추정과 구간추정이 있다","모집단 전체를 조사하는 것이다","가설 검정도 추론에 포함된다"], answer:2, explain:"통계적 추론은 표본을 통해 모집단을 추론하는 것. 모집단 전체를 조사하는 것은 전수조사이며 추론이 아님."},
+{tag:"46회 39번 · 3-6 상관", q:"상관분석에 대한 설명으로 잘못된 것은?", choices:["피어슨 상관계수는 −1과 +1 사이의 값이다","상관관계는 인과관계를 의미하지 않는다","스피어만 상관계수는 순위 기반이다","독립 변수에 대한 종속 변수의 값을 예측한다"], answer:3, explain:"값을 \"예측\"하는 것은 회귀분석. 상관분석은 두 변수의 관계 강도와 방향을 파악할 뿐."},
+{tag:"46회 40번 · 분류", q:"분류 분석의 정의로 가장 올바른 것은?", choices:["이미 분류된 데이터를 바탕으로 새로운 데이터가 어떤 그룹에 속하는지 예측","새 그룹을 발견하는 비지도 학습","연속형 종속 변수를 예측","변수 간 관계를 시각화"], answer:0, explain:"분류는 지도 학습. 학습 데이터(라벨)로 새 데이터의 범주를 예측. ②는 군집, ③은 회귀."},
+{tag:"46회 41번 · 3-12 신경망", q:"다층 퍼셉트론(MLP)에서 출력층의 결과가 다변(multiclass)일 때 사용하는 활성화 함수는?", choices:["시그모이드","tanh","ReLU","소프트맥스(Softmax)"], answer:3, explain:"소프트맥스는 다중 클래스의 확률 분포(합=1)를 출력. 이진 분류 출력은 시그모이드, 은닉층 주력은 ReLU."},
+{tag:"46회 42번 · 3-14 평가", q:"x축에 1−특이도(False Positive Rate), y축에 민감도(True Positive Rate)를 나타내는 그래프는?", choices:["ROC 커브","향상도 차트","산점도","히스토그램"], answer:0, explain:"ROC(Receiver Operating Characteristic) 곡선. 임계값 변화에 따른 모델 성능. AUC≥0.7 양호."},
+{tag:"46회 43번 · 3-9 군집", q:"K-평균 군집 분석에서 초기 군집 중심을 선택하는 방법은?", choices:["데이터 집합에서 무작위로 추출한다","평균값을 사용한다","최댓값과 최솟값을 사용한다","항상 0을 사용한다"], answer:0, explain:"K-means는 데이터 집합 내에서 K개 점을 무작위로 선택해 초기 중심을 잡는다."},
+{tag:"46회 44번 · 3-13 연관", q:"연관분석에 관한 설명 중 옳지 않은 것은?", choices:["지지도는 P(A∩B)이다","향상도가 1이면 두 항목은 독립이다","A→B일 때, 지지도보다 신뢰도가 더욱 중요한 지표이다","Apriori는 빈발 항목집합을 탐색한다"], answer:2, explain:"지지도와 신뢰도 모두 중요. 한쪽이 더 중요하다는 단정은 옳지 않다."},
+{tag:"46회 45번 · 3-13 연관", q:"음료 구매 데이터에서 \"커피 → 우유\"의 지지도(Support)는? (전체 1000건, 커피 400건, 우유 500건, 커피·우유 동시 300건)", choices:["0.50","0.30","0.75","0.60"], answer:1, explain:"지지도(A→B) = (A∩B 동시 거래) / 전체 거래 = 300 / 1000 = 0.30"},
+{tag:"46회 46번 · 3-9 군집", q:"최장연결법(Complete Linkage) 군집 분석 결과에 대한 설명으로 옳지 않은 것은?", choices:["군집 간 거리는 가장 먼 두 점의 거리이다","구형 군집을 선호한다","결과는 결정론적이다","군집 결과는 재분석 시 달라질 수 있다"], answer:3, explain:"계층적 군집(완전연결)은 결정론적 — 같은 입력에 같은 결과. K-means는 초기값 무작위라 달라질 수 있음."},
+{tag:"46회 47번 · 3-13 연관", q:"연관분석에서 최소 지지도를 2로 설정했을 때 최대 길이의 빈발항목 집합으로 옳은 것은? (거래 = {a,b,c}, {b,c,d}, {a,b,c,e}, {b,c,e,f})", choices:["{a, b}","{b, c, e}","{c, e, f}","{a, b, c, e}"], answer:1, explain:"각 항목집합의 빈도: {b,c}=4, {b,c,e}=2, {a,b,c}=2 등. 최소 2 이상이며 최대 길이는 {b,c,e}=2 (3개 항목). {a,b,c,e}는 1번만 나오므로 미만."},
+{tag:"46회 48번 · 3-6 로지스틱", q:"로지스틱 회귀분석 결과에 대한 해석으로 옳지 않은 것은? (balance 계수 양수, income 계수 양수)", choices:["balance가 증가하면 연체 확률이 증가한다","income이 증가하면 연체 확률이 증가한다","계수 부호로 영향 방향을 알 수 있다","독립변수 balance가 고정일 때 income이 증가하면 연체 확률이 감소한다"], answer:3, explain:"income 계수가 양수이므로 income↑ → 확률↑. \"확률 감소\"는 부호와 모순되어 옳지 않은 해석."},
+{tag:"46회 49번 · 3-11 앙상블", q:"부스팅(Boosting)에 대한 설명으로 옳은 것은?", choices:["병렬로 독립적인 모델을 학습시키는 기법","이전 모델의 오차를 보완하기 위해 약한 학습기를 순차적으로 학습시키는 앙상블 기법","무작위 변수 선택으로 트리를 만든다","항상 단일 의사결정나무보다 빠르다"], answer:1, explain:"부스팅은 순차 학습 — 이전 모델이 틀린 샘플의 가중치를 키워 다음 모델이 보완. 편향 감소. AdaBoost·GBM·XGBoost 대표."},
+{tag:"46회 50번 · 3-2 전처리", q:"중앙 50% 데이터가 흩어진 정도를 나타내는 것은?", choices:["분산","표준편차","사분위수 범위(IQR)","범위(Range)"], answer:2, explain:"IQR = Q3 − Q1. 중앙 50%의 산포도이며 이상치에 영향을 덜 받음. 박스플롯의 박스 길이."}
+];
+
+/* ============= MCQ — 44~45회 핵심 ============= */
+window.MCQ_44_45 = [
+{tag:"44회 · 3-3 통계", q:"전수조사가 어려운 이유로 가장 적절하지 않은 것은?", choices:["시간과 비용이 많이 든다","전체를 대상으로 하면 정확도가 떨어진다","파괴 검사의 경우 모집단을 모두 조사할 수 없다","조사 대상이 너무 많아 현실적으로 불가능"], answer:1, explain:"전수조사는 정확도 자체는 높음. 다만 비용·시간·물리적 제약이 커서 표본조사를 사용. \"정확도가 떨어진다\"는 잘못."},
+{tag:"44회 · 3-3 척도", q:"다음 중 비율척도에 해당하는 것은?", choices:["성별","온도(℃)","학점","몸무게"], answer:3, explain:"몸무게는 절대 0(0kg=무게 없음)이 있어 비율척도. 온도(℃)는 등간(0℃=0이 의미적 0 아님), 학점=서열, 성별=명목."},
+{tag:"44회 · 3-4 가설검정", q:"제1종 오류(α)에 대한 설명으로 옳은 것은?", choices:["참인 귀무가설을 기각하는 오류","거짓인 귀무가설을 채택하는 오류","검정력의 다른 이름이다","귀무가설이 항상 옳다"], answer:0, explain:"1종 오류 = 참인 H₀를 기각 (확률 α). 거짓 H₀ 채택은 2종 오류 (β). 검정력 = 1−β."},
+{tag:"44회 · 3-6 회귀", q:"다중공선성 진단에 사용되는 지표는?", choices:["Durbin-Watson","VIF (분산팽창인수)","R²","p-value"], answer:1, explain:"VIF > 10이면 다중공선성. Durbin-Watson은 자기상관 진단."},
+{tag:"44회 · 3-9 군집", q:"덴드로그램(dendrogram)을 결과로 출력하는 군집 방법은?", choices:["K-means","DBSCAN","계층적 군집","SOM"], answer:2, explain:"덴드로그램은 계층적 군집의 결과를 트리로 시각화. 자르는 높이로 군집 수 결정."},
+{tag:"44회 · 3-10 의사결정나무", q:"불순도(impurity) 측도가 아닌 것은?", choices:["지니지수","엔트로피","정보이득","결정계수"], answer:3, explain:"결정계수(R²)는 회귀 모형의 설명력. 의사결정나무 분할 기준은 지니·엔트로피·정보이득."},
+{tag:"44회 · 3-11 앙상블", q:"랜덤포레스트의 핵심 특징은?", choices:["순차적으로 모델을 학습한다","배깅 + 분할 시 변수 임의 선택","오차 가중치를 갱신한다","단일 모델만 사용한다"], answer:1, explain:"RF = 배깅(복원추출) + 각 분할마다 √p개 변수 임의 선택. 트리 다양화로 과적합 방지."},
+{tag:"45회 · 3-2 전처리", q:"이상치(outlier) 탐지에 사용되지 않는 것은?", choices:["박스플롯","IQR 1.5배 룰","마할라노비스 거리","결정계수"], answer:3, explain:"결정계수(R²)는 회귀 설명력. 이상치 탐지와 무관."},
+{tag:"45회 · 3-7 시계열", q:"AR 모형의 차수 p를 결정하는 데 사용하는 함수는?", choices:["ACF (자기상관함수)","PACF (편자기상관함수)","스펙트럼","주기도표"], answer:1, explain:"AR(p)의 차수 p는 PACF의 절단점으로 결정. MA(q)의 q는 ACF로 결정. 헷갈림 단골!"},
+{tag:"45회 · 3-13 연관", q:"향상도(Lift) = 1이면?", choices:["A와 B는 양의 연관","A와 B는 음의 연관","A와 B는 독립","규칙 무효"], answer:2, explain:"향상도 = 1 → 독립. > 1 양의 연관, < 1 음의 연관."},
+{tag:"45회 · 3-14 평가", q:"분류 모델 평가에서 클래스가 매우 불균형할 때 신뢰하기 어려운 지표는?", choices:["F1 score","ROC-AUC","정확도(Accuracy)","재현율(Recall)"], answer:2, explain:"99:1처럼 불균형이면 다 부정 예측해도 정확도 99%. 불균형에는 F1·AUC·재현율을 봄."},
+{tag:"45회 · 3-12 SVM", q:"SVM에서 마진(margin)에 닿는 점을 무엇이라 하는가?", choices:["코어 포인트","서포트 벡터","경계점","잡음점"], answer:1, explain:"서포트 벡터(Support Vector) — 결정경계를 결정하는 핵심 점. 이름의 유래."}
+];
+
+/* ============= MCQ — 주제별 핵심 30 ============= */
+window.MCQ_THM = [
+{tag:"3-1 R", q:"다음 중 자료형이 다른 변수를 한 객체에 담을 수 있는 R 자료구조는?", choices:["Vector","Matrix","List","Array"], answer:2, explain:"List는 서로 다른 자료형(이질적)을 담을 수 있는 1차원 구조. Vector·Matrix·Array는 모두 동일 자료형(동질)만."},
+{tag:"3-1 R", q:"R에서 행렬의 행 평균을 구하는 표현으로 옳은 것은?", choices:["apply(m, 2, mean)","apply(m, 1, mean)","sapply(m, mean)","mean(m)"], answer:1, explain:"apply(x, MARGIN, FUN)에서 MARGIN=1 → 행 단위, MARGIN=2 → 열 단위 적용."},
+{tag:"3-2 전처리", q:"결측값이 있는 행을 모두 삭제하는 R 함수는?", choices:["is.na()","na.omit()","mean()","complete.cases() == FALSE"], answer:1, explain:"na.omit()이 결측 포함 행을 삭제. is.na()는 논리 검사, complete.cases()도 검사."},
+{tag:"3-2 전처리", q:"IQR 룰로 이상치를 판정할 때 경계는?", choices:["Q1 ± 1.5·IQR","Q1−1.5IQR ~ Q3+1.5IQR","평균 ± 3σ","Q1 ~ Q3"], answer:1, explain:"IQR = Q3 − Q1. 이상치 = [Q1−1.5IQR, Q3+1.5IQR] 밖의 점."},
+{tag:"3-3 통계", q:"모집단을 몇 개의 그룹으로 나누고 그중 일부 그룹만 통째로 추출하는 방법은?", choices:["단순임의","계통","층화","집락"], answer:3, explain:"집락(군집) 추출 — 몇 개 그룹만 통째. 층화는 모든 그룹에서 일부씩. 가장 헷갈리는 단골!"},
+{tag:"3-3 통계", q:"이항분포 B(n, p)의 기대값과 분산은?", choices:["E=p, V=p(1−p)","E=np, V=np(1−p)","E=V=λ","E=μ, V=σ²"], answer:1, explain:"이항분포 X~B(n,p): E(X)=np, Var(X)=np(1−p). 베르누이의 n번 합."},
+{tag:"3-4 가설검정", q:"검정력(power)의 정의는?", choices:["α","β","1−α","1−β"], answer:3, explain:"검정력 = 1−β. 대립가설이 참일 때 H₀를 올바르게 기각할 확률. 표본 크기 ↑ → 검정력 ↑."},
+{tag:"3-5 검정 선택", q:"같은 사람의 다이어트 전·후 체중을 비교하려면?", choices:["일표본 t-검정","독립 이표본 t-검정","대응(Paired) 이표본 t-검정","ANOVA"], answer:2, explain:"같은 대상의 전후 비교 = 대응표본 t-검정. 다른 그룹 비교는 독립표본."},
+{tag:"3-5 ANOVA", q:"분산분석(ANOVA)의 가정으로 틀린 것은?", choices:["정규성","독립성","등분산성","상관성"], answer:3, explain:"ANOVA 3가정: 정규성·독립성·등분산성. 상관성은 가정이 아님."},
+{tag:"3-6 회귀", q:"단순선형회귀 Ŷ = a + bX에서 SST·SSR·SSE 관계는?", choices:["SST = SSR − SSE","SST = SSR + SSE","SST = SSR × SSE","SST = SSR / SSE"], answer:1, explain:"SST(총변동) = SSR(설명) + SSE(잔차). R² = SSR/SST = 1 − SSE/SST."},
+{tag:"3-6 회귀", q:"다음 중 변수선택법이 아닌 것은?", choices:["전진선택","후진제거","단계별선택","사후가지치기"], answer:3, explain:"사후가지치기는 의사결정나무의 과적합 방지법. 변수선택법은 전진·후진·단계별."},
+{tag:"3-6 회귀", q:"Durbin-Watson 통계량이 2 부근일 때 의미는?", choices:["양의 자기상관","음의 자기상관","자기상관 없음 (이상)","오차 폭발"], answer:2, explain:"DW 범위 0~4. ≈2 자기상관 없음(이상). <2 양의, >2 음의 자기상관."},
+{tag:"3-7 시계열", q:"시계열의 정상성을 만들기 위해 일반적으로 사용하는 변환은?", choices:["로그 변환","차분(Differencing)","지수 변환","역수 변환"], answer:1, explain:"차분 ∇Yₜ = Yₜ − Yₜ₋₁로 추세 제거 → 평균 정상화. 로그는 분산 안정화."},
+{tag:"3-7 시계열", q:"ARIMA(p, d, q)에서 d의 의미는?", choices:["AR 차수","차분 횟수","MA 차수","계절 주기"], answer:1, explain:"d = 차분 횟수. p=AR차수(PACF), q=MA차수(ACF)."},
+{tag:"3-8 PCA", q:"PCA에 대한 설명으로 옳은 것은?", choices:["주성분들은 서로 상관이 있다","최대 PC 수는 관측치 수와 같다","PC1은 분산이 가장 큰 방향이다","항상 모든 주성분을 사용한다"], answer:2, explain:"PC1은 데이터 분산이 가장 큰 방향. 주성분들은 직교(무상관). 최대 PC 수 = 변수 개수."},
+{tag:"3-9 군집", q:"가장 효과적이고 균등한 결과를 주는 계층적 군집 연결법은?", choices:["단일연결법","완전연결법","중심연결법","와드(Ward)법"], answer:3, explain:"와드법은 군집 내 분산 증가량을 최소화 — 가장 효과적·균등하다고 평가됨."},
+{tag:"3-9 군집", q:"DBSCAN의 두 핵심 파라미터는?", choices:["k와 m","ε(반경)과 MinPts","α와 β","p와 q"], answer:1, explain:"DBSCAN: ε(반경 내) MinPts(이상)이면 핵심점. 임의 형태 군집·이상치 자동 식별."},
+{tag:"3-9 군집", q:"실루엣(silhouette) 점수의 범위는?", choices:["[0, 1]","[−1, 1]","[−∞, ∞]","[0, ∞]"], answer:1, explain:"s = (b−a)/max(a,b) ∈ [−1, 1]. ≥0.5 양호 / 0 경계 / 음수 잘못 분류."},
+{tag:"3-10 의사결정나무", q:"이진 분류에서 지니지수의 최댓값은?", choices:["0","0.25","0.5","1"], answer:2, explain:"이진(p=0.5) 시 G = 1 − (0.5²+0.5²) = 0.5. 엔트로피의 최댓값은 1."},
+{tag:"3-10 의사결정나무", q:"카이제곱(χ²)을 분할 기준으로 사용하는 알고리즘은?", choices:["CART","ID3","C4.5","CHAID"], answer:3, explain:"CHAID는 χ² 기반 다지 분할. CART=지니, ID3=엔트로피, C4.5=이득비."},
+{tag:"3-11 앙상블", q:"부트스트랩 1회에서 원본의 약 몇 %가 선택되나?", choices:["50%","63.2%","75%","99%"], answer:1, explain:"n→∞일 때 (1 − 1/n)ⁿ → 1/e ≈ 36.8%가 선택 안 됨 → 약 63.2%가 선택. 미선택분이 OOB."},
+{tag:"3-11 앙상블", q:"부스팅이 줄이려는 것은 주로?", choices:["분산","편향","계산 시간","데이터 크기"], answer:1, explain:"부스팅은 편향(bias) 감소가 목적. 배깅은 분산 감소. RF는 분산↓+다양성."},
+{tag:"3-12 신경망", q:"은닉층의 주력 활성화 함수로 가장 흔히 쓰이는 것은?", choices:["선형","시그모이드","ReLU","소프트맥스"], answer:2, explain:"ReLU = max(0, x). 기울기 소실 완화·계산 빠름·딥러닝의 사실상 표준."},
+{tag:"3-12 신경망", q:"역전파(backpropagation)의 주된 역할은?", choices:["입력→출력 예측","출력→입력 가중치 갱신","데이터 정규화","학습률 자동 조정"], answer:1, explain:"역전파는 출력 손실의 기울기를 입력 방향으로 전파해 가중치를 경사하강으로 갱신."},
+{tag:"3-12 SVM", q:"SVM의 비선형 분리에 사용되는 기법은?", choices:["부스팅","드롭아웃","커널 트릭","정규화"], answer:2, explain:"커널 트릭(RBF·다항·시그모이드 커널)으로 데이터를 고차원에 사상해 선형 분리."},
+{tag:"3-12 NB", q:"나이브 베이즈가 가정하는 것은?", choices:["변수 간 강한 상관","변수 간 조건부 독립","연속형 변수만","정규분포만"], answer:1, explain:"\"나이브\"한 가정: 클래스가 주어졌을 때 변수들이 조건부 독립. 현실엔 거의 안 맞지만 잘 작동."},
+{tag:"3-13 연관", q:"신뢰도(Confidence) A→B의 정의는?", choices:["P(A∩B)","P(A∩B)/P(A)","P(A∩B)/P(B)","P(A)·P(B)"], answer:1, explain:"신뢰도 = P(B|A) = P(A∩B)/P(A). \"A 산 사람이 B 살 확률\"."},
+{tag:"3-13 연관", q:"Apriori보다 빠르며 후보 생성을 하지 않는 알고리즘은?", choices:["DHP","FP-Growth","ECLAT","K-modes"], answer:1, explain:"FP-Growth는 FP-Tree 자료구조로 후보 생성 없이 빈발항목 발견. Apriori 단점 보완."},
+{tag:"3-14 평가", q:"정밀도(Precision)의 정의는?", choices:["TP/(TP+FN)","TP/(TP+FP)","TN/(TN+FP)","(TP+TN)/전체"], answer:1, explain:"정밀도 = TP/(TP+FP) — 양성 예측 중 실제 양성. 재현율 = TP/(TP+FN), 특이도 = TN/(TN+FP)."},
+{tag:"3-14 평가", q:"K-Fold 교차검증에서 보통 K 값으로 권장되는 것은?", choices:["2","5 또는 10","100","n (관측치 수)"], answer:1, explain:"K=5 또는 10이 일반적. K=n은 LOOCV — 데이터 적을 때만."}
+];
+
+</script>
+
+<script id="data-script">
+/* ============= GLOSSARY ============= */
+window.GLOSSARY = [
+ {term:"DIKW", tag:"1과목", def:"Data → Information → Knowledge → Wisdom 의 가치 상승 피라미드. 데이터를 가공해 의미·규칙·통찰로 발전."},
+ {term:"SECI 모델", tag:"1과목", def:"공통화→표출화→연결화→내면화. 암묵지·형식지의 4가지 전환 (공·표·연·내)."},
+ {term:"암묵지 vs 형식지", tag:"1과목", def:"암묵지=경험·체화 / 형식지=문서·매뉴얼화"},
+ {term:"DBMS 4특성", tag:"1과목", def:"통합·저장·공용·운영 (통·저·공·운)"},
+ {term:"DW 4특성", tag:"1과목", def:"주제지향·통합·시계열성·비휘발성"},
+ {term:"ETL", tag:"1과목", def:"Extract → Transform → Load. DW 적재 절차"},
+ {term:"OLTP vs OLAP", tag:"1과목", def:"OLTP=실시간 거래 처리 / OLAP=다차원 분석·집계"},
+ {term:"3V", tag:"1과목", def:"Volume(규모)·Variety(다양성)·Velocity(속도). 빅데이터 본질"},
+ {term:"4V", tag:"1과목", def:"3V + Value(가치). 비즈니스 관점 ROI"},
+ {term:"빅데이터 위기 3", tag:"1과목", def:"사생활 침해·책임원칙 훼손·데이터 오용. 통제: 책임제 전환·결과기반·알고리즈미스트"},
+ {term:"비식별화 5기법", tag:"1과목", def:"가명·총계·삭제·범주화·마스킹"},
+ {term:"거버넌스 3요소", tag:"1과목", def:"원칙(Principle)·조직(Organization)·절차(Process) — 원·조·절"},
+ {term:"Hard vs Soft Skill", tag:"1과목", def:"Hard=빅데이터 이론·ML·코딩·인프라 / Soft=통찰·스토리텔링·소통·창의"},
+ {term:"알고리즈미스트", tag:"1과목", def:"알고리즘 분류·예측 결과로 인한 피해자를 구제·인증하는 전문가"},
+ {term:"가치 패러다임", tag:"1과목", def:"Digitalization → Connection → Agency"},
+ {term:"분석 주제 4유형", tag:"2과목", def:"What/How: O/O 최적화, X/O 솔루션, O/X 통찰, X/X 발견"},
+ {term:"KDD 5단계", tag:"2과목", def:"선택→전처리→변환→마이닝→해석/평가 (선·전·변·마·평)"},
+ {term:"CRISP-DM 6단계", tag:"2과목", def:"업무이해→데이터이해→데이터준비→모델링→평가→전개 (업·데·준·모·평·전)"},
+ {term:"빅데이터 분석 5단계", tag:"2과목", def:"분석기획→데이터준비→데이터분석→시스템구현→평가및전개"},
+ {term:"단·태·스 (Phase·Task·Step)", tag:"2과목", def:"빅데이터 분석 방법론의 계층 구조"},
+ {term:"위험 대응 4가지", tag:"2과목", def:"회피·전이·완화·수용"},
+ {term:"하향식 vs 상향식", tag:"2과목", def:"하향식=Problem Solving / 상향식=Discovery·Insight"},
+ {term:"STEEP", tag:"2과목", def:"사회·기술·경제·환경·정치 — 거시 환경 분석"},
+ {term:"우선순위 사분면", tag:"2과목", def:"가로 시급성·세로 난이도. 1영역(시급↑·난이도↓) Quick Win"},
+ {term:"분석 조직 3유형", tag:"2과목", def:"집중형(DSCoE)·기능형(부서별)·분산형(하이브리드)"},
+ {term:"성숙도 4단계", tag:"2과목", def:"도입·활용·확산·최적화 (CMMI 기반)"},
+ {term:"준비도×성숙도 4사분면", tag:"2과목", def:"준비형·도입형·정착형·확산형"},
+ {term:"SOW vs WBS", tag:"2과목", def:"SOW=작업명세서 / WBS=업무분업 구조도"},
+ {term:"분석 과제 5특성", tag:"2과목", def:"Data Size·Complexity·Speed·Analytic Complexity·Accuracy/Precision"},
+ {term:"표본추출 4방법", tag:"3과목", def:"단순임의·계통·층화(모든 그룹 일부)·집락(몇 그룹 통째)"},
+ {term:"척도 4종", tag:"3과목", def:"명목·서열·등간(0없음, 온도)·비율(0있음, 무게)"},
+ {term:"1·2종 오류", tag:"3과목", def:"1종=α(참인 H₀ 기각) / 2종=β(거짓 H₀ 채택). 검정력=1−β"},
+ {term:"p-value 판정", tag:"3과목", def:"p < α(0.05) ⇒ H₀ 기각"},
+ {term:"신뢰도 95%", tag:"3과목", def:"같은 추출을 100번 반복하면 약 95번 신뢰구간이 모수를 포함"},
+ {term:"이항분포", tag:"3과목", def:"E(X)=np, Var(X)=np(1−p)"},
+ {term:"포아송분포", tag:"3과목", def:"E(X)=Var(X)=λ. 희귀 사건"},
+ {term:"표준화 Z", tag:"3과목", def:"Z = (X − μ) / σ"},
+ {term:"R² 결정계수", tag:"3과목", def:"R² = SSR/SST = 1 − SSE/SST. 0~1, 모형 설명력"},
+ {term:"VIF", tag:"3과목", def:"VIF = 1/(1−R²ₖ). >10 다중공선성"},
+ {term:"변수선택법", tag:"3과목", def:"전진선택·후진제거·단계별. 기준: AIC·BIC·Mallows Cp"},
+ {term:"회귀 가정 5", tag:"3과목", def:"선형성·독립성·정규성·등분산성·비상관성"},
+ {term:"Durbin-Watson", tag:"3과목", def:"0~4 범위, 2 부근이면 자기상관 없음(이상)"},
+ {term:"정상성 3조건", tag:"3과목", def:"평균·분산 시점 무관 일정, 자기공분산은 시차에만 의존"},
+ {term:"ACF·PACF", tag:"3과목", def:"ACF→MA(q) 결정 / PACF→AR(p) 결정"},
+ {term:"ARIMA(p,d,q)", tag:"3과목", def:"p=AR차수(PACF), d=차분, q=MA차수(ACF)"},
+ {term:"시계열 분해", tag:"3과목", def:"Yₜ = Tₜ(추세)+Sₜ(계절)+Cₜ(순환)+Eₜ(불규칙)"},
+ {term:"PCA", tag:"3과목", def:"분산 큰 방향이 PC1, PC들은 직교(무상관). 누적기여 70~85%"},
+ {term:"PCA vs 요인분석", tag:"3과목", def:"PCA=차원축소·전체분산 / 요인분석=잠재변수·공통분산·회전 필수"},
+ {term:"군집 연결법", tag:"3과목", def:"단일(체이닝)·완전(구형)·평균·중심·와드(분산증가 최소·가장 효과적)"},
+ {term:"K-means 4단계", tag:"3과목", def:"중심 초기화→할당→평균 갱신→수렴까지 반복. 초기값·구형 가정 민감"},
+ {term:"DBSCAN", tag:"3과목", def:"밀도 기반(ε·MinPts). 임의 형태·이상치 자동 식별"},
+ {term:"실루엣", tag:"3과목", def:"s=(b−a)/max(a,b). [−1,1], 클수록 좋음. ≥0.5 양호"},
+ {term:"의사결정나무 알고리즘", tag:"3과목", def:"CART(지니·이진)·ID3(엔트로피)·C4.5/C5.0(이득비)·CHAID(카이제곱)"},
+ {term:"지니지수", tag:"3과목", def:"Gini=1−Σpᵢ². 이진 최대 0.5"},
+ {term:"엔트로피", tag:"3과목", def:"H=−Σpᵢ log₂ pᵢ. 이진 최대 1"},
+ {term:"가지치기", tag:"3과목", def:"사전(조기 정지)·사후(완전성장 후 제거). 과적합 방지"},
+ {term:"배깅", tag:"3과목", def:"복원추출 부분표본·병렬 학습·결과 결합. 분산↓. RF의 기반"},
+ {term:"부스팅", tag:"3과목", def:"순차 학습, 오분류 가중치 ↑. 편향↓. AdaBoost·GBM·XGBoost"},
+ {term:"랜덤포레스트", tag:"3과목", def:"배깅 + 분할 시 변수 임의 선택(보통 √p). OOB 평가"},
+ {term:"활성화함수", tag:"3과목", def:"시그모이드(0,1)·tanh(−1,1)·ReLU max(0,x)·소프트맥스(다중)"},
+ {term:"역전파", tag:"3과목", def:"출력→입력 방향 기울기 전파, 경사하강으로 가중치 갱신"},
+ {term:"기울기 소실", tag:"3과목", def:"깊은 층·시그모이드 → 기울기 0 수렴. 해결: ReLU·정규화"},
+ {term:"SVM", tag:"3과목", def:"최대 마진 초평면. 비선형은 커널 트릭(RBF 등)"},
+ {term:"나이브베이즈", tag:"3과목", def:"P(A|B)=P(B|A)P(A)/P(B). 변수 조건부 독립 가정"},
+ {term:"지지도", tag:"3과목", def:"P(A∩B). 동시 거래 비율"},
+ {term:"신뢰도", tag:"3과목", def:"P(B|A)=동시거래/A거래"},
+ {term:"향상도", tag:"3과목", def:"신뢰도/P(B). >1 양의 연관, =1 독립, <1 음의 연관"},
+ {term:"Apriori", tag:"3과목", def:"최소 지지도 이상 빈발 항목집합 탐색·후보 생성"},
+ {term:"FP-Growth", tag:"3과목", def:"FP-Tree로 후보 생성 없이 효율적"},
+ {term:"혼동행렬", tag:"3과목", def:"TP·FP·FN·TN 4칸. 분류 평가의 기본"},
+ {term:"정확도/정밀도/재현율/특이도/F1", tag:"3과목", def:"정확도=(TP+TN)/전체, 정밀도=TP/(TP+FP), 재현율=TP/(TP+FN), 특이도=TN/(TN+FP), F1=조화평균"},
+ {term:"ROC·AUC", tag:"3과목", def:"x=1−특이도(FPR), y=재현율(TPR). AUC≥0.7 양호, 1 완벽"},
+ {term:"교차검증", tag:"3과목", def:"K-Fold(보통 5·10), LOOCV, 층화 K-Fold(불균형), 부트스트랩"},
+ {term:"회귀 평가지표", tag:"3과목", def:"MAE·MSE·RMSE·MAPE·R²"}
+];
+
+/* ============= FLASHCARDS ============= */
+window.FLASHCARDS = [
+ // 1과목
+ {tag:"1과목", q:"DIKW 피라미드 4단계 순서?", a:"Data → Information → Knowledge → Wisdom"},
+ {tag:"1과목", q:"SECI 4단계 (한글) 순서는?", a:"공통화 → 표출화 → 연결화 → 내면화 (공·표·연·내)"},
+ {tag:"1과목", q:"암묵지 → 형식지 전환은?", a:"표출화(Externalization) — 노하우를 매뉴얼화"},
+ {tag:"1과목", q:"DBMS 4대 특징은?", a:"통합·저장·공용·운영 (통·저·공·운)"},
+ {tag:"1과목", q:"데이터 웨어하우스 4특성은?", a:"주제지향·통합·시계열성·비휘발성"},
+ {tag:"1과목", q:"ETL의 풀네임?", a:"Extract → Transform → Load (추출·변환·적재)"},
+ {tag:"1과목", q:"OLTP와 OLAP의 차이는?", a:"OLTP=실시간 거래 처리(쓰기) / OLAP=다차원 분석·집계(읽기)"},
+ {tag:"1과목", q:"빅데이터 3V는?", a:"Volume(규모)·Variety(다양성)·Velocity(속도)"},
+ {tag:"1과목", q:"빅데이터 4V의 4번째 V는?", a:"Value(가치) — ROI 관점"},
+ {tag:"1과목", q:"빅데이터 위기 요인 3가지?", a:"사생활 침해·책임원칙 훼손·데이터 오용"},
+ {tag:"1과목", q:"개인정보 비식별화 5기법은?", a:"가명·총계·삭제·범주화·마스킹"},
+ {tag:"1과목", q:"데이터 거버넌스 3요소는?", a:"원칙·조직·절차 (원·조·절)"},
+ {tag:"1과목", q:"Soft Skill 예시 3가지?", a:"통찰·스토리텔링·의사소통(창의 사고)"},
+ {tag:"1과목", q:"알고리즈미스트의 역할?", a:"알고리즘이 만든 분류·예측 피해자 구제·알고리즘 인증"},
+ {tag:"1과목", q:"반정형 데이터 예시?", a:"HTML, XML, JSON, 웹 로그"},
+ {tag:"1과목", q:"Data Lake와 DW 차이?", a:"Data Lake=정형·비정형 원천 그대로 / DW=정제·통합"},
+ {tag:"1과목", q:"가치 패러다임 3단계?", a:"Digitalization → Connection → Agency"},
+ {tag:"1과목", q:"빅데이터 패러다임 변화 4가지?", a:"사전→사후처리, 표본→전수, 질→양, 인과→상관"},
+ // 2과목
+ {tag:"2과목", q:"분석 주제 4유형 (W/H 매트릭스)?", a:"O/O 최적화, X/O 솔루션, O/X 통찰, X/X 발견"},
+ {tag:"2과목", q:"KDD 5단계는?", a:"선택→전처리→변환→마이닝→해석/평가 (선·전·변·마·평)"},
+ {tag:"2과목", q:"CRISP-DM 6단계는?", a:"업무이해→데이터이해→데이터준비→모델링→평가→전개"},
+ {tag:"2과목", q:"CRISP-DM에서 전처리는 몇 단계?", a:"3단계 데이터 준비(Data Preparation) — 가장 시간 소요"},
+ {tag:"2과목", q:"빅데이터 분석 방법론 5단계?", a:"분석기획→데이터준비→데이터분석→시스템구현→평가및전개"},
+ {tag:"2과목", q:"방법론 계층(Phase·Task·Step)?", a:"단계 → 태스크 → 스텝 (단·태·스)"},
+ {tag:"2과목", q:"위험 대응 4전략은?", a:"회피·전이·완화·수용"},
+ {tag:"2과목", q:"하향식 접근의 키워드?", a:"Problem Solving — 문제 정의에서 출발"},
+ {tag:"2과목", q:"상향식 접근의 키워드?", a:"Discovery·Insight — 데이터 탐색에서 출발"},
+ {tag:"2과목", q:"STEEP 5요소?", a:"사회·기술·경제·환경·정치"},
+ {tag:"2과목", q:"우선순위 사분면 1영역은?", a:"시급성↑·난이도↓ → Quick Win, 가장 먼저"},
+ {tag:"2과목", q:"분석 조직 3유형?", a:"집중형(DSCoE)·기능형(부서)·분산형(하이브리드, 가장 이상적)"},
+ {tag:"2과목", q:"성숙도 모델 4단계?", a:"도입 → 활용 → 확산 → 최적화"},
+ {tag:"2과목", q:"준비도×성숙도 4사분면?", a:"준비형·도입형·정착형·확산형"},
+ {tag:"2과목", q:"SOW와 WBS의 차이?", a:"SOW=작업명세 / WBS=업무 분업 구조도"},
+ {tag:"2과목", q:"분석과제 5특성?", a:"Data Size·Complexity·Speed·Analytic Complexity·Accuracy/Precision"},
+ {tag:"2과목", q:"디자인씽킹의 두 방향?", a:"발산(상향식·아이디어) + 수렴(하향식·정의)"},
+ // 3과목
+ {tag:"3과목", q:"표본추출 4가지?", a:"단순임의·계통·층화·집락"},
+ {tag:"3과목", q:"층화와 집락의 차이?", a:"층화=모든 층에서 골고루 / 집락=몇 그룹만 통째"},
+ {tag:"3과목", q:"척도 4종?", a:"명목·서열·등간(0없음)·비율(0있음)"},
+ {tag:"3과목", q:"온도(섭씨)는 어떤 척도?", a:"등간 척도 (절대 0이 의미 없음)"},
+ {tag:"3과목", q:"이항분포의 평균과 분산?", a:"E=np, Var=np(1−p)"},
+ {tag:"3과목", q:"포아송분포 평균/분산?", a:"E(X) = Var(X) = λ"},
+ {tag:"3과목", q:"표준화 공식?", a:"Z = (X − μ) / σ"},
+ {tag:"3과목", q:"제1종 오류는?", a:"α — 참인 귀무가설을 잘못 기각"},
+ {tag:"3과목", q:"검정력의 정의?", a:"1 − β — 거짓 H₀를 올바르게 기각할 확률"},
+ {tag:"3과목", q:"p-value 의사결정 기준?", a:"p < α(0.05) ⇒ H₀ 기각"},
+ {tag:"3과목", q:"R²의 식?", a:"R² = SSR / SST = 1 − SSE/SST"},
+ {tag:"3과목", q:"VIF 다중공선성 임계?", a:"VIF > 10 (5 이상도 주의)"},
+ {tag:"3과목", q:"VIF 식?", a:"VIF = 1 / (1 − R²ₖ)"},
+ {tag:"3과목", q:"Durbin-Watson 정상값?", a:"≈ 2 (자기상관 없음). 0~4 범위"},
+ {tag:"3과목", q:"회귀 가정 5가지?", a:"선형성·독립성·정규성·등분산성·비상관성"},
+ {tag:"3과목", q:"변수선택 3방법?", a:"전진선택·후진제거·단계별"},
+ {tag:"3과목", q:"정상성 3조건?", a:"평균·분산이 시점 무관 / 자기공분산은 시차에만 의존"},
+ {tag:"3과목", q:"ARIMA(p,d,q)의 q는 어떻게?", a:"ACF로 결정 (MA 차수)"},
+ {tag:"3과목", q:"ARIMA(p,d,q)의 p는 어떻게?", a:"PACF로 결정 (AR 차수)"},
+ {tag:"3과목", q:"시계열 분해 4성분?", a:"추세(T) + 계절(S) + 순환(C) + 불규칙(E)"},
+ {tag:"3과목", q:"PCA의 PC들은?", a:"서로 직교(무상관). PC1이 분산 최대 방향"},
+ {tag:"3과목", q:"누적 기여도 권장치?", a:"70~85% 이상이면 충분"},
+ {tag:"3과목", q:"PCA vs 요인분석?", a:"PCA=차원축소·전체분산 / 요인분석=잠재변수·공통분산·회전 필수"},
+ {tag:"3과목", q:"가장 효과적인 계층 군집 연결법?", a:"와드(Ward) — 군집 내 분산 증가 최소"},
+ {tag:"3과목", q:"K-means 4단계?", a:"중심 초기화→가까운 중심에 할당→평균으로 중심 갱신→반복"},
+ {tag:"3과목", q:"DBSCAN의 두 파라미터?", a:"ε(반경)과 MinPts(최소 점 수)"},
+ {tag:"3과목", q:"실루엣 계수 식?", a:"s = (b − a) / max(a, b). 범위 [−1, 1]"},
+ {tag:"3과목", q:"의사결정나무 — CART의 분할기준?", a:"지니 지수 (이진 분할)"},
+ {tag:"3과목", q:"ID3의 분할기준?", a:"엔트로피·정보이득"},
+ {tag:"3과목", q:"CHAID의 분할기준?", a:"카이제곱 검정"},
+ {tag:"3과목", q:"지니 지수 공식?", a:"Gini = 1 − Σpᵢ²"},
+ {tag:"3과목", q:"엔트로피 공식?", a:"H = − Σ pᵢ · log₂ pᵢ"},
+ {tag:"3과목", q:"가지치기의 목적?", a:"과적합 방지·일반화 향상"},
+ {tag:"3과목", q:"배깅과 부스팅의 차이?", a:"배깅=병렬·분산↓ / 부스팅=순차·편향↓·이상치 민감"},
+ {tag:"3과목", q:"랜덤포레스트의 핵심?", a:"배깅 + 분할 시 변수 임의 선택(√p)"},
+ {tag:"3과목", q:"Bootstrap에서 한 표본이 사용될 비율?", a:"약 63.2% (OOB ≈ 36.8%)"},
+ {tag:"3과목", q:"ReLU의 식?", a:"f(x) = max(0, x)"},
+ {tag:"3과목", q:"다중분류 출력의 활성화함수?", a:"소프트맥스 (eˣⁱ / Σeˣʲ)"},
+ {tag:"3과목", q:"기울기 소실 해결법?", a:"ReLU 사용·정규화·잔차연결"},
+ {tag:"3과목", q:"SVM의 핵심?", a:"두 클래스를 최대 마진으로 분리하는 초평면"},
+ {tag:"3과목", q:"나이브베이즈의 가정?", a:"입력 변수들이 조건부 독립"},
+ {tag:"3과목", q:"지지도 공식?", a:"Support(A→B) = P(A ∩ B)"},
+ {tag:"3과목", q:"신뢰도 공식?", a:"Confidence(A→B) = P(B|A)"},
+ {tag:"3과목", q:"향상도 공식?", a:"Lift = 신뢰도 / P(B) = P(A∩B) / [P(A)·P(B)]"},
+ {tag:"3과목", q:"향상도 = 1의 의미?", a:"A와 B가 서로 독립 (연관 없음)"},
+ {tag:"3과목", q:"Apriori 알고리즘 핵심?", a:"최소 지지도 이상의 빈발 항목집합 탐색·후보 생성"},
+ {tag:"3과목", q:"정확도 공식?", a:"(TP + TN) / 전체"},
+ {tag:"3과목", q:"정밀도 공식?", a:"TP / (TP + FP)"},
+ {tag:"3과목", q:"재현율 공식?", a:"TP / (TP + FN)"},
+ {tag:"3과목", q:"특이도 공식?", a:"TN / (TN + FP)"},
+ {tag:"3과목", q:"F1 score 공식?", a:"2 × (정밀도 × 재현율) / (정밀도 + 재현율) — 조화평균"},
+ {tag:"3과목", q:"ROC 곡선의 두 축?", a:"x = 1 − 특이도 (FPR), y = 재현율 (TPR)"},
+ {tag:"3과목", q:"AUC 양호 기준?", a:"AUC ≥ 0.7 양호, 1 완벽, 0.5 무작위"},
+ {tag:"3과목", q:"K-Fold에서 보통 K는?", a:"K = 5 또는 10"},
+ {tag:"3과목", q:"불균형 데이터에 좋은 분할?", a:"층화 K-Fold (클래스 비율 유지)"},
+ {tag:"3과목", q:"회귀 평가지표 4가지?", a:"MAE·MSE·RMSE·MAPE (+ R²)"},
+ {tag:"3과목", q:"R 데이터 구조 — 동질·2차원?", a:"matrix"},
+ {tag:"3과목", q:"R 데이터 구조 — 이질·표 형식?", a:"data.frame"},
+ {tag:"3과목", q:"이상치 IQR 룰?", a:"Q1−1.5·IQR 미만, Q3+1.5·IQR 초과"},
+ {tag:"3과목", q:"요약변수 vs 파생변수?", a:"요약=합·평균 등 객관적 / 파생=도메인 지식 기반 새 변수"},
+ {tag:"3과목", q:"Tukey HSD는?", a:"ANOVA 사후검정 — 어느 집단 차이가 유의한지 비교"}
+];
+
+/* ============= QUIZBANK (기출 21~35회 발췌) ============= */
+window.QUIZBANK = [
+ {q:"빅데이터의 3V를 영문으로 모두 쓰시오.", a:"Volume, Variety, Velocity"},
+ {q:"빅데이터 4V에 추가되는 가장 비즈니스적인 V는?", a:"Value"},
+ {q:"DIKW 피라미드의 4단계를 순서대로 쓰시오.", a:"Data → Information → Knowledge → Wisdom"},
+ {q:"SECI 모델 4단계를 순서대로 쓰시오.", a:"공통화 → 표출화 → 연결화 → 내면화"},
+ {q:"암묵지를 형식지로 전환하는 SECI 단계는?", a:"표출화 (Externalization)"},
+ {q:"형식지를 암묵지로 내면화하는 단계는?", a:"내면화 (Internalization)"},
+ {q:"데이터베이스 4대 특징을 쓰시오.", a:"통합·저장·공용·운영"},
+ {q:"데이터 웨어하우스 4대 특성은?", a:"주제지향성·통합성·시계열성·비휘발성"},
+ {q:"DW에 데이터를 적재하는 ETL의 풀네임?", a:"Extract → Transform → Load"},
+ {q:"실시간 트랜잭션 처리 시스템을 가리키는 약어?", a:"OLTP (Online Transaction Processing)"},
+ {q:"다차원 분석을 가리키는 약어?", a:"OLAP (Online Analytical Processing)"},
+ {q:"빅데이터 위기요인 3가지를 쓰시오.", a:"사생활 침해·책임원칙 훼손·데이터 오용"},
+ {q:"개인정보 비식별화 5기법은?", a:"가명처리·총계처리·데이터값 삭제·범주화·데이터 마스킹"},
+ {q:"데이터 거버넌스 3요소를 쓰시오.", a:"원칙(Principle)·조직(Organization)·절차(Process)"},
+ {q:"가치 패러다임 3단계를 순서대로 쓰시오.", a:"Digitalization → Connection → Agency"},
+ {q:"데이터 사이언티스트의 인문학적 역량을 무엇이라 하나?", a:"Soft Skill"},
+ {q:"분석 주제 4유형 중 What/How 모두 모를 때는?", a:"발견(Discovery)"},
+ {q:"분석 주제 4유형 중 What 알고 How 모를 때는?", a:"통찰(Insight)"},
+ {q:"분석 주제 4유형 중 What 모르고 How 알 때는?", a:"솔루션(Solution)"},
+ {q:"KDD 방법론의 5단계를 순서대로 쓰시오.", a:"선택 → 전처리 → 변환 → 마이닝 → 해석/평가"},
+ {q:"CRISP-DM 6단계를 순서대로 쓰시오.", a:"업무이해 → 데이터이해 → 데이터준비 → 모델링 → 평가 → 전개"},
+ {q:"CRISP-DM에서 데이터 전처리·정제는 몇 번째 단계?", a:"3단계 — 데이터 준비(Data Preparation)"},
+ {q:"빅데이터 분석 방법론 5단계는?", a:"분석기획 → 데이터준비 → 데이터분석 → 시스템구현 → 평가및전개"},
+ {q:"분석 방법론의 계층 구조 3단계(큰→작은)?", a:"단계(Phase) → 태스크(Task) → 스텝(Step)"},
+ {q:"위험 대응 4전략은?", a:"회피·전이·완화·수용"},
+ {q:"하향식 접근의 키워드는?", a:"Problem Solving"},
+ {q:"상향식 접근의 키워드 두 가지?", a:"Discovery, Insight"},
+ {q:"거시환경 분석 STEEP 5요소는?", a:"사회·기술·경제·환경·정치"},
+ {q:"우선순위 사분면에서 가장 먼저 수행할 영역은?", a:"1영역 (시급성 높고 난이도 낮음 = Quick Win)"},
+ {q:"분석 조직 3유형 중 가장 이상적이라 평가되는 형태?", a:"분산형 (Federated/Hybrid)"},
+ {q:"전사 분석 전담 조직의 약어?", a:"DSCoE (Data Science Center of Excellence)"},
+ {q:"성숙도 4단계를 순서대로 쓰시오.", a:"도입 → 활용 → 확산 → 최적화"},
+ {q:"준비도와 성숙도 모두 높을 때의 분류명?", a:"확산형"},
+ {q:"작업 명세서를 가리키는 약어는?", a:"SOW (Statement of Work)"},
+ {q:"업무 분업 구조도를 가리키는 약어는?", a:"WBS (Work Breakdown Structure)"},
+ {q:"표본추출 중 모든 그룹에서 골고루 뽑는 방법은?", a:"층화추출 (Stratified Sampling)"},
+ {q:"표본추출 중 몇 개 그룹을 통째로 뽑는 방법은?", a:"집락추출 (Cluster Sampling)"},
+ {q:"섭씨 온도는 어떤 척도?", a:"등간 척도"},
+ {q:"무게(kg)는 어떤 척도?", a:"비율 척도"},
+ {q:"제1종 오류의 정의는?", a:"참인 귀무가설을 잘못 기각하는 오류 (확률 α)"},
+ {q:"제2종 오류의 정의는?", a:"거짓인 귀무가설을 잘못 채택하는 오류 (확률 β)"},
+ {q:"검정력은 무엇과 같은가?", a:"1 − β"},
+ {q:"p-value < α일 때의 결론은?", a:"귀무가설(H₀)을 기각한다"},
+ {q:"이항분포의 평균은?", a:"np"},
+ {q:"포아송분포의 평균과 분산은?", a:"둘 다 λ"},
+ {q:"표준화 공식은?", a:"Z = (X − μ) / σ"},
+ {q:"R²의 의미는?", a:"독립변수가 종속변수의 변동을 설명하는 비율 (0~1)"},
+ {q:"VIF가 얼마 이상이면 다중공선성을 의심하는가?", a:"10"},
+ {q:"VIF 공식?", a:"VIF = 1 / (1 − R²ₖ)"},
+ {q:"Durbin-Watson 통계량이 2 부근일 때 의미는?", a:"자기상관이 없다 (이상적)"},
+ {q:"회귀분석의 가정 5가지는?", a:"선형성·독립성·정규성·등분산성·비상관성"},
+ {q:"변수선택법 3가지를 쓰시오.", a:"전진선택·후진제거·단계별"},
+ {q:"시계열의 정상성 조건은?", a:"평균과 분산이 시점에 무관, 자기공분산은 시차에만 의존"},
+ {q:"ARIMA(p,d,q)에서 p를 결정하는 함수는?", a:"PACF (편자기상관함수)"},
+ {q:"ARIMA의 q를 결정하는 함수는?", a:"ACF (자기상관함수)"},
+ {q:"비정상 시계열을 정상으로 만드는 기법은?", a:"차분 (Differencing)"},
+ {q:"시계열을 분해할 때의 4성분은?", a:"추세·계절성·순환성·불규칙성 (T, S, C, E)"},
+ {q:"PCA에서 주성분들의 관계는?", a:"서로 직교(무상관)이다"},
+ {q:"누적 기여도가 보통 어느 정도면 충분한가?", a:"70~85% 이상"},
+ {q:"가장 효과적이라 평가되는 계층 군집 연결법은?", a:"와드 연결법 (Ward)"},
+ {q:"K-means에서 군집 중심을 갱신하는 기준은?", a:"각 군집에 속한 자료들의 평균"},
+ {q:"밀도 기반 군집 알고리즘은?", a:"DBSCAN"},
+ {q:"실루엣 계수의 범위는?", a:"−1 ~ 1"},
+ {q:"의사결정나무 CART의 분할 기준은?", a:"지니 지수 (분류) / 분산 감소 (회귀)"},
+ {q:"ID3의 분할 기준은?", a:"엔트로피 (정보이득)"},
+ {q:"CHAID의 분할 기준은?", a:"카이제곱 통계량"},
+ {q:"지니 지수의 공식은?", a:"Gini = 1 − Σ pᵢ²"},
+ {q:"엔트로피 공식은?", a:"H = − Σ pᵢ · log₂ pᵢ"},
+ {q:"가지치기(pruning)의 목적은?", a:"과적합을 방지하고 일반화 성능을 높이기 위함"},
+ {q:"배깅의 목표는 무엇을 줄이는가?", a:"분산 (Variance)"},
+ {q:"부스팅의 목표는 무엇을 줄이는가?", a:"편향 (Bias)"},
+ {q:"랜덤포레스트는 배깅에 무엇을 추가했는가?", a:"분할 시 변수의 임의 선택"},
+ {q:"부트스트랩에서 한 표본이 선택될 확률은 약 몇 %?", a:"약 63.2% (1 − 1/e)"},
+ {q:"ReLU 함수의 식은?", a:"f(x) = max(0, x)"},
+ {q:"다중 분류의 출력층 활성화함수는?", a:"소프트맥스 (Softmax)"},
+ {q:"신경망에서 가중치를 갱신하는 알고리즘은?", a:"역전파 (Backpropagation)"},
+ {q:"서포트 벡터 머신의 핵심 개념은?", a:"두 클래스 간 마진을 최대로 하는 초평면"},
+ {q:"나이브베이즈가 가정하는 것은?", a:"입력 변수들의 조건부 독립"},
+ {q:"연관분석 지지도 공식?", a:"Support(A→B) = P(A ∩ B)"},
+ {q:"연관분석 신뢰도 공식?", a:"Confidence(A→B) = P(B|A)"},
+ {q:"연관분석 향상도 공식?", a:"Lift = 신뢰도(A→B) / P(B)"},
+ {q:"향상도가 1일 때 의미는?", a:"A와 B가 독립 (연관 없음)"},
+ {q:"빈발 항목집합을 후보 생성 방식으로 찾는 알고리즘은?", a:"Apriori"},
+ {q:"FP-Tree를 사용해 더 효율적인 알고리즘은?", a:"FP-Growth"},
+ {q:"정확도(Accuracy) 공식?", a:"(TP + TN) / 전체"},
+ {q:"정밀도(Precision) 공식?", a:"TP / (TP + FP)"},
+ {q:"재현율(Recall) 공식?", a:"TP / (TP + FN)"},
+ {q:"특이도(Specificity) 공식?", a:"TN / (TN + FP)"},
+ {q:"F1 score는 무엇의 조화평균?", a:"정밀도와 재현율의 조화평균"},
+ {q:"ROC 곡선의 x축, y축은?", a:"x = 1 − 특이도 (FPR), y = 재현율 (TPR)"},
+ {q:"AUC가 보통 양호하다고 보는 기준?", a:"AUC ≥ 0.7"},
+ {q:"불균형 데이터에 권장되는 교차검증 방식은?", a:"층화 K-Fold (Stratified K-Fold)"},
+ {q:"R에서 선형회귀를 실행하는 함수는?", a:"lm()"},
+ {q:"R에서 의사결정나무를 학습하는 패키지는?", a:"rpart"},
+ {q:"R에서 랜덤포레스트 패키지명은?", a:"randomForest"},
+ {q:"군집 평가에서 군집 내 응집·군집 간 분리를 보는 지표는?", a:"실루엣 계수"},
+ {q:"이상치 IQR 룰의 경계는?", a:"Q1 − 1.5·IQR, Q3 + 1.5·IQR"},
+ {q:"잔차 정규성을 확인하는 도표는?", a:"Q-Q plot"},
+ {q:"분산분석에서 이용하는 통계량은?", a:"F 통계량"},
+ {q:"3집단 이상 평균 비교 분석은?", a:"분산분석 (ANOVA)"}
+];
+</script>
+
+</body>
+</html>
